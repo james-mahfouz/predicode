@@ -21,4 +21,4 @@ async def connect_to_mongo():
 async def close_mongo_connection():
     client.close()
 
-db = await connect_to_mongo()
+db = connect_to_mongo()
