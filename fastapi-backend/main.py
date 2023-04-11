@@ -1,9 +1,14 @@
+from configs.db_config import db
+from fastapi import APIRouter
+from dotenv import load_dotenv
+from fastapi.middleware.cors import CORSMiddleware
 from typing import Union
 from fastapi import FastAPI
+# import sys
 import os
-from fastapi.middleware.cors import CORSMiddleware
-from dotenv import load_dotenv
-from fastapi import APIRouter
+# sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/configs')
+
+print(db)
 
 app = FastAPI()
 load_dotenv()
