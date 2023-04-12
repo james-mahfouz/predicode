@@ -1,20 +1,18 @@
 import bcrypt
-from mongoengine import Document, StringField, ListField, EmailField
+from mongoengine import Document, StringField, ListField, EmailField, ReferenceField
+
 
 class User(Document):
     name = StringField(max_length=100, required=True)
     email = EmailField(unique=True, required=True)
-    password_hash = StringField()
-    files = ListField()
+    password = StringField(required=True)
+    role = StringField(choices=["user", "admin"], default="user")
+    courses = ListField(ReferenceField("Course"))
 
-    @property
-    def password(self):
-        raise AttributeError('Password cannot be accessed directly')
-
-    @password.setter
-    def password(self, password):
-        self.password_hash = bcrypt.hashpw(password.encode(
-            'utf-8'), bcrypt.gensalt()).decode('utf-8')
+    def save(self, *args, **kwargs):
+        if self.password:
+            self.password = bcrypt.hashpw(self.password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+        super(User, self).save(*args, **kwargs)
 
     def verify_password(self, password):
-        return bcrypt.checkpw(password.encode('utf-8'), self.password_hash.encode('utf-8'))
+        return bcrypt.checkpw(password.encode('utf-8'), self.password.encode('utf-8'))
