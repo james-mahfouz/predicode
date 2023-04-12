@@ -14,7 +14,6 @@ client = MongoClient(DB_URL)
 
 predicode_client = client['predicode_db']
 
-
 db_connection_keep_on(client=predicode_client)
 
 
