@@ -1,7 +1,6 @@
 import bcrypt
 from mongoengine import Document, StringField, ListField, EmailField
 
-
 class User(Document):
     name = StringField(max_length=100, required=True)
     email = EmailField(unique=True, required=True)

@@ -8,11 +8,7 @@ from configs.db_config import db_connection_keep_on
 
 app = FastAPI()
 
-connect(db=DB_NAME, host=DB_HOST, port=DB_PORT)
-db = get_db()
-
-db_connection_keep_on(client=db)
-
+db = db_connection_keep_on()
 
 app.add_middleware(
     CORSMiddleware,
@@ -21,7 +17,10 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
+
 # router = APIRouter()
+
+
 @app.get("/")
 def read_root():
     return {
