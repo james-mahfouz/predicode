@@ -1,24 +1,17 @@
-from configs.config import DB_URL
-from fastapi import APIRouter
+from configs.config import DB_NAME, DB_HOST, DB_PORT
+# from fastapi import APIRouter
 from fastapi.middleware.cors import CORSMiddleware
 from typing import Union
 from fastapi import FastAPI
-from pymongo import MongoClient
+from mongoengine import connect, get_db
 from controllers.db_controller import db_connection_keep_on
 
 app = FastAPI()
 
-router = APIRouter()
+connect(db=DB_NAME, host=DB_HOST, port=DB_PORT)
+db = get_db()
 
-client = MongoClient(DB_URL)
-
-predicode_client = client['predicode_db']
-
-db_connection_keep_on(client=predicode_client)
-
-
-
-
+db_connection_keep_on(client=db)
 
 app.add_middleware(
     CORSMiddleware,
@@ -27,7 +20,7 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-
+# router = APIRouter()
 @app.get("/")
 def read_root():
     return {
