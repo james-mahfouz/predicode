@@ -1,7 +1,13 @@
-# from configs.config import DB_URL
-# from pymongo import MongoClient
-# from controllers.db_controller import db_connection_keep_on
-#
-# client = MongoClient(DB_URL)
-#
-# db = db_connection_keep_on()
+import time
+
+def db_connection_keep_on(client):
+    db = client
+
+    if db.name != 'predicode_db':
+        print('db connection sleeping for 5 seconds')
+        time.sleep(5)
+        print('Trying to reconnect')
+        db_connection_keep_on(client=client)
+    else:
+        print('DB connected Successfully')
+        return db

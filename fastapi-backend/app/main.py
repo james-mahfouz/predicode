@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from typing import Union
 from fastapi import FastAPI
 from mongoengine import connect, get_db
-from controllers.db_controller import db_connection_keep_on
+from configs.db_config import db_connection_keep_on
 
 app = FastAPI()
 
@@ -12,6 +12,7 @@ connect(db=DB_NAME, host=DB_HOST, port=DB_PORT)
 db = get_db()
 
 db_connection_keep_on(client=db)
+
 
 app.add_middleware(
     CORSMiddleware,
