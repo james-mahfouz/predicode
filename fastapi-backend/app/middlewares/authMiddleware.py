@@ -10,28 +10,6 @@ from configs.config import SECRET_KEY
 security = HTTPBearer()
 
 
-# async def auth_middleware(request: Request, call_next):
-#     try:
-#         # token = request.headers.get("Authorization", "").split(" ")[1]
-#         # if not token:
-#         #     raise HTTPException(status_code=403, detail="Unauthenticated")
-#         # decoded = jwt.decode(token,SECRET_KEY, algorithms=["HS256"])
-#         # user = await User.get(id=decoded['id'])
-#         #
-#         # request.state.user = user
-#         #
-#         # response = await call_next(request)
-#         #
-#         # return response
-#         token = request.headers.get('Authorization').split(' ')[1]
-#         decoded_token = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
-#         request.state.user = User.objects(_id=decoded_token.get('id')).first
-#     except Exception as e:
-#         raise HTTPException(status_code=500, detail="Server error")
-#
-#     response = await call_next(request)
-#     return response
-
 def get_current_user(
     credentials: HTTPAuthorizationCredentials = Depends(security)
 ):

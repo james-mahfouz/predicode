@@ -7,7 +7,6 @@ from models.userModel import User
 router = APIRouter()
 
 
-
 @router.get("/get_files")
 async def files(user: User = Depends(get_current_user)):
-    return get_files()
+    return get_files(user)
