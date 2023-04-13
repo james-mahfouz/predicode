@@ -20,7 +20,6 @@ app.add_middleware(
 )
 
 
-# router = APIRouter()
 @app.get("/get_all_employees")
 def get_all_users():
     users = json.loads(User.objects().to_json())
