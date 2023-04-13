@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, UploadFile, File
 from controllers.user_controller import get_files, upload_file
 from middlewares.authMiddleware import get_current_user
 from fastapi import Depends
@@ -13,6 +13,6 @@ async def files(user: User = Depends(get_current_user)):
     return get_files(user)
 
 
-@router.post("/upload_files")
-async def upload(request: FileRequest, user: User = Depends(get_current_user)):
-    return upload_file(request=request, user=user)
+@router.post("/upload_files/")
+async def upload(file: UploadFile = File(...), user: User = Depends(get_current_user)):
+    return upload_file(file, user=user)

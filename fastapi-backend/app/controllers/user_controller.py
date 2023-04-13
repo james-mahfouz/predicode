@@ -8,14 +8,14 @@ def get_files(user):
     return {"message": "welcome"}
 
 
-def upload_file(request, user):
-    filename = f"{uuid4()}-{request.file.filename}"
+def upload_file(file, user):
+    filename = f"{uuid4()}-{file.filename}"
 
     s3 = boto3.client("s3")
-    s3.upload_fileobj(request.file, "predicode_files", filename)
+    s3.upload_fileobj(file.file, "predicode_files", filename)
 
-    file = File(filename=request.filename, by_user=user.name, path=f"s3://predicode_files/{filename}")
-    file.save()
+    uploaded_file = File(filename=file.filename, by_user=user.name, path=f"s3://predicode_files/{filename}")
+    uploaded_file.save()
 
     user.files.append(file)
 
