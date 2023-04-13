@@ -1,17 +1,19 @@
 from fastapi import APIRouter
 from controllers.auth_controller import login, register
+from request_models.authRequest import NewUser
 
 router = APIRouter()
 
 
+# @router.post("/login")
+# async def do_login(request):
+#     result = await login(request=request)
+#     return result
+
 @router.post("/login")
-async def do_login(request):
-    result = await login(request=request)
-    return result
+async def login_user(user: NewUser):
+    return await login(user)
 
-
-@router.post("/register")
-async def do_register(request):
-    result = await register(request=request)
-    return result
-
+# @router.post("/register")
+# async def register_user(user: NewUser):
+#     return await register(request=request)

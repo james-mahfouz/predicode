@@ -4,9 +4,9 @@ from configs.config import SECRET_KEY
 import json
 
 
-async def register(request):
-    print(request)
-    data = json.loads(request)
+async def register(user):
+    print(user)
+    data = json.loads(user)
     name = data["name"]
     email = data["email"]
     password = data["password"]
@@ -25,8 +25,8 @@ async def register(request):
     return {"user": new_user, "token": token}, 201
 
 
-async def login(request):
-    data = json.loads(request)
+async def login(user):
+    data = json.loads(user)
     email = data["email"]
     password = data["password"]
 
