@@ -3,7 +3,6 @@ from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 import jwt
 from bson.objectid import ObjectId
 
-
 from models.userModel import User
 from configs.config import SECRET_KEY
 
