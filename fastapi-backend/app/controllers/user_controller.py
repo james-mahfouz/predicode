@@ -19,3 +19,6 @@ def get_files(user):
 #     user.files.append(file)
 
 #     return {"message": "File created successfully"}
+
+
+print("hello")
