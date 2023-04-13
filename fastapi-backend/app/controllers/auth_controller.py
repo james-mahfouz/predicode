@@ -18,11 +18,32 @@ async def register(request):
     user = User(name=name, email=email, password=password, role=role)
     user.save()
 
-    token = jwt.encode({"id":str(user.id), "email": user.email}, SECRET_KEY, algorithm="HS256")
+    token = jwt.encode({"id": str(user.id), "email": user.email}, SECRET_KEY, algorithm="HS256")
     new_user = user.to_mongo().to_dict()
     del new_user["_id"]
     del new_user["password"]
     return {"user": new_user, "token": token}, 201
 
-async def login():
-    print("hello login")
+
+async def login(request):
+    data = json.loads(request)
+    email = data["email"]
+    password = data["password"]
+
+    user = User.objects(email=email).first()
+    if not user:
+        return {
+            "message": "Invalid email",
+            "error": "email"
+        }
+    if not user.verify_password(password):
+        return {
+            "message": "Invalid password",
+            "error": "password"
+        }
+
+    token = jwt.encode({"id": str(user.id), "email": user.email}, SECRET_KEY, algorithm="HS256")
+    new_user = user.to_mongo().to_dict()
+    del new_user["_id"]
+    del new_user["password"]
+    return {"user": new_user, "token": token}
