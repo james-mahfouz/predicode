@@ -14,5 +14,5 @@ async def files(user: User = Depends(get_current_user)):
 
 
 @router.post("/upload_files")
-async def upload(user: User = Depends(get_current_user)):
-    return await upload_file(user=user, request=FileRequest)
+async def upload(user: User = Depends(get_current_user), request=FileRequest):
+    return upload_file(user=user, request=request)
