@@ -1,5 +1,6 @@
 import bcrypt
 from mongoengine import Document, StringField, ListField, EmailField, ReferenceField
+from models.fileModel import File
 
 
 class User(Document):
@@ -7,7 +8,7 @@ class User(Document):
     email = EmailField(unique=True, required=True)
     password = StringField(required=True)
     role = StringField(choices=["user", "admin"], default="user")
-    courses = ListField(ReferenceField("Course"))
+    files = ListField(ReferenceField(File))
 
     def save(self, *args, **kwargs):
         if self.password:
