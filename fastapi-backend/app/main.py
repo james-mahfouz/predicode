@@ -5,8 +5,9 @@ from configs.db_config import db_connection_keep_on
 # from models.userModel import User
 # import json
 
-from app.routes.auth_route import router as auth_router
+from routes.auth_route import router as auth_router
 
+app = FastAPI()
 db = db_connection_keep_on()
 
 app.add_middleware(
@@ -15,6 +16,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"]
 )
+
+app.include_router(auth_router, prefix="/auth")
 
 
 @app.get("/get_all_employees")
