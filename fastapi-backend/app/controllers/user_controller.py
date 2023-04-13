@@ -1,6 +1,7 @@
 from uuid import uuid4
 import boto3
 from models.fileModel import File
+import shutil
 
 
 def get_files(user):
@@ -9,14 +10,17 @@ def get_files(user):
 
 
 def upload_file(file, user):
-    filename = f"{uuid4()}-{file.filename}"
 
-    s3 = boto3.client("s3")
-    s3.upload_fileobj(file.file, "predicode_files", filename)
+    save_path = f"public/{file.filename}"
+    with open(save_path, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
 
-    uploaded_file = File(filename=file.filename, by_user=user.name, path=f"s3://predicode_files/{filename}")
+    uploaded_file = File(name=file.filename, by_user=user.name, path=save_path)
     uploaded_file.save()
 
-    user.files.append(file)
+    user.files.append(uploaded_file)
 
-    return {"message": "File created successfully"}
+    return {
+        "message": "File created successfully",
+        "file_path": save_path
+    }

@@ -2,6 +2,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from typing import Union
 from fastapi import FastAPI
 from configs.db_config import db_connection_keep_on
+from fastapi.staticfiles import StaticFiles
 
 
 from routes.auth_route import router as auth_router
@@ -11,6 +12,7 @@ from middlewares.authMiddleware import get_current_user
 
 app = FastAPI()
 db = db_connection_keep_on()
+app.mount("/public", StaticFiles(directory="public"), name="public")
 
 app.add_middleware(
     CORSMiddleware,
