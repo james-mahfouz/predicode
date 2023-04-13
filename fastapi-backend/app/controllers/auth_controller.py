@@ -1,18 +1,20 @@
 import jwt
 from models.userModel import User
 from configs.config import SECRET_KEY
+import json
 
 
 async def register(request):
-    data = request.json
+    print(request)
+    data = json.loads(request)
     name = data["name"]
     email = data["email"]
     password = data["password"]
     role = data.get("role", "user")
-
     existing_user = User.objects(email=email).first()
+
     if existing_user:
-        return {"message" : "Eamil already exists"}, 409
+        return {"message": "Email already exists"}, 409
     user = User(name=name, email=email, password=password, role=role)
     user.save()
 

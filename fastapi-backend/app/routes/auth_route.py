@@ -5,13 +5,13 @@ router = APIRouter()
 
 
 @router.post("/login")
-async def do_login():
-    result = await login()
+async def do_login(request):
+    result = await login(request)
     return result
 
 
 @router.post("/register")
-async def do_register():
-    result = await register()
+async def do_register(request):
+    result = await register(request=request)
     return result
 
