@@ -6,6 +6,8 @@ from configs.db_config import db_connection_keep_on
 from models.userModel import User
 import json
 
+from app.routes.auth
+
 app = FastAPI()
 
 db = db_connection_keep_on()
