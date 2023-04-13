@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from controllers.auth_controller import login, register
-from request_models.authRequest import NewUser
+from request_models.authRequest import RegisterRequest
 
 router = APIRouter()
 
@@ -11,7 +11,7 @@ router = APIRouter()
 #     return result
 
 @router.post("/login")
-async def login_user(user: NewUser):
+async def login_user(user: RegisterRequest):
     return await login(user)
 
 # @router.post("/register")
