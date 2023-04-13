@@ -6,7 +6,7 @@ router = APIRouter()
 
 @router.post("/login")
 async def do_login(request):
-    result = await login(request)
+    result = await login(request=request)
     return result
 
 
