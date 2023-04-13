@@ -19,6 +19,7 @@ app.add_middleware(
 
 app.include_router(auth_router, prefix="/auth")
 
+app.include_router(user_router, prefix="/user")
 
 @app.get("/get_all_employees")
 def get_all_users():
