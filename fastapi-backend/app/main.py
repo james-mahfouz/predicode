@@ -18,21 +18,21 @@ app.add_middleware(
 
 app.include_router(auth_router, prefix="/auth")
 
-app.include_router(user_router, prefix="/user", middleware=[user_middleware])
+app.include_router(user_router, prefix="/user", middleware=[auth_middleware])
 
-@app.get("/get_all_employees")
-def get_all_users():
-    users = json.loads(User.objects().to_json())
-
-    return {"users": users}
-
-@app.get("/")
-def read_root():
-    return {
-        "Hello": "World"
-    }
-
-
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
+# @app.get("/get_all_employees")
+# def get_all_users():
+#     users = json.loads(User.objects().to_json())
+#
+#     return {"users": users}
+#
+# @app.get("/")
+# def read_root():
+#     return {
+#         "Hello": "World"
+#     }
+#
+#
+# @app.get("/items/{item_id}")
+# def read_item(item_id: int, q: Union[str, None] = None):
+#     return {"item_id": item_id, "q": q}

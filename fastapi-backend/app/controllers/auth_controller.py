@@ -20,7 +20,7 @@ async def register(request):
     new_user = user.to_mongo().to_dict()
     del new_user["_id"]
     del new_user["password"]
-    return {"user": new_user, "token": token}, 201
+    return {"user": new_user, "token": f"bearer {token}"}, 201
 
 
 async def login(request):
