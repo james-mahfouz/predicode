@@ -4,13 +4,11 @@ from configs.config import SECRET_KEY
 import json
 
 
-async def register(user):
-    print(user)
-    data = json.loads(user)
-    name = data["name"]
-    email = data["email"]
-    password = data["password"]
-    role = data.get("role", "user")
+async def register(request):
+    name = request.name
+    email = request.email
+    password = request.password
+    role = request.role
     existing_user = User.objects(email=email).first()
 
     if existing_user:
@@ -25,10 +23,10 @@ async def register(user):
     return {"user": new_user, "token": token}, 201
 
 
-async def login(user):
-    data = json.loads(user)
-    email = data["email"]
-    password = data["password"]
+async def login(request):
+    print(request)
+    email = request.email
+    password = request.password
 
     user = User.objects(email=email).first()
     if not user:
