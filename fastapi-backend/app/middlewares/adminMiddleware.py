@@ -20,8 +20,13 @@ def get_current_user(
         user = User.objects.get(id=ObjectId(user_id))
         if not user:
             raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
+                status_code=status.HTTP_401_UNAUTHANTICATED,
                 detail="Invalid authentication credentials",
+            )
+        if user.role != "admin":
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Invalid role"
             )
         return user
     except Exception:
