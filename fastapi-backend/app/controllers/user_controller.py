@@ -1,6 +1,6 @@
 from models.fileModel import File
-from models.userModel import User
 import shutil
+import json
 
 
 def get_files(user):
@@ -8,8 +8,10 @@ def get_files(user):
     for file in user.files:
         file_dict = file.to_mongo().to_dict()
         file_list.append(file_dict)
-        print(file_list)
-    return {"files": "files"}
+
+    # json_content = json.loads(str(file_list))
+    # print(json_content)
+    return {"files": str(file_list)}
 
 
 def upload_file(file, user):
