@@ -9,8 +9,6 @@ def get_files(user):
         file_dict = file.to_mongo().to_dict()
         file_list.append(file_dict)
 
-    # json_content = json.loads(str(file_list))
-    # print(json_content)
     return {"files": str(file_list)}
 
 
