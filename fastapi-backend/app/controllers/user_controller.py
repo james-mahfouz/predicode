@@ -1,16 +1,13 @@
-from uuid import uuid4
-import boto3
 from models.fileModel import File
 import shutil
 
 
 def get_files(user):
-    print(f"hello {user.name}")
+    print(f"hello {user.id}")
     return {"message": "welcome"}
 
 
 def upload_file(file, user):
-
     save_path = f"public/{file.filename}"
     with open(save_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
@@ -19,6 +16,7 @@ def upload_file(file, user):
     uploaded_file.save()
 
     user.files.append(uploaded_file)
+    user.save()
 
     return {
         "message": "File created successfully",
