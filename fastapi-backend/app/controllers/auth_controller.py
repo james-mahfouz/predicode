@@ -23,7 +23,6 @@ async def register(request):
 
 
 async def login(request):
-    print(request)
     email = request.email
     password = request.password
 

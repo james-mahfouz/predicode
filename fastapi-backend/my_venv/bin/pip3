@@ -1,4 +1,4 @@
-#!/Users/user/Desktop/predicode/fastapi-backend/my_venv/bin/python3.11
+#!/Users/user/Desktop/predicode/fastapi-backend/my_venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
