@@ -4,12 +4,11 @@ import shutil
 
 
 def get_files(user):
-    # user1 = User.objects(id=user.id).first()
-    # user1.files = File.objects.all()
-    # user1.populate("files")
+    file_list = []
     for file in user.files:
-        print(f"File Name: {str(file)}")
-        print(f"File Path: {file.path}")
+        file_dict = file.to_mongo().to_dict()
+        file_list.append(file_dict)
+        print(file_list)
     return {"files": "files"}
 
 
