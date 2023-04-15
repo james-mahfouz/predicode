@@ -1,6 +1,7 @@
 import bcrypt
 from mongoengine import Document, StringField, ListField, EmailField, ReferenceField
 from models.fileModel import File
+import hashlib
 
 
 class User(Document):
@@ -12,8 +13,9 @@ class User(Document):
 
     def save(self, *args, **kwargs):
         if self.password:
-            self.password = bcrypt.hashpw(self.password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
-        super(User, self).save(*args, **kwargs)
+            self.password = hashlib.sha256(self.password.encode()).hexdigest()
+        super().save(*args, **kwargs)
 
     def verify_password(self, password):
-        return bcrypt.checkpw(password.encode('utf-8'), self.password.encode('utf-8'))
+        hashed_password = hashlib.sha256(password.encode()).hexdigest()
+        return hashed_password == self.password

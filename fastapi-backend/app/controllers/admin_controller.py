@@ -1,6 +1,7 @@
 from models.fileModel import File
 from models.userModel import User
 from fastapi.responses import JSONResponse
+from bson import ObjectId
 
 
 def get_files(user):
@@ -16,14 +17,10 @@ def get_files(user):
 
 def get_users(user):
     users = User.objects.all()
-#     users_dict = {"files": []}
-#     for user in users:
-#         files_dict["files"].append({
-#             "id": str(file.id),
-#             "name": file.name,
-#             "path": file.path,
-#             "by_user": file.by_user
-#         })
-#     files_json = json.dumps(files_dict)
-#
-#     return {"files": files_json}
+    users_list = []
+    for user in users:
+        user_dict = user.to_mongo().to_dict()
+        user_dict["_id"] = str(user_dict["_id"])
+        users_list.append(user_dict)
+
+    return JSONResponse(content={"users": users_list})
