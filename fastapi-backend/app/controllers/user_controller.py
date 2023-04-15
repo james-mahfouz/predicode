@@ -1,15 +1,17 @@
 from models.fileModel import File
 import shutil
-import json
+from bson import ObjectId
+from fastapi.responses import JSONResponse
 
 
 def get_files(user):
     file_list = []
     for file in user.files:
         file_dict = file.to_mongo().to_dict()
+        file_dict["_id"] = str(file_dict["_id"])
         file_list.append(file_dict)
 
-    return {"files": str(file_list)}
+    return JSONResponse(content={"files": file_list})
 
 
 def upload_file(file, user):

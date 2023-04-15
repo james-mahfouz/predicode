@@ -1,7 +1,6 @@
 from models.fileModel import File
 from models.userModel import User
 from fastapi.responses import JSONResponse
-from bson import ObjectId
 
 
 def get_files(user):
@@ -9,7 +8,6 @@ def get_files(user):
     files_list = []
     for file in files:
         file_dict = file.to_mongo().to_dict()
-        # Convert ObjectId to string
         file_dict["_id"] = str(file_dict["_id"])
         files_list.append(file_dict)
 
