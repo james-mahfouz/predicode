@@ -12,18 +12,6 @@ def get_files(user):
         files_list.append(file_dict)
 
     return JSONResponse(content={"files": files_list})
-#     files = File.objects.all()
-#     files_dict = {"files": []}
-#     for file in files:
-#         files_dict["files"].append({
-#             "id": str(file.id),
-#             "name": file.name,
-#             "path": file.path,
-#             "by_user": file.by_user
-#         })
-#     files_json = json.dumps(files_dict)
-#     files_json = json.dumps(files_list)
-#     return JSONResponse(content={"files": files_list})
 
 
 def get_users(user):

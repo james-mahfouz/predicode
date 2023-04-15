@@ -3,7 +3,6 @@ from controllers.admin_controller import get_files, get_users
 from middlewares.adminMiddleware import get_current_user
 from fastapi import Depends
 from models.userModel import User
-from request_models.userRequest import FileRequest
 
 router = APIRouter()
 
