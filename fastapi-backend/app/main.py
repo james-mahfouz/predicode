@@ -27,21 +27,3 @@ app.include_router(auth_router, prefix="/auth")
 app.include_router(user_router, prefix="/user")
 
 app.include_router(admin_router, prefix="/admin")
-
-# @app.get("/get_all_employees")
-# def get_all_users():
-#     users = json.loads(User.objects().to_json())
-#
-#     return {"users": users}
-#
-# @app.get("/")
-# def read_root():
-#     return {
-#         "Hello": "World"
-#     }
-#
-
-#
-# @app.get("/items/{item_id}")
-# def read_item(item_id: int, q: Union[str, None] = None):
-#     return {"item_id": item_id, "q": q}
