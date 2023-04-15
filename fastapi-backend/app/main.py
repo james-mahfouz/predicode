@@ -7,6 +7,7 @@ from fastapi.staticfiles import StaticFiles
 
 from routes.auth_route import router as auth_router
 from routes.user_route import router as user_router
+from routes.admin_route import router as admin_router
 
 from middlewares.authMiddleware import get_current_user
 
@@ -24,6 +25,8 @@ app.add_middleware(
 app.include_router(auth_router, prefix="/auth")
 
 app.include_router(user_router, prefix="/user")
+
+app.include_router(admin_router, prefix="/admin")
 
 # @app.get("/get_all_employees")
 # def get_all_users():
