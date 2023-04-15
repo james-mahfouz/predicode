@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="344a509d-69c3-480d-8168-3503c6dccc68" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../fastapi-backend/app/request_models/userRequest.py" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-backend/app/request_models/userRequest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fastapi-backend/app/routes/admin_route.py" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-backend/app/routes/admin_route.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../fastapi-backend/app/routes/user_route.py" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-backend/app/routes/user_route.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -48,5 +47,16 @@
       <updated>1681478504449</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
