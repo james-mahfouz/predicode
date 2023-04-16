@@ -9,8 +9,7 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-    const apiUrl = process.env.API_URL
-
+    const apiUrl = process.env.API_URL;
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -21,7 +20,7 @@ const Login = () => {
             })
             console.log(response)
 
-            // localStorage.setItem('token', response.data.token);
+            localStorage.setItem('token', response.data.token);
             // navigate("/")
 
         } catch (error) {
