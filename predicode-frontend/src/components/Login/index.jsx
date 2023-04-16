@@ -9,17 +9,20 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const apiUrl = process.env.API_URL;
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:4000/auth/login', {
+            const response = await axios.post(apiUrl + 'auth/login', {
                 "email": email,
                 "password": password
             })
-            localStorage.setItem('token', response.data.token);
-            navigate("/")
+            console.log(response)
+
+            // localStorage.setItem('token', response.data.token);
+            // navigate("/")
 
         } catch (error) {
             console.log(error);
