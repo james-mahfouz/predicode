@@ -1,12 +1,11 @@
-from pydantic import BaseModel
-from pydantic import BaseModel, EmailStr, constr, validator
+from pydantic import BaseModel, constr, validator
 
 
 class RegisterRequest(BaseModel):
-    name: constr(min_length=1)
-    email: EmailStr
-    password: constr(min_length=8)
-    role: str
+    name: str
+    email: str
+    password: str
+    role: str = "user"
 
     @validator('name')
     def capitalize_name(cls, name):
