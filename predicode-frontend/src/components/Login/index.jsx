@@ -14,6 +14,7 @@ const Login = () => {
     const [passwordError, setPasswordError] = useState(false);
     const navigate = useNavigate();
     const apiUrl = process.env.API_URL;
+    
     const handleSubmit = async (event) => {
         event.preventDefault();
 

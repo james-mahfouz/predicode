@@ -9,7 +9,11 @@ function Signup() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState('');
+    const [emailError, setEmailError] = useState(false);
+    const [passwordError, setPasswordError] = useState(false);
     const navigate = useNavigate();
+    const apiUrl = process.env.API_URL;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
