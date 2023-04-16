@@ -48,8 +48,8 @@ function Signup() {
 
     try {
       const response = await axios.post(apiUrl + "auth/register", data);
-      //   localStorage.setItem("token", response.data.token);
-      //   navigate("/");
+      localStorage.setItem("token", response.data.token);
+      navigate("/");
     } catch (error) {
       console.log(error);
       console.log(error.response.data.detail.error);
