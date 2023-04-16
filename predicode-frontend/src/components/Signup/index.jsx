@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../Login/index.css";
 import logo from "../../assets/logo.png";
+import { Message } from "primereact/message";
 
 function Signup() {
   const [name, setName] = useState("");
@@ -19,17 +20,17 @@ function Signup() {
     e.preventDefault();
 
     if (!name) {
-      setNameError("Wrong Name ");
+      setError("Please enter your name.");
       return;
     }
 
     if (!email) {
-      setEmailError("Please enter your email.");
+      setError("Please enter your email.");
       return;
     }
 
     if (!password) {
-      setPasswordError("Please enter your password.");
+      setError("Please enter your password.");
       return;
     }
 
@@ -88,6 +89,14 @@ function Signup() {
               onChange={(e) => setPassword(e.target.value)}
             ></input>
           </div>
+
+          {error && (
+            <Message
+              severity="error"
+              text={error}
+              style={{ width: "100%", marginBottom: "10px" }}
+            />
+          )}
 
           <div className="inputfield">
             <input

@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="344a509d-69c3-480d-8168-3503c6dccc68" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../fastapi-backend/app/controllers/auth_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-backend/app/controllers/auth_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fastapi-backend/app/request_models/authRequest.py" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-backend/app/request_models/authRequest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../predicode-frontend/src/components/Login/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../predicode-frontend/src/components/Login/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../predicode-frontend/src/components/Signup/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../predicode-frontend/src/components/Signup/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
