@@ -5,8 +5,8 @@ from fastapi import status, HTTPException
 
 
 async def register(request):
-    name = request.name
-    email = request.email
+    name = request.name.capitalize()
+    email = request.email.lower()
     password = request.password
     role = request.role
     existing_user = User.objects(email=email).first()
@@ -24,7 +24,7 @@ async def register(request):
 
 
 async def login(request):
-    email = request.email
+    email = request.email.lower()
     password = request.password
 
     user = User.objects(email=email).first()
