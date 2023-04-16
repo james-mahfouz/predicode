@@ -1,6 +1,7 @@
 import jwt
 from models.userModel import User
 from configs.config import SECRET_KEY
+from fastapi import status, HTTPException
 
 
 async def register(request):
@@ -28,10 +29,13 @@ async def login(request):
 
     user = User.objects(email=email).first()
     if not user:
-        return {
-            "message": "Invalid email",
-            "error": "email"
-        }
+        raise HTTPException(
+            status_code=status.HTTP_404_UNSUPPORTED_MEDIA_TYPE,
+            detail="email"
+        )
+        # return {
+        #
+        # }, 500
     if not user.verify_password(password):
         return {
             "message": "Invalid password",
