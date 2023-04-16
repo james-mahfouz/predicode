@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import "./index.css"
-import logo from "../../images/logo.png";
+import logo from "../../assets/logo.png";
 
 
 const Login = () => {
@@ -38,7 +38,7 @@ const Login = () => {
 
                 <div className="form">
                     <div className="inputfield">
-                        <label>Email Address</label>
+                        <label>Email</label>
                         <input type="email" className="register_input" value={email} onChange={(e) => setEmail(e.target.value)}></input>
                     </div>
 

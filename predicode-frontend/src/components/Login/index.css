@@ -1,0 +1,98 @@
+.signin-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: #D8E9EF;
+    height: 100vh;
+}
+
+.signin-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.signin-logo img {
+    max-width: 370px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.wrapper {
+    max-width: 450px;
+    width: 100%;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    margin: auto;
+    margin-top: 40px;
+}
+
+.wrapper .title {
+    margin-bottom: 40px;
+    text-align: center;
+    margin-top: -10px;
+}
+
+.wrapper .title h2 {
+    font-weight: 1100;
+    font-size: 30px;
+}
+
+.wrapper .form {
+    width: 100%;
+}
+
+.wrapper .form .inputfield {
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.wrapper .form .inputfield label {
+    width: 200px;
+    margin-right: 10px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.wrapper .form .inputfield .register_input {
+    width: 100%;
+    outline: none;
+    border: 1px solid #d5dbd9;
+    background-color: #FAFAFA;
+    font-size: 15px;
+    padding: 8px 10px;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.wrapper .form .inputfield .custom_select {
+    position: relative;
+    width: 100%;
+    height: 37px;
+}
+
+.wrapper .form .inputfield .custom_select select {
+    width: 100%;
+    height: 100%;
+    padding: 8px 10px;
+    font-size: 15px;
+    background-color: #FAFAFA;
+    border: 1px solid #d5dbd9;
+    border-radius: 3px;
+}
+
+.wrapper .form .inputfield .btn {
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 15px;
+    border: 0px;
+    background: #F9CC0B;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 3px;
+}
