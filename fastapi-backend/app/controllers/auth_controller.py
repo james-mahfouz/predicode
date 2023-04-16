@@ -30,7 +30,7 @@ async def login(request):
     user = User.objects(email=email).first()
     if not user:
         raise HTTPException(
-            status_code=status.HTTP_404_UNSUPPORTED_MEDIA_TYPE,
+            status_code=404,
             detail="email"
         )
         # return {
