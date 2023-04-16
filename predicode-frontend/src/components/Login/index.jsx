@@ -18,11 +18,13 @@ const Login = () => {
         event.preventDefault();
 
         try {
+            setEmailError(false)
+            setPasswordError(false)
             const response = await axios.post(apiUrl + 'auth/login', {
                 "email": email,
                 "password": password
             })
-            console.log(response)
+            
 
             localStorage.setItem('token', response.data.token);
             navigate("/")
@@ -36,7 +38,7 @@ const Login = () => {
             }
             if (error.response.data.detail == "password") {
                 setError("incorrect Password");
-                setPassword(false)
+                setPasswordError(true)
             }
         }
     };
