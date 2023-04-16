@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import { Message } from 'primereact/message';
 import "./index.css"
 import logo from "../../assets/logo.png";
 
@@ -8,6 +9,7 @@ import logo from "../../assets/logo.png";
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
     const navigate = useNavigate();
     const apiUrl = process.env.API_URL;
     const handleSubmit = async (event) => {
@@ -24,7 +26,11 @@ const Login = () => {
             navigate("/")
 
         } catch (error) {
-            console.log(error.response.detail);
+            console.log(error.response.data.detail);
+            setError(error.response.data.detail + "not found");
+            if (error.response.data.detail == "email") {
+
+            }
         }
     };
 
@@ -39,9 +45,10 @@ const Login = () => {
                 </div>
 
                 <div className="form">
+                    {error && <Message severity='error' text={error} style={{ width: '100%' }} />}
                     <div className="inputfield">
                         <label>Email</label>
-                        <input type="email" className="register_input" value={email} onChange={(e) => setEmail(e.target.value)}></input>
+                        <input type="email" className="register_input" value={email} onChange={(e) => setEmail(e.target.value)} style={{ borderColor: "red" }}></input>
                     </div>
 
                     <div className="inputfield">
