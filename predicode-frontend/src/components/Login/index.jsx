@@ -10,6 +10,8 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [emailError, setEmailError] = useState(false);
+    const [passwordError, setPasswordError] = useState(false);
     const navigate = useNavigate();
     const apiUrl = process.env.API_URL;
     const handleSubmit = async (event) => {
@@ -27,9 +29,14 @@ const Login = () => {
 
         } catch (error) {
             console.log(error.response.data.detail);
-            setError(error.response.data.detail + "not found");
-            if (error.response.data.detail == "email") {
 
+            if (error.response.data.detail == "email") {
+                setError(error.response.data.detail + " not found");
+                setEmailError(true)
+            }
+            if (error.response.data.detail == "password") {
+                setError("incorrect Password");
+                setPassword(false)
             }
         }
     };
@@ -45,17 +52,17 @@ const Login = () => {
                 </div>
 
                 <div className="form">
-                    {error && <Message severity='error' text={error} style={{ width: '100%' }} />}
                     <div className="inputfield">
                         <label>Email</label>
-                        <input type="email" className="register_input" value={email} onChange={(e) => setEmail(e.target.value)} style={{ borderColor: "red" }}></input>
+                        <input type="email" className="register_input" value={email} onChange={(e) => setEmail(e.target.value)}  style={{ borderColor: emailError ? 'red' : '#D8E9EF' }}></input>
                     </div>
 
                     <div className="inputfield">
                         <label>Password</label>
-                        <input type="password" className="register_input" value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                        <input type="password" className="register_input" value={password} onChange={(e) => setPassword(e.target.value)} style={{ borderColor: passwordError ? 'red' : '#D8E9EF' }}></input>
                     </div>
 
+                    {error && <Message severity='error' text={error} style={{ width: '100%', marginBottom: '10px' }} />}
                     <div className="inputfield">
                         <input type="submit" value="Login" className="btn" onClick={handleSubmit}></input>
                     </div>
