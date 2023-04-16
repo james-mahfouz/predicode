@@ -30,8 +30,6 @@ const Login = () => {
             navigate("/")
 
         } catch (error) {
-            console.log(error.response.data.detail);
-
             if (error.response.data.detail == "email") {
                 setError(error.response.data.detail + " not found");
                 setEmailError(true)
