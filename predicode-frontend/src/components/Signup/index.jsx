@@ -18,19 +18,25 @@ function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setError("");
+    setEmailError(false);
+    setNameError(false);
+    setPasswordError(false);
     if (!name) {
       setError("Please enter your name.");
+      setNameError(true);
       return;
     }
 
     if (!email) {
       setError("Please enter your email.");
+      setEmailError(true);
       return;
     }
 
     if (!password) {
       setError("Please enter your password.");
+      setPasswordError(true);
       return;
     }
 
@@ -42,10 +48,22 @@ function Signup() {
 
     try {
       const response = await axios.post(apiUrl + "auth/register", data);
-      localStorage.setItem("token", response.data.token);
-      navigate("/");
+      //   localStorage.setItem("token", response.data.token);
+      //   navigate("/");
     } catch (error) {
       console.log(error);
+      console.log(error.response.data.detail.error);
+      setError(error.response.data.detail.detail);
+      if (error.response.data.detail.error == "name") {
+        console.log(error.response.data.detail.detail);
+        setNameError(true);
+      }
+      if (error.response.data.detail.error == "email") {
+        setEmailError(true);
+      }
+      if (error.response.data.detail.error == "password") {
+        setPasswordError(true);
+      }
     }
   };
 
@@ -67,6 +85,7 @@ function Signup() {
               className="register_input"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              style={{ borderColor: nameError ? "red" : "#D8E9EF" }}
             ></input>
           </div>
 
@@ -77,6 +96,7 @@ function Signup() {
               className="register_input"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              style={{ borderColor: emailError ? "red" : "#D8E9EF" }}
             ></input>
           </div>
 
@@ -87,6 +107,7 @@ function Signup() {
               className="register_input"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              style={{ borderColor: passwordError ? "red" : "#D8E9EF" }}
             ></input>
           </div>
 
