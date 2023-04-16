@@ -33,14 +33,11 @@ async def login(request):
             status_code=404,
             detail="email"
         )
-        # return {
-        #
-        # }, 500
     if not user.verify_password(password):
-        return {
-            "message": "Invalid password",
-            "error": "password"
-        }
+        raise HTTPException(
+            status_code=404,
+            detail="password"
+        )
 
     token = jwt.encode({"id": str(user.id), "email": user.email}, SECRET_KEY, algorithm="HS256")
     new_user = user.to_mongo().to_dict()
