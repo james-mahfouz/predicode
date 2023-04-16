@@ -57,10 +57,11 @@ function Signup() {
                         <input type="password" className="register_input" value={password} onChange={(e) => setPassword(e.target.value)}></input>
                     </div>
 
-                    <p>Have an account? <a href="/login">Login</a></p>
                     <div className="inputfield">
                         <input type="submit" value="Register" className="btn" onClick={handleSubmit}></input>
                     </div>
+
+                    <p>Have an account? <a href="/login">Login</a></p>
                 </div>
             </div>
         </div>

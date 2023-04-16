@@ -62,8 +62,8 @@
 .wrapper .form .inputfield .register_input {
     width: 100%;
     outline: none;
-    border: 1px solid #d5dbd9;
-    background-color: #FAFAFA;
+    border: none;
+    border-bottom: #D8E9EF solid 2px;
     font-size: 15px;
     padding: 8px 10px;
     border-radius: 3px;

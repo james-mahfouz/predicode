@@ -46,10 +46,13 @@ const Login = () => {
                         <label>Password</label>
                         <input type="password" className="register_input" value={password} onChange={(e) => setPassword(e.target.value)}></input>
                     </div>
-                    <p>don't have an account? <a href="/register">Sign-Up</a></p>
+
                     <div className="inputfield">
                         <input type="submit" value="login" className="btn" onClick={handleSubmit}></input>
                     </div>
+
+                    <p>don't have an account? <a href="/register">Sign-Up</a></p>
+
                 </div>
             </div>
         </div>
