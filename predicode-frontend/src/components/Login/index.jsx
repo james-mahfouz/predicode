@@ -48,10 +48,10 @@ const Login = () => {
                     </div>
 
                     <div className="inputfield">
-                        <input type="submit" value="login" className="btn" onClick={handleSubmit}></input>
+                        <input type="submit" value="Login" className="btn" onClick={handleSubmit}></input>
                     </div>
 
-                    <p>don't have an account? <a href="/signup">Sign-Up</a></p>
+                    <p>Don't have an account? <a href="/signup">Sign-Up</a></p>
 
                 </div>
             </div>

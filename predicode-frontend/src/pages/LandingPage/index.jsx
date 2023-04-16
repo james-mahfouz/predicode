@@ -1,3 +1,5 @@
+import Landing from "../../components/Landing"
+
 const LandingPage = () => {
     return (
         <div>Landing</div>
