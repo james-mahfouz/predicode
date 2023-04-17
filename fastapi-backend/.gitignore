@@ -1,4 +1,5 @@
 .idea/
 !/public/
 __pycache__/
+my_venv/
 
