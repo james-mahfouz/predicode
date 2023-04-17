@@ -1,14 +1,23 @@
 import logo from "../../assets/logo.png";
 import background from "../../assets/landing-background.png";
+import upload from "../../assets/upload.jpg";
+import wait from "../../assets/wait.jpg";
+import create from "../../assets/create.jpg";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Button } from "primereact/button";
+import { FileUpload } from "primereact/fileupload";
 import { FaSignInAlt } from "react-icons/fa";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column";
 import "./index.css";
 
 const Landing = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [files, setFiles] = useState([]);
+  const apiUrl = process.env.API_URL;
+
   useEffect(() => {
     function handleResize() {
       setIsSmallScreen(window.innerWidth <= 720);
@@ -19,6 +28,23 @@ const Landing = () => {
     window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    const getFiles = async () => {
+      try {
+        const response = await axios.get(apiUrl + "user/get_files", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+        console.log(response.data.files);
+        setFiles(response.data.files);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    getFiles();
   }, []);
   return (
     <div className="body">
@@ -41,6 +67,55 @@ const Landing = () => {
         </div>
         <div className="marketing_text">
           <p>Predict Your App's Success and Move Forward with Confidence</p>
+        </div>
+      </section>
+
+      <section className="upload">
+        <div className="card">
+          <FileUpload
+            name="demo[]"
+            url={"/api/upload"}
+            multiple
+            accept="image/*"
+            maxFileSize={1000000}
+            emptyTemplate={
+              <p className="m-0">Drag and drop files to here to upload.</p>
+            }
+          />
+        </div>{" "}
+      </section>
+
+      <section className="use_it">
+        <div>
+          <h1>How to use it</h1>
+        </div>
+
+        <div className="use_it_steps">
+          <div className="use_it_step">
+            <img src={create} alt="" />
+            <h4>Create an account</h4>
+          </div>
+
+          <div className="use_it_step">
+            <img src={upload} alt="" />
+            <h4>Upload your code</h4>
+          </div>
+
+          <div className="use_it_step">
+            <img src={wait} alt="" />
+            <h4>Wait for the result</h4>
+          </div>
+        </div>
+      </section>
+
+      <section className="expectation">
+        <div className="uploaded_codes">
+          <div className="card">
+            <DataTable value={files} tableStyle={{ minWidth: "50rem" }}>
+              <Column field="name" header="Code Uploaded"></Column>
+              <Column field="result" header="Result"></Column>
+            </DataTable>
+          </div>
         </div>
       </section>
     </div>

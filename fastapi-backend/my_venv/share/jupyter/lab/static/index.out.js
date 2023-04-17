@@ -593,6 +593,16 @@ export async function main() {
       console.error(e);
     }
   }
+  if (!queuedFederated.includes('@feiranzhang/jupyterlab-variableinspector')) {
+    try {
+      let ext = require('@feiranzhang/jupyterlab-variableinspector');
+      for (let plugin of activePlugins(ext)) {
+        register.push(plugin);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  }
 
   // Add the federated extensions.
   const federatedExtensions = await Promise.allSettled(federatedExtensionPromises);

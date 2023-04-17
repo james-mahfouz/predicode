@@ -10,8 +10,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-right: 50px;
-    margin-top: 20px;
+    margin-right: 75px;
+    margin-top: 10px;
     margin-left: 50px;
     margin-bottom: -30px;
 }
@@ -29,10 +29,13 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
+    position: relative;
+    margin-right: 75px;
 }
 
 .landing_picture{
-    width: 90%;
+    width: 80%;
     height: auto;
 }
 
@@ -42,26 +45,61 @@
 }
 
 .marketing_text{
-    width: 25%;
-    margin-left: -180px;
+    position: absolute;
+    width: 170px;
+    right: 0;
 }
 
 .marketing_text p {
     text-align: end;
     font-weight: bold;
+    width: 100%;
+}
+
+.upload{
+    display: flex;
+    justify-content: center;
+    background-color: #D8E9EF;
+}
+
+.upload .card{
+    margin-top: -40px;
+    z-index: 1;
+}
+
+.use_it{
+    background-color: #D8E9EF;
+    padding-top: 50px;
+}
+
+.use_it_steps{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.use_it_step{
+    width: 25%;
+    height: auto;
+    margin: 50px;
+}
+
+.use_it_step img{
+    width: 100%;
+    height: auto;
 }
 
 
-@media only screen and (max-width: 720px) {
+/* @media only screen and (max-width: 720px) {
     .navbar{
         margin-right: 20px;
         margin-left: 20px;
         margin-bottom: 0px;
     }
 
-    /* .signin_button{
+    .signin_button{
         width: 200px;
-    } */
+    }
     .btn{
         width: 30%;
         height: 30px;
@@ -75,4 +113,4 @@
         margin-left: -120px;
     }
 
-}
+} */

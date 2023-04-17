@@ -4,7 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="344a509d-69c3-480d-8168-3503c6dccc68" name="Changes" comment="" />
+    <list default="true" id="344a509d-69c3-480d-8168-3503c6dccc68" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../fastapi-backend/predicode-prediction-model/predicode-model.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fastapi-backend/my_venv/share/jupyter/lab/static/1036.a055f7326513fc5a04f7.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fastapi-backend/my_venv/share/jupyter/lab/static/1036.a055f7326513fc5a04f7.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fastapi-backend/my_venv/share/jupyter/lab/static/1249.8501a6fa8feae7016c0a.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fastapi-backend/my_venv/share/jupyter/lab/static/406.6f87c9a21bbaa5f39fc4.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fastapi-backend/my_venv/share/jupyter/lab/static/5493.bc25a653f87ecf6d27f8.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fastapi-backend/my_venv/share/jupyter/lab/static/5493.bc25a653f87ecf6d27f8.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fastapi-backend/my_venv/share/jupyter/lab/static/7796.0dcdca3baf288d835bab.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fastapi-backend/my_venv/share/jupyter/lab/static/8284.54c936b3303933d2da84.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fastapi-backend/my_venv/share/jupyter/lab/static/build_log.json" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-backend/my_venv/share/jupyter/lab/static/build_log.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fastapi-backend/my_venv/share/jupyter/lab/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-backend/my_venv/share/jupyter/lab/static/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fastapi-backend/my_venv/share/jupyter/lab/static/index.out.js" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-backend/my_venv/share/jupyter/lab/static/index.out.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fastapi-backend/my_venv/share/jupyter/lab/static/jlab_core.4d5114e25256eeddf4e4.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fastapi-backend/my_venv/share/jupyter/lab/static/jlab_core.4d5114e25256eeddf4e4.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fastapi-backend/my_venv/share/jupyter/lab/static/main.c474366c927dbb3da565.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fastapi-backend/my_venv/share/jupyter/lab/static/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-backend/my_venv/share/jupyter/lab/static/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fastapi-backend/my_venv/share/jupyter/lab/static/style.js" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-backend/my_venv/share/jupyter/lab/static/style.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fastapi-backend/my_venv/share/jupyter/lab/static/third-party-licenses.json" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-backend/my_venv/share/jupyter/lab/static/third-party-licenses.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fastapi-backend/predicode-prediction-model/Untitled.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
