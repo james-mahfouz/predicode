@@ -4,8 +4,6 @@ from configs.config import SECRET_KEY
 from fastapi import HTTPException, status
 from mongoengine import ValidationError
 import re
-from passlib.context import CryptContext
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 email_regex = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
 email_pattern = re.compile(email_regex)
@@ -66,8 +64,6 @@ async def login(request):
     except ValidationError as e:
         raise HTTPException(status_code=422, detail=str(e))
 
-    print(pwd_context.hash(password))
-    print(user.password)
     token = jwt.encode({"id": str(user.id), "email": user.email}, SECRET_KEY, algorithm="HS256")
     new_user = user.to_mongo().to_dict()
     del new_user["_id"]

@@ -1,9 +1,7 @@
 import bcrypt
 from mongoengine import Document, StringField, ListField, EmailField, ReferenceField
 from models.fileModel import File
-from passlib.context import CryptContext
-from mongoengine import ValidationError
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+import hashlib
 
 
 class User(Document):
@@ -15,21 +13,13 @@ class User(Document):
 
     def save(self, *args, **kwargs):
         if self.password:
-            self.password = Hasher.get_password_hash(password=self.password)
+            self.password = hashlib.sha256(self.password.encode()).hexdigest()
         super().save(*args, **kwargs)
 
     def verify_password(self, password):
-        return Hasher.verify_password(password, self.password)
-
-
-class Hasher():
-    @staticmethod
-    def verify_password(plain_password, hashed_password):
-        try:
-            return pwd_context.verify(plain_password, hashed_password)
-        except Exception as e:
-            print("this us the error", e)
-
-    @staticmethod
-    def get_password_hash(password):
-        return pwd_context.hash(password)
+        hashed_password = hashlib.sha256(password.encode()).hexdigest()
+        # print(hashed_password)
+        # print(self.password)
+        if hashed_password == self.password:
+            print('Passwords matched correctly')
+        return hashed_password == self.password
