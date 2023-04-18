@@ -4,6 +4,8 @@ from configs.config import SECRET_KEY
 from fastapi import HTTPException, status
 from mongoengine import ValidationError
 import re
+import hashlib
+
 email_regex = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
 email_pattern = re.compile(email_regex)
 
@@ -54,6 +56,9 @@ async def login(request):
             detail="email"
         )
     if not user.verify_password(password):
+        print(hashlib.sha256(password.encode()).hexdigest())
+        print(user.password)
+        # password = hashlib.sha256(self.password.encode()).hexdigest()
         raise HTTPException(
             status_code=404,
             detail="password"
