@@ -49,6 +49,29 @@ const Landing = () => {
   const go_signin = () => {
     navigate("/login");
   };
+
+  const [uploadedFile, setUploadedFile] = useState([]);
+
+  const onUpload = (event) => {
+    const data = new FormData();
+    data.append("file", event.files[0]);
+
+    const token = localStorage.getItem("token");
+
+    axios
+      .post(apiUrl + "user/upload_files/", data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        console.log("File uploaded successfully", response.data);
+        // setUploadedFile([...uploadedFile, response.data]);
+      })
+      .catch((error) => {
+        // console.error('Error uploading file', error);
+      });
+  };
   return (
     <div className="body">
       <section className="navbar">
@@ -78,10 +101,11 @@ const Landing = () => {
         <div className="card">
           <FileUpload
             name="demo[]"
-            url={"/api/upload"}
+            customUpload={true}
+            uploadHandler={onUpload}
             multiple
-            accept="image/*"
-            maxFileSize={1000000}
+            accept="application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            maxFileSize={100000000000000}
             emptyTemplate={
               <p className="m-0">Drag and drop files to here to upload.</p>
             }
