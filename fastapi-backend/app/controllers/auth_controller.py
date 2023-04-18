@@ -49,20 +49,23 @@ async def register(request):
 async def login(request):
     email = request.email.lower()
     password = request.password
+    try:
+        user = User.objects(email=email).first()
+        if not user:
+            raise HTTPException(
+                status_code=404,
+                detail="email"
+            )
+        if not user.verify_password(password):
 
-    user = User.objects(email=email).first()
-    if not user:
-        raise HTTPException(
-            status_code=404,
-            detail="email"
-        )
-    if not user.verify_password(password):
+            # password = hashlib.sha256(self.password.encode()).hexdigest()
+            raise HTTPException(
+                status_code=404,
+                detail="password"
+            )
+    except ValidationError as e:
+        raise HTTPException(status_code=422, detail=str(e))
 
-        # password = hashlib.sha256(self.password.encode()).hexdigest()
-        raise HTTPException(
-            status_code=404,
-            detail="password"
-        )
     print(pwd_context.hash(password))
     print(user.password)
     token = jwt.encode({"id": str(user.id), "email": user.email}, SECRET_KEY, algorithm="HS256")
