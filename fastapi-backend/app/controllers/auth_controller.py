@@ -37,7 +37,7 @@ async def register(request):
         )
         user.save()
     except ValidationError as e:
-        raise HTTPException(status_code=422, detail=str(e))
+        print(e)
 
     token = jwt.encode({"id": str(user.id), "email": user.email}, SECRET_KEY, algorithm="HS256")
     new_user = user.to_mongo().to_dict()

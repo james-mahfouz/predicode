@@ -17,7 +17,7 @@ const Landing = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [files, setFiles] = useState([]);
   const apiUrl = process.env.API_URL;
-
+  const navigate = useNavigate();
   useEffect(() => {
     function handleResize() {
       setIsSmallScreen(window.innerWidth <= 720);
@@ -46,6 +46,10 @@ const Landing = () => {
     };
     getFiles();
   }, []);
+
+  const go_signin = () => {
+    navigate("/login");
+  };
   return (
     <div className="body">
       <section className="navbar">
@@ -57,6 +61,7 @@ const Landing = () => {
             label={!isSmallScreen && "Sign-In"}
             icon="pi pi-sign-in"
             className="btn"
+            onClick={go_signin}
           />
         </div>
       </section>
@@ -110,12 +115,22 @@ const Landing = () => {
 
       <section className="expectation">
         <div className="uploaded_codes">
-          <div className="card">
-            <DataTable value={files} tableStyle={{ minWidth: "50rem" }}>
-              <Column field="name" header="Code Uploaded"></Column>
-              <Column field="result" header="Result"></Column>
-            </DataTable>
-          </div>
+          <DataTable
+            value={files}
+            tableStyle={{ minWidth: "50rem" }}
+            style={{ width: "80%" }}
+          >
+            <Column
+              field="name"
+              header="Code Uploaded"
+              headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
+            ></Column>
+            <Column
+              field="result"
+              header="Result"
+              headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
+            ></Column>
+          </DataTable>
         </div>
       </section>
     </div>

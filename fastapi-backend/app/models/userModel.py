@@ -2,6 +2,7 @@ import bcrypt
 from mongoengine import Document, StringField, ListField, EmailField, ReferenceField
 from models.fileModel import File
 from passlib.context import CryptContext
+from mongoengine import ValidationError
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
@@ -24,7 +25,10 @@ class User(Document):
 class Hasher():
     @staticmethod
     def verify_password(plain_password, hashed_password):
-        return pwd_context.verify(plain_password, hashed_password)
+        try:
+            return pwd_context.verify(plain_password, hashed_password)
+        except Exception as e:
+            print("this us the error", e)
 
     @staticmethod
     def get_password_hash(password):

@@ -89,6 +89,17 @@
     height: auto;
 }
 
+.expectation {
+    background-color: #D8E9EF;
+    display: flex;
+    align-items: center;
+}
+
+.uploaded_codes{
+    display: flex;
+    align-items: center;
+}
+
 
 /* @media only screen and (max-width: 720px) {
     .navbar{
