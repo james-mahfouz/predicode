@@ -92,12 +92,37 @@
 .expectation {
     background-color: #D8E9EF;
     display: flex;
-    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-bottom: 80px;
 }
 
 .uploaded_codes{
     display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+.footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+.upper_footer{
+    display: flex;
+    justify-content: center;
     align-items: center;
+}
+
+.footer-btn{
+    height: 50px;
+    margin-top: 20px;
+    margin-right: 30px;
+}
+
+.footer_logo{
+    margin-top: 20px;
+    margin-left: 30px;
 }
 
 

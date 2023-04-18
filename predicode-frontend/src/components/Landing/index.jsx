@@ -8,7 +8,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Button } from "primereact/button";
 import { FileUpload } from "primereact/fileupload";
-import { FaSignInAlt } from "react-icons/fa";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import "./index.css";
@@ -114,12 +113,11 @@ const Landing = () => {
       </section>
 
       <section className="expectation">
+        <div className="expectation_header">
+          <h1>What to expect</h1>
+        </div>
         <div className="uploaded_codes">
-          <DataTable
-            value={files}
-            tableStyle={{ minWidth: "50rem" }}
-            style={{ width: "80%" }}
-          >
+          <DataTable value={files} style={{ width: "80%", height: "auto" }}>
             <Column
               field="name"
               header="Code Uploaded"
@@ -131,6 +129,29 @@ const Landing = () => {
               headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
             ></Column>
           </DataTable>
+        </div>
+      </section>
+
+      <section className="footer">
+        <div className="upper_footer">
+          <div className="footer-btn">
+            <Button
+              label={"Try Your Code Now"}
+              className="btn footer-btn"
+              onClick={() =>
+                document.querySelector(".card").scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                })
+              }
+            />
+          </div>
+          <div className="logo footer_logo">
+            <img src={logo} alt="" />
+          </div>
+        </div>
+        <div className="footer_copyright">
+          <p>Copyright © 2023 PREDICODE. All rights reserved.</p>
         </div>
       </section>
     </div>
