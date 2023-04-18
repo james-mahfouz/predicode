@@ -18,8 +18,8 @@ class User(Document):
 
     def verify_password(self, password):
         hashed_password = hashlib.sha256(password.encode()).hexdigest()
-        # print(hashed_password)
-        # print(self.password)
+        print(hashed_password)
+        print(self.password)
         if hashed_password == self.password:
             print('Passwords matched correctly')
         return hashed_password == self.password

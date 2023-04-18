@@ -56,7 +56,6 @@ async def login(request):
             )
         if not user.verify_password(password):
 
-            # password = hashlib.sha256(self.password.encode()).hexdigest()
             raise HTTPException(
                 status_code=404,
                 detail="password"

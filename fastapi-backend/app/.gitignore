@@ -1,1 +1,4 @@
 public/
+.idea/
+__pycache__/
+my_venv/
