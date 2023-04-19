@@ -4,6 +4,8 @@ from configs.config import SECRET_KEY
 from fastapi import HTTPException, status
 from mongoengine import ValidationError
 import re
+import hashlib
+
 
 email_regex = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
 email_pattern = re.compile(email_regex)
@@ -27,10 +29,11 @@ async def register(request):
         if len(request.password) < 8:
             details = {"error": "password", "detail": "password must be at least 8 characters"}
             raise HTTPException(status_code=404, detail=details)
+        hashed_password = hashlib.sha256(request.password.encode()).hexdigest()
         user = User(
             name=request.name,
             email=request.email.lower(),
-            password=request.password,
+            password=hashed_password,
             role=request.role,
         )
         user.save()
@@ -54,8 +57,10 @@ async def login(request):
                 status_code=404,
                 detail="email"
             )
-        if not user.verify_password(password):
-
+        hashed_password = hashlib.sha256(password.encode()).hexdigest()
+        print(hashed_password)
+        print(user.password)
+        if not hashed_password == user.password:
             raise HTTPException(
                 status_code=404,
                 detail="password"
