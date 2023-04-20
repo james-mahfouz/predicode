@@ -1,25 +1,27 @@
 .admin-body{
     display: flex;
     flex-direction: row;
-}
-
-.admin-logo {
-    width: 90%;
-}
-
-.admin-logo img {
-    width: 100%;
-    height: auto;
+    flex-wrap: wrap;
 }
 
 .left{
     display: flex;
     flex-direction: column;
     align-items: center;
+    flex: 0 0 250px;
     background-color: #D8E9EF;
     width: 250px;
     padding-top: 30px;
     height: 100vh;
+}
+
+.admin-logo {
+    width: 230px;
+}
+
+.admin-logo img {
+    width: 100%;
+    height: auto;
 }
 
 .options{
@@ -43,3 +45,35 @@
     font-size: 1.1rem;
     cursor: pointer;
 }
+
+.right{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.top-bar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 40px;
+    padding-right: 40px;
+    background-color: rgba(0,0,0,0.7);
+}
+
+.admin-name{
+    color: #fff;
+}
+
+.logout-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    border: solid 3px #fff;
+    border-radius: 10px;
+    height: 40px;
+    width: 90px;
+}
+
+

@@ -23,8 +23,8 @@ const Admin = () => {
           <div className="admin-name">
             <h3>Nabiha</h3>
           </div>
-          <div>
-            <button className="logout-btn">Logout</button>
+          <div className="logout-btn">
+            <h4>Logout</h4>
           </div>
         </div>
       </section>
