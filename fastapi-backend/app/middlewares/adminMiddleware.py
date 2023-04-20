@@ -12,25 +12,21 @@ security = HTTPBearer()
 def get_current_user(
     credentials: HTTPAuthorizationCredentials = Depends(security)
 ):
-    print("entered function")
     try:
         token = credentials.credentials
         payload = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
         user_id = payload["id"]
         user = User.objects.get(id=ObjectId(user_id))
-        print("checking if token")
         if not user:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHANTICATED,
                 detail="Invalid authentication credentials",
             )
-        print("token approved, checking if admin")
         if user.role != "admin":
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 detail="Invalid role"
             )
-        print("admin indeed")
         return user
     except Exception:
         raise HTTPException(
