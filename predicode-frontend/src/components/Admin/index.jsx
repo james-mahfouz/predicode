@@ -1,6 +1,6 @@
 import logo from "../../assets/logo.png";
-import DisplayUsers from "./DisplayUsers";
 import "./index.css";
+import DisplayUsers from "../DisplayUsers";
 
 const Admin = () => {
   return (
