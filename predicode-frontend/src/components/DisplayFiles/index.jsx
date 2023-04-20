@@ -2,6 +2,7 @@ import "../Admin/index.css";
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
@@ -10,6 +11,8 @@ import { Button } from "primereact/button";
 const DisplayFiles = ({ onAdminNameChange }) => {
   const [files, setFiles] = useState([]);
   const apiUrl = process.env.API_URL;
+  const navigate = useNavigate();
+
   useEffect(() => {
     const getUsers = async () => {
       try {

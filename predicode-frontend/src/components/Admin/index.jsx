@@ -3,6 +3,7 @@ import "./index.css";
 import DisplayUsers from "../DisplayUsers";
 import DisplayFiles from "../DisplayFiles";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Admin = () => {
   const [adminFunction, setAdminFunction] = useState(<DisplayUsers />);
@@ -20,6 +21,8 @@ const Admin = () => {
       ? setAdminFunction(<DisplayFiles />)
       : setAdminFunction(<DisplayUsers />);
   };
+
+  const handleLogout = () => {};
   return (
     <div className="admin-body">
       <section className="left">
@@ -41,7 +44,7 @@ const Admin = () => {
           <div className="admin-name">
             <h3>{adminName}</h3>
           </div>
-          <div className="logout-btn">
+          <div className="logout-btn" onClick={() => handleOption(1)}>
             <h4>Logout</h4>
           </div>
         </div>
