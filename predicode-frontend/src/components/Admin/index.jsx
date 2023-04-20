@@ -11,10 +11,15 @@ const Admin = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const admin_name = localStorage.getItem("admin_name");
-    if (admin_name) {
-      setAdminName(admin_name);
-    }
+    const getAdminName = () => {
+      const admin_name = localStorage.getItem("admin_name");
+      if (admin_name) {
+        setAdminName(admin_name);
+      } else {
+        setTimeout(getAdminName, 1000); // check again after 1 second
+      }
+    };
+    getAdminName();
   }, []);
 
   const handleOption = (option) => {
