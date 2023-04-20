@@ -45,6 +45,7 @@
     color: #fff;
     font-size: 1.1rem;
     cursor: pointer;
+    border: #000 solid 2px;
 }
 
 .right{

@@ -7,7 +7,7 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Button } from "primereact/button";
 
-const DisplayFiles = () => {
+const DisplayFiles = ({ onAdminNameChange }) => {
   const [files, setFiles] = useState([]);
   const apiUrl = process.env.API_URL;
   useEffect(() => {
@@ -19,8 +19,11 @@ const DisplayFiles = () => {
           },
         });
         setFiles(response.data.files);
+        localStorage.setItem("admin_name", response.data.admin_name);
       } catch (e) {
-        console.log(e);
+        if (e.response.data.detail.access === "denied") {
+          navigate("/");
+        }
       }
     };
     getUsers();
@@ -32,7 +35,7 @@ const DisplayFiles = () => {
 
   return (
     <div className="display-users">
-      <h1>Display Files</h1>
+      <h1>Files</h1>
       <div
         className="card"
         style={{ border: "3px solid black", padding: "0rem" }}

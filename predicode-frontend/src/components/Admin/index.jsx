@@ -2,12 +2,18 @@ import logo from "../../assets/logo.png";
 import "./index.css";
 import DisplayUsers from "../DisplayUsers";
 import DisplayFiles from "../DisplayFiles";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Admin = () => {
-  const [adminFunction, setAdminFunction] = useState(
-    <div>Choose an option</div>
-  );
+  const [adminFunction, setAdminFunction] = useState(<DisplayUsers />);
+  const [adminName, setAdminName] = useState("");
+
+  useEffect(() => {
+    const admin_name = localStorage.getItem("admin_name");
+    if (admin_name) {
+      setAdminName(admin_name);
+    }
+  }, []);
 
   const handleOption = (option) => {
     option === 1
@@ -33,7 +39,7 @@ const Admin = () => {
       <section className="right">
         <div className="top-bar">
           <div className="admin-name">
-            <h3>Nabiha</h3>
+            <h3>{adminName}</h3>
           </div>
           <div className="logout-btn">
             <h4>Logout</h4>

@@ -1,6 +1,7 @@
 import "../Admin/index.css";
 import React from "react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import { Dropdown } from "primereact/dropdown";
@@ -9,6 +10,8 @@ import { Column } from "primereact/column";
 
 const DisplayUsers = () => {
   const [users, setUsers] = useState([]);
+  const navigate = useNavigate();
+
   const apiUrl = process.env.API_URL;
   useEffect(() => {
     const getUsers = async () => {
@@ -19,8 +22,11 @@ const DisplayUsers = () => {
           },
         });
         setUsers(response.data.users);
+        localStorage.setItem("admin_name", response.data.admin_name);
       } catch (e) {
-        console.log(e);
+        if (e.response.data.detail.access === "denied") {
+          navigate("/");
+        }
       }
     };
     getUsers();
@@ -28,7 +34,7 @@ const DisplayUsers = () => {
 
   return (
     <div className="display-users">
-      <h1>Display Users</h1>
+      <h1>Users</h1>
       <div
         className="card"
         style={{ border: "3px solid black", padding: "0rem" }}
