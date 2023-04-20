@@ -25,7 +25,11 @@ def get_users(user):
 
             files = user_dict.get("files", [])
             for i, file_id in enumerate(files):
-                files[i] = str(file_id)
+                file_obj = File.objects.filter(id=file_id).first()
+                if file_obj:
+                    files[i] = {"id": str(file_id), "name": file_obj.name}
+                else:
+                    files[i] = str(file_id)
             user_dict["files"] = files
 
             users_list.append(user_dict)
