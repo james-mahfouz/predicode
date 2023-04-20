@@ -17,6 +17,17 @@ const Admin = () => {
           </div>
         </div>
       </section>
+
+      <section className="left">
+        <div className="top-bar">
+          <div className="admin-name">
+            <h3>Nabiha</h3>
+          </div>
+          <div>
+            <button className="logout-btn">Logout</button>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
