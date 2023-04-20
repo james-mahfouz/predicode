@@ -41,22 +41,35 @@ const DisplayUsers = () => {
           virtualScrollerOptions={{ itemSize: 46 }}
           tableStyle={{ minWidth: "50rem" }}
         >
-          <Column field="_id" header="Id" style={{ width: "20%" }}></Column>
-          <Column field="name" header="Name" style={{ width: "20%" }}></Column>
+          <Column
+            field="_id"
+            header="Id"
+            style={{ width: "20%" }}
+            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
+          ></Column>
+          <Column
+            field="name"
+            header="Name"
+            style={{ width: "20%" }}
+            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
+          ></Column>
           <Column
             field="email"
             header="email"
             style={{ width: "20%" }}
+            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
           ></Column>
           <Column
             header="Files nb."
             style={{ width: "20%" }}
             body={(rowData) => rowData.files.length}
+            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
           ></Column>
           <Column
             header="Files"
             style={{ width: "20%" }}
             body={(rowData) => <FilesColumn rowData={rowData} />}
+            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
           />
         </DataTable>
       </div>
