@@ -10,6 +10,7 @@ class User(Document):
     role = StringField(choices=["user", "admin"], default="user")
     files = ListField(ReferenceField(File))
 
+
     # def save(self, *args, **kwargs):
     #     if self.password:
     #         self.password = hashlib.sha256(self.password.encode()).hexdigest()

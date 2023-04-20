@@ -67,9 +67,9 @@ async def login(request):
             )
     except ValidationError as e:
         raise HTTPException(status_code=422, detail=str(e))
-
     token = jwt.encode({"id": str(user.id), "email": user.email}, SECRET_KEY, algorithm="HS256")
     new_user = user.to_mongo().to_dict()
     del new_user["_id"]
     del new_user["password"]
+    del new_user["files"]
     return {"user": new_user, "token": token}
