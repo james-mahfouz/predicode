@@ -12,7 +12,10 @@ def get_files(user):
         file_dict["_id"] = str(file_dict["_id"])
         files_list.append(file_dict)
 
-    return JSONResponse(content={"files": files_list})
+    return JSONResponse(content={
+        "files": files_list,
+        "admin_name": user.name
+    })
 
 
 def get_users(user):
