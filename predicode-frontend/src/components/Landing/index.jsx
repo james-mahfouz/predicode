@@ -73,7 +73,7 @@ const Landing = () => {
       });
   };
   return (
-    <div className="body">
+    <div className="landing-body">
       <section className="navbar">
         <div className="logo">
           <img src={logo} />
