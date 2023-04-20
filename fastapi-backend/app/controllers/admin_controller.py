@@ -22,6 +22,12 @@ def get_users(user):
         if u != user:
             user_dict = u.to_mongo().to_dict()
             user_dict["_id"] = str(user_dict["_id"])
+
+            files = user_dict.get("files", [])
+            for i, file_id in enumerate(files):
+                files[i] = str(file_id)
+            user_dict["files"] = files
+
             users_list.append(user_dict)
 
     return JSONResponse(content={"users": users_list})
