@@ -1,9 +1,9 @@
-import Landing from "../../components/Landing";
+import Admin from "../../components/Admin";
 
 const AdminPage = () => {
   return (
     <div>
-      <Landing />
+      <Admin />
     </div>
   );
 };
