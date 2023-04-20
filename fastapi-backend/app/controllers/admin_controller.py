@@ -37,4 +37,7 @@ def get_users(user):
 
             users_list.append(user_dict)
 
-    return JSONResponse(content={"users": users_list})
+    return JSONResponse(content={
+        "users": users_list,
+        "admin_name": user.name
+    })
