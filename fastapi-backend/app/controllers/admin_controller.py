@@ -18,9 +18,10 @@ def get_files(user):
 def get_users(user):
     users = User.objects.all()
     users_list = []
-    for user in users:
-        user_dict = user.to_mongo().to_dict()
-        user_dict["_id"] = str(user_dict["_id"])
-        users_list.append(user_dict)
+    for u in users:
+        if u != user:
+            user_dict = u.to_mongo().to_dict()
+            user_dict["_id"] = str(user_dict["_id"])
+            users_list.append(user_dict)
 
     return JSONResponse(content={"users": users_list})
