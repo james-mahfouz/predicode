@@ -34,24 +34,36 @@ const DisplayFiles = () => {
   return (
     <div className="display-users">
       <h1>Display Users</h1>
-      <div className="card">
+      <div
+        className="card"
+        style={{ border: "3px solid black", padding: "0rem" }}
+      >
         <DataTable
           value={files}
           scrollable
-          scrollHeight="6600px"
+          scrollHeight="400px"
           virtualScrollerOptions={{ itemSize: 46 }}
-          tableStyle={{ minWidth: "50rem" }}
+          tableStyle={{
+            minWidth: "50rem",
+          }}
         >
-          <Column field="_id" header="Id" style={{ width: "20%" }}></Column>
+          <Column
+            field="_id"
+            header="Id"
+            style={{ width: "20%" }}
+            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
+          ></Column>
           <Column
             field="name"
             header="File Name"
             style={{ width: "20%" }}
+            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
           ></Column>
           <Column
             field="by_user"
             header="File Owner"
             style={{ width: "20%" }}
+            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
           ></Column>
           <Column
             header="Enroll"
@@ -61,6 +73,7 @@ const DisplayFiles = () => {
                 onClick={() => viewFile(rowData.path)}
               />
             )}
+            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
           />
         </DataTable>
       </div>
