@@ -4,7 +4,7 @@ import "./index.css";
 const Admin = () => {
   return (
     <div className="admin-body">
-      <section className="right">
+      <section className="left">
         <div className="admin-logo">
           <img src={logo} alt="" />
         </div>
@@ -18,7 +18,7 @@ const Admin = () => {
         </div>
       </section>
 
-      <section className="left">
+      <section className="right">
         <div className="top-bar">
           <div className="admin-name">
             <h3>Nabiha</h3>
