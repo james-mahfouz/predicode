@@ -1,6 +1,7 @@
 import logo from "../../assets/logo.png";
 import "./index.css";
 import DisplayUsers from "../DisplayUsers";
+import DisplayFiles from "../DisplayFiles";
 
 const Admin = () => {
   return (
@@ -30,7 +31,7 @@ const Admin = () => {
         </div>
 
         <div className="infos">
-          <DisplayUsers />
+          <DisplayFiles />
         </div>
       </section>
     </div>

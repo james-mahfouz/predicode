@@ -60,24 +60,4 @@ const DisplayUsers = () => {
     </div>
   );
 };
-export default DisplayUsers;
-
-function FilesColumn(props) {
-  const [selectedFile, setSelectedFile] = useState(null);
-
-  const fileOptions = props.rowData.files.map((file) => ({
-    label: file.name,
-    value: file.id,
-  }));
-
-  return (
-    <div>
-      <Dropdown
-        options={fileOptions}
-        value={selectedFile}
-        onChange={(e) => setSelectedFile(e.value)}
-        placeholder="View files"
-      />
-    </div>
-  );
-}
+export default DisplayFiles;
