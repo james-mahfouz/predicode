@@ -1,4 +1,5 @@
 import logo from "../../assets/logo.png";
+import DisplayUsers from "./DisplayUser";
 import "./index.css";
 
 const Admin = () => {
@@ -29,9 +30,7 @@ const Admin = () => {
         </div>
 
         <div className="infos">
-          <div className="infos-title">
-            <h2></h2>
-          </div>
+          <DisplayUsers />
         </div>
       </section>
     </div>
