@@ -2,8 +2,18 @@ import logo from "../../assets/logo.png";
 import "./index.css";
 import DisplayUsers from "../DisplayUsers";
 import DisplayFiles from "../DisplayFiles";
+import { useState } from "react";
 
 const Admin = () => {
+  const [adminFunction, setAdminFunction] = useState(
+    <div>Choose an option</div>
+  );
+
+  const handleOption = (option) => {
+    option === 1
+      ? setAdminFunction(<DisplayFiles />)
+      : setAdminFunction(<DisplayUsers />);
+  };
   return (
     <div className="admin-body">
       <section className="left">
