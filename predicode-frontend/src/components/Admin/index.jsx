@@ -21,10 +21,10 @@ const Admin = () => {
           <img src={logo} alt="" />
         </div>
         <div className="options">
-          <div className="option">
+          <div className="option" onClick={() => handleOption(2)}>
             <h4>Display Users</h4>
           </div>
-          <div className="option">
+          <div className="option" onClick={() => handleOption(1)}>
             <h4>Files Uploaded</h4>
           </div>
         </div>
@@ -40,9 +40,7 @@ const Admin = () => {
           </div>
         </div>
 
-        <div className="infos">
-          <DisplayFiles />
-        </div>
+        <div className="infos">{adminFunction}</div>
       </section>
     </div>
   );

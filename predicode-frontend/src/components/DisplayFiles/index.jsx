@@ -33,7 +33,7 @@ const DisplayFiles = () => {
 
   return (
     <div className="display-users">
-      <h1>Display Users</h1>
+      <h1>Display Files</h1>
       <div
         className="card"
         style={{ border: "3px solid black", padding: "0rem" }}
