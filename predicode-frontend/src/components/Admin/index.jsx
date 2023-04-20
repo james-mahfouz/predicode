@@ -1,5 +1,5 @@
 import logo from "../../assets/logo.png";
-import DisplayUsers from "./DisplayUser";
+import DisplayUsers from "./DisplayUsers";
 import "./index.css";
 
 const Admin = () => {
