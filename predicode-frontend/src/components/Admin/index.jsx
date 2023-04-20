@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 const Admin = () => {
   const [adminFunction, setAdminFunction] = useState(<DisplayUsers />);
   const [adminName, setAdminName] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const admin_name = localStorage.getItem("admin_name");
@@ -22,7 +23,11 @@ const Admin = () => {
       : setAdminFunction(<DisplayUsers />);
   };
 
-  const handleLogout = () => {};
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("admin_name");
+    navigate("/");
+  };
   return (
     <div className="admin-body">
       <section className="left">
@@ -44,7 +49,7 @@ const Admin = () => {
           <div className="admin-name">
             <h3>{adminName}</h3>
           </div>
-          <div className="logout-btn" onClick={() => handleOption(1)}>
+          <div className="logout-btn" onClick={() => handleLogout()}>
             <h4>Logout</h4>
           </div>
         </div>
