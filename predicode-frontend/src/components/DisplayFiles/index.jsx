@@ -28,7 +28,7 @@ const DisplayFiles = () => {
   }, []);
 
   const viewFile = (path) => {
-    window.open(f'{apiUrl}{path}', "_blank");
+    window.open(`${apiUrl}${path}`);
   };
 
   return (
@@ -38,7 +38,7 @@ const DisplayFiles = () => {
         <DataTable
           value={files}
           scrollable
-          scrollHeight="400px"
+          scrollHeight="6600px"
           virtualScrollerOptions={{ itemSize: 46 }}
           tableStyle={{ minWidth: "50rem" }}
         >
