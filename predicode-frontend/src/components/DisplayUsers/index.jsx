@@ -18,7 +18,6 @@ const DisplayUsers = () => {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
-        console.log(response.data.users[0].files);
         setUsers(response.data.users);
       } catch (e) {
         console.log(e);
