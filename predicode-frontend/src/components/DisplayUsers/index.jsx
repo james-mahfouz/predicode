@@ -55,7 +55,6 @@ const DisplayUsers = () => {
             style={{ width: "20%" }}
             body={(rowData) => <FilesColumn rowData={rowData} />}
           />
-          ;
         </DataTable>
       </div>
     </div>
@@ -77,7 +76,7 @@ function FilesColumn(props) {
         options={fileOptions}
         value={selectedFile}
         onChange={(e) => setSelectedFile(e.value)}
-        placeholder="View all files"
+        placeholder="Select a file"
       />
     </div>
   );
