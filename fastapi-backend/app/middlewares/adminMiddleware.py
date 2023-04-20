@@ -20,16 +20,25 @@ def get_current_user(
         if not user:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHANTICATED,
-                detail="Invalid authentication credentials",
+                detail={
+                    "message": "Invalid authentication credentials",
+                    "access": "denied"
+                }
             )
         if user.role != "admin":
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Invalid role"
+                detail={
+                    "message": "Invalid role",
+                    "access": "denied"
+                }
             )
         return user
     except Exception:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid authentication credentials",
+            detail={
+                "message": "Invalid authentication credentials",
+                "access": "denied"
+            }
         )
