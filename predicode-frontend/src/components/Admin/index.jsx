@@ -28,7 +28,11 @@ const Admin = () => {
           </div>
         </div>
 
-        <div></div>
+        <div className="infos">
+          <div className="infos-title">
+            <h2></h2>
+          </div>
+        </div>
       </section>
     </div>
   );
