@@ -12,6 +12,6 @@ async def files(user: User = Depends(get_current_user)):
     return get_files(user)
 
 
-@router.post("/get_users")
+@router.get("/get_users")
 async def users(user: User = Depends(get_current_user)):
     return get_users(user=user)

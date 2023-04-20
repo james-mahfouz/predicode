@@ -16,6 +16,7 @@ def get_files(user):
 
 
 def get_users(user):
+    print("hello")
     users = User.objects.all()
     users_list = []
     for u in users:
