@@ -5,6 +5,7 @@ import axios from "axios";
 
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
+import { Button } from "primereact/button";
 
 const DisplayFiles = () => {
   const [files, setFiles] = useState([]);
@@ -25,6 +26,10 @@ const DisplayFiles = () => {
     };
     getUsers();
   }, []);
+
+  const viewFile = (path) => {
+    window.open(f'{apiUrl}{path}', "_blank");
+  };
 
   return (
     <div className="display-users">
@@ -48,16 +53,15 @@ const DisplayFiles = () => {
             header="File Owner"
             style={{ width: "20%" }}
           ></Column>
-          {/* <Column
-            header="Files nb."
-            style={{ width: "20%" }}
-            body={(rowData) => rowData.files.length}
-          ></Column> */}
-          {/* <Column
-            header="Files"
-            style={{ width: "20%" }}
-            body={(rowData) => <FilesColumn rowData={rowData} />}
-          /> */}
+          <Column
+            header="Enroll"
+            body={(rowData) => (
+              <Button
+                label="View File"
+                onClick={() => viewFile(rowData.path)}
+              />
+            )}
+          />
         </DataTable>
       </div>
     </div>
