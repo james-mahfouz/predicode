@@ -27,6 +27,8 @@ const Admin = () => {
             <h4>Logout</h4>
           </div>
         </div>
+
+        <div></div>
       </section>
     </div>
   );

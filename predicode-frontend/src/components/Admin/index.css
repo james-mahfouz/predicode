@@ -58,7 +58,7 @@
     justify-content: space-between;
     padding-left: 40px;
     padding-right: 40px;
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(0,0,0,0.8);
 }
 
 .admin-name{
@@ -69,11 +69,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
-    border: solid 3px #fff;
+    color: #00D39C;
+    border: solid 3px #00D39C;
     border-radius: 10px;
     height: 40px;
     width: 90px;
+    cursor: pointer;
 }
 
+.logout-btn:hover{
+    background-color: #fff;
+    border: solid 3px #00D39C;
+    color: #00D39C;
+}
 
