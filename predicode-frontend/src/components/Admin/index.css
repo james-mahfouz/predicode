@@ -1,0 +1,55 @@
+.admin-body{
+    display: flex;
+    flex-direction: row;
+}
+
+.admin-logo {
+    width: 90%;
+}
+
+.admin-logo img {
+    width: 100%;
+    height: auto;
+}
+
+.right{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #D8E9EF;
+    width: 250px;
+    padding-top: 30px;
+    height: 100vh;
+}
+
+/* .option-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} */
+
+.options{
+    margin-top: 40px;
+    width: 100%;
+}
+
+.option{
+    padding-left: 40px;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+/* .option h4{
+    height: 38px;
+} */
+
+.option:hover{
+    background-color: #714DF4;
+    color: #fff;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
