@@ -11,13 +11,14 @@ const DisplayUsers = () => {
   const apiUrl = process.env.API_URL;
   useEffect(() => {
     const getFiles = async () => {
+      console.log("enterd function");
       try {
         const response = await axios.get(apiUrl + "user/get_files", {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
-        console.log(response.data.files);
+        console.log(response);
         setFiles(response.data.files);
       } catch (e) {
         console.log(e);

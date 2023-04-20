@@ -37,7 +37,6 @@ const Landing = () => {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
-        console.log(response.data.files);
         setFiles(response.data.files);
       } catch (e) {
         console.log(e);
