@@ -25,6 +25,7 @@
     height: auto;
 }
 
+
 .sidebar-logo {
     width: 90%;
 }
@@ -32,6 +33,26 @@
 .sidebar-logo img {
     width: 100%;
     height: auto;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.user-info h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.user-info p {
+    color: #555;
+}
+
+.logout{
+    width: 100%;
 }
 
 .landing{

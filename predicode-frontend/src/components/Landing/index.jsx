@@ -12,6 +12,7 @@ import { FileUpload } from "primereact/fileupload";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Sidebar } from "primereact/sidebar";
+import { InputText } from "primereact/inputtext";
 
 import "./index.css";
 
@@ -22,6 +23,8 @@ const Landing = () => {
   const [uploadedFile, setUploadedFile] = useState([]);
   const [visibleRight, setVisibleRight] = useState(false);
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("james@gmail.com");
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const apiUrl = process.env.API_URL;
   const navigate = useNavigate();
@@ -48,6 +51,9 @@ const Landing = () => {
         setUsername(response.data.user_name);
         setFiles(response.data.files);
         setSignedIn(true);
+        if (response.data.role === "admin") {
+          setIsAdmin(true);
+        }
       } catch (e) {
         console.log(e);
       }
@@ -65,6 +71,10 @@ const Landing = () => {
     setVisibleRight(false);
     setSignedIn(false);
     navigate("/");
+  };
+
+  const goAdminPage = () => {
+    navigate("/admin");
   };
 
   const onUpload = (event) => {
@@ -118,23 +128,54 @@ const Landing = () => {
           </div>
         )}
       </section>
-      <Sidebar
-        visible={visibleRight}
-        position="right"
-        onHide={() => setVisibleRight(false)}
-      >
-        <div className="sidebar-logo">
-          <img src={logo} />
-        </div>
-        <div className="signin_button">
-          <Button
-            label="Logout"
-            icon="pi pi-sign-out"
-            className="btn"
-            onClick={handleLogout}
-          />
-        </div>
-      </Sidebar>
+
+      <section className="sidebar">
+        <Sidebar
+          visible={visibleRight}
+          position="right"
+          onHide={() => setVisibleRight(false)}
+        >
+          <div className="sidebar-logo">
+            <img src={logo} />
+          </div>
+
+          <div className="user-info">
+            <div className="username">
+              <label htmlFor="username">Username:</label>
+              <InputText
+                id="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
+            <div className="email">
+              <label htmlFor="email">Email:</label>
+              <InputText
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+          </div>
+
+          {isAdmin && (
+            <div className="signin_button logout">
+              <Button
+                label="Admin Panel"
+                className="btn logout"
+                onClick={goAdminPage}
+              />
+            </div>
+          )}
+          <div className="signin_button logout">
+            <Button
+              label="Logout"
+              className="btn logout"
+              onClick={handleLogout}
+            />
+          </div>
+        </Sidebar>
+      </section>
 
       <section className="landing">
         <div className="landing_picture">
