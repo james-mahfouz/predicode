@@ -28,6 +28,10 @@ const Admin = () => {
       : setAdminFunction(<DisplayUsers />);
   };
 
+  const goLanding = () => {
+    navigate("/");
+  };
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("admin_name");
@@ -36,7 +40,7 @@ const Admin = () => {
   return (
     <div className="admin-body">
       <section className="left">
-        <div className="admin-logo">
+        <div className="admin-logo" onClick={goLanding}>
           <img src={logo} alt="" />
         </div>
         <div className="options">

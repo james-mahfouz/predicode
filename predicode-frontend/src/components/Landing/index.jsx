@@ -140,15 +140,15 @@ const Landing = () => {
           </div>
 
           <div className="user-info">
-            <div className="username">
-              <label htmlFor="username">Username:</label>
+            <div className="input-field">
+              <label htmlFor="username">Name:</label>
               <InputText
                 id="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
             </div>
-            <div className="email">
+            <div className="input-field">
               <label htmlFor="email">Email:</label>
               <InputText
                 id="email"
