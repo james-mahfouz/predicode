@@ -25,6 +25,15 @@
     height: auto;
 }
 
+.sidebar-logo {
+    width: 90%;
+}
+
+.sidebar-logo img {
+    width: 100%;
+    height: auto;
+}
+
 .landing{
     display: flex;
     flex-direction: row;

@@ -123,6 +123,9 @@ const Landing = () => {
         position="right"
         onHide={() => setVisibleRight(false)}
       >
+        <div className="sidebar-logo">
+          <img src={logo} />
+        </div>
         <div className="signin_button">
           <Button
             label="Logout"
