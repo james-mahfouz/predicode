@@ -106,7 +106,9 @@ const Landing = () => {
             accept="application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document"
             maxFileSize={100000000000000}
             emptyTemplate={
-              <p className="m-0">Drag and drop files to here to upload.</p>
+              <p className="m-0">
+                Upload your zipped code folder and see your rating
+              </p>
             }
           />
         </div>{" "}
