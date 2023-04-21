@@ -139,40 +139,30 @@ const Landing = () => {
             <img src={logo} />
           </div>
 
-          <div className="user-info">
-            <div className="input-field">
-              <label htmlFor="username">Name:</label>
-              <InputText
-                id="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </div>
-            <div className="input-field">
-              <label htmlFor="email">Email:</label>
-              <InputText
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
+          <div className="user-infos">
+            <h2>Welcome {username}</h2>
+            <p>
+              Predicode, the website that take your app source code and predict
+              your app rating to have an idea on how to proceed with your idea
+            </p>
           </div>
-
-          {isAdmin && (
-            <div className="signin_button logout">
+          <div className="sidebar-buttons">
+            {isAdmin && (
+              <div className="logout">
+                <Button
+                  label="Admin Panel"
+                  className="btn logout"
+                  onClick={goAdminPage}
+                />
+              </div>
+            )}
+            <div className="logout sidebar-logout">
               <Button
-                label="Admin Panel"
+                label="Logout"
                 className="btn logout"
-                onClick={goAdminPage}
+                onClick={handleLogout}
               />
             </div>
-          )}
-          <div className="signin_button logout">
-            <Button
-              label="Logout"
-              className="btn logout"
-              onClick={handleLogout}
-            />
           </div>
         </Sidebar>
       </section>

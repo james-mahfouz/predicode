@@ -35,40 +35,24 @@
     height: auto;
 }
 
-.user-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.user-infos{
+    margin-top: 30px;
 }
 
-.user-info h2 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
+.user-infos p {
+    text-align: justify;
 }
-
-.input-field {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.input-field label{
-    flex-basis: 120px;
-    margin-right: 10px;
-}
-
-.input-field input {
-    flex: 1;
-}
-
-.user-info p {
-    color: #555;
-}
-
-
 
 .logout{
     width: 100%;
+}
+
+.sidebar-buttons{
+    margin-top: 70px;
+}
+
+.sidebar-logout{
+    margin-top: 10px;
 }
 
 .landing{
