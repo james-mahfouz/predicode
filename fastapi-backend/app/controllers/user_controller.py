@@ -11,7 +11,10 @@ def get_files(user):
         file_dict["_id"] = str(file_dict["_id"])
         file_list.append(file_dict)
 
-    return JSONResponse(content={"files": file_list})
+    return JSONResponse(content={
+        "files": file_list,
+        "user_name": user.name
+    })
 
 
 def upload_file(file, user):
