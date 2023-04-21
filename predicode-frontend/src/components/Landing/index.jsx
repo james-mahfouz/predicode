@@ -57,6 +57,14 @@ const Landing = () => {
     navigate("/login");
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("admin_name");
+    setVisibleRight(false);
+    setSignedIn(false);
+    navigate("/");
+  };
+
   const onUpload = (event) => {
     const data = new FormData();
     data.append("file", event.files[0]);
@@ -83,7 +91,7 @@ const Landing = () => {
         <div className="logo">
           <img src={logo} />
         </div>
-        {/* {!signedIn && (
+        {!signedIn && (
           <div className="signin_button">
             <Button
               label={!isSmallScreen && "Sign-In"}
@@ -96,14 +104,18 @@ const Landing = () => {
         {signedIn && (
           <div className="signin_button">
             <Button
-              label={!isSmallScreen && "Logout"}
-              icon="pi pi-sign-out"
-              className="btn"
-              onClick={go_signin}
+              icon="pi pi-user"
+              rounded
+              outlined
+              severity="info"
+              aria-label="User"
+              onClick={() => setVisibleRight(true)}
+              style={{ borderWidth: "3px" }}
+              className="bolder-icon"
             />
           </div>
-        )} */}
-        <Button
+        )}
+        {/* <Button
           icon="pi pi-user"
           rounded
           outlined
@@ -112,21 +124,23 @@ const Landing = () => {
           onClick={() => setVisibleRight(true)}
           style={{ borderWidth: "3px" }}
           className="bolder-icon"
-        />
+        /> */}
       </section>
       <Sidebar
         visible={visibleRight}
         position="right"
         onHide={() => setVisibleRight(false)}
       >
-        <h2>Right Sidebar</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
-        </p>
+        <div className="signin_button">
+          <Button
+            label="Logout"
+            icon="pi pi-sign-out"
+            className="btn"
+            onClick={handleLogout}
+          />
+        </div>
       </Sidebar>
+
       <section className="landing">
         <div className="landing_picture">
           <img src={background} alt="" className="wlc_picture" />
