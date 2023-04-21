@@ -14,7 +14,7 @@ def get_files(user):
     return JSONResponse(content={
         "files": file_list,
         "user_name": user.name,
-        "user_role": user.role
+        "role": user.role
     })
 
 
