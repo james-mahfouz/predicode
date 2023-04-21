@@ -21,6 +21,7 @@ const Landing = () => {
   const [signedIn, setSignedIn] = useState(false);
   const [uploadedFile, setUploadedFile] = useState([]);
   const [visibleRight, setVisibleRight] = useState(false);
+  const [username, setUsername] = useState("");
 
   const apiUrl = process.env.API_URL;
   const navigate = useNavigate();
@@ -44,6 +45,7 @@ const Landing = () => {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
+        setUsername(response.data.user_name);
         setFiles(response.data.files);
         setSignedIn(true);
       } catch (e) {
@@ -115,16 +117,6 @@ const Landing = () => {
             />
           </div>
         )}
-        {/* <Button
-          icon="pi pi-user"
-          rounded
-          outlined
-          severity="info"
-          aria-label="User"
-          onClick={() => setVisibleRight(true)}
-          style={{ borderWidth: "3px" }}
-          className="bolder-icon"
-        /> */}
       </section>
       <Sidebar
         visible={visibleRight}
