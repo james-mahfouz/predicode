@@ -15,6 +15,8 @@ import "./index.css";
 const Landing = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [files, setFiles] = useState([]);
+  const [signedIn, setSignedIn] = useState(false);
+
   const apiUrl = process.env.API_URL;
   const navigate = useNavigate();
   useEffect(() => {
@@ -38,6 +40,7 @@ const Landing = () => {
           },
         });
         setFiles(response.data.files);
+        setSignedIn(true);
       } catch (e) {
         console.log(e);
       }
@@ -77,14 +80,26 @@ const Landing = () => {
         <div className="logo">
           <img src={logo} />
         </div>
-        <div className="signin_button">
-          <Button
-            label={!isSmallScreen && "Sign-In"}
-            icon="pi pi-sign-in"
-            className="btn"
-            onClick={go_signin}
-          />
-        </div>
+        {!signedIn && (
+          <div className="signin_button">
+            <Button
+              label={!isSmallScreen && "Sign-In"}
+              icon="pi pi-sign-in"
+              className="btn"
+              onClick={go_signin}
+            />
+          </div>
+        )}
+        {signedIn && (
+          <div className="signin_button">
+            <Button
+              label={!isSmallScreen && "Logout"}
+              icon="pi pi-sign-out"
+              className="btn"
+              onClick={go_signin}
+            />
+          </div>
+        )}
       </section>
 
       <section className="landing">
