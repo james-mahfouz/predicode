@@ -16,6 +16,7 @@ const Landing = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [files, setFiles] = useState([]);
   const [signedIn, setSignedIn] = useState(false);
+  const [uploadedFile, setUploadedFile] = useState([]);
 
   const apiUrl = process.env.API_URL;
   const navigate = useNavigate();
@@ -51,8 +52,6 @@ const Landing = () => {
   const go_signin = () => {
     navigate("/login");
   };
-
-  const [uploadedFile, setUploadedFile] = useState([]);
 
   const onUpload = (event) => {
     const data = new FormData();
