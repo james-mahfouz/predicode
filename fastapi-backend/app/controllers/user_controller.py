@@ -14,6 +14,9 @@ def get_files(user):
             file_dict = file.to_mongo().to_dict()
             file_dict["_id"] = str(file_dict["_id"])
             files_list.append(file_dict)
+        else:
+            user.files.remove(file)
+            user.save()
 
     return JSONResponse(content={
         "files": files_list,
