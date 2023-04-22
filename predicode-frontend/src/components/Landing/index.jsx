@@ -77,31 +77,35 @@ const Landing = () => {
   };
 
   const onUpload = (event) => {
-    if (files.type === "application/zip") {
-      const reader = new FileReader();
-      reader.readAsDataURL(event.file[0]);
+    const uploaded_file = event.files[0];
+    console.log(uploaded_file.type);
+    // if (event.file[0].type === "application/zip") {
+    //   const reader = new FileReader();
+    //   reader.readAsDataURL(event.file[0]);
 
-      reader.onload = () => {
-        const encodedData = reader.result.split(",");
-        console.log(encodedData);
+    //   reader.onload = () => {
+    //     const encodedData = reader.result.split(",");
+    //     console.log(encodedData);
 
-        const data = new FormData();
-        data.append("file", event.files[0]);
+    //     const data = new FormData();
+    //     data.append("file", event.files[0]);
 
-        const token = localStorage.getItem("token");
+    //     const token = localStorage.getItem("token");
 
-        axios
-          .post(apiUrl + "user/upload_files/", data, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          })
-          .then((response) => {
-            console.log("File uploaded successfully", response.data);
-          })
-          .catch((error) => {});
-      };
-    }
+    //     axios
+    //       .post(apiUrl + "user/upload_files/", data, {
+    //         headers: {
+    //           Authorization: `Bearer ${token}`,
+    //         },
+    //       })
+    //       .then((response) => {
+    //         console.log("File uploaded successfully", response.data);
+    //       })
+    //       .catch((error) => {});
+    //   };
+    // } else {
+    //   console.log("File not zipped");
+    // }
   };
   return (
     <div className="landing-body">
