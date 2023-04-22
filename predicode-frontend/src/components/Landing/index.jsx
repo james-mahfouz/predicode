@@ -77,21 +77,31 @@ const Landing = () => {
   };
 
   const onUpload = (event) => {
-    const data = new FormData();
-    data.append("file", event.files[0]);
+    if (files.type === "application/zip") {
+      const reader = new FileReader();
+      reader.readAsDataURL(event.file[0]);
 
-    const token = localStorage.getItem("token");
+      reader.onload = () => {
+        const encodedData = reader.result.split(",");
+        console.log(encodedData);
 
-    axios
-      .post(apiUrl + "user/upload_files/", data, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        console.log("File uploaded successfully", response.data);
-      })
-      .catch((error) => {});
+        const data = new FormData();
+        data.append("file", event.files[0]);
+
+        const token = localStorage.getItem("token");
+
+        axios
+          .post(apiUrl + "user/upload_files/", data, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then((response) => {
+            console.log("File uploaded successfully", response.data);
+          })
+          .catch((error) => {});
+      };
+    }
   };
   return (
     <div className="landing-body">
