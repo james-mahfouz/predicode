@@ -29,7 +29,6 @@ def upload_file(file, user):
 
     if file.content_type == "data:application/zip;base64":
         decoded_data = base64.b64decode(file.data)
-        # print(decoded_data)
 
         temp_file_path = 'temp.zip'
         with open(temp_file_path, 'wb') as f:
