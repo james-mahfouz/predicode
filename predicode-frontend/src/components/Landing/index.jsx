@@ -84,7 +84,6 @@ const Landing = () => {
 
       reader.onload = () => {
         const encodedData = reader.result.split(",");
-        console.log("encoded data", encodedData[0]);
 
         const data = {
           data: encodedData[1],
@@ -108,6 +107,7 @@ const Landing = () => {
       console.log("File not zipped");
     }
   };
+
   return (
     <div className="landing-body">
       <section className="navbar">
