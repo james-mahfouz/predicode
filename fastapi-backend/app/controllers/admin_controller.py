@@ -8,6 +8,7 @@ def get_files(user):
     files = File.objects.all()
     files_list = []
     for file in files:
+        print(file)
         file_dict = file.to_mongo().to_dict()
         file_dict["_id"] = str(file_dict["_id"])
         files_list.append(file_dict)

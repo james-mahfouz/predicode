@@ -1,20 +1,22 @@
-from models.fileModel import File
 import shutil
 from bson import ObjectId
 from fastapi.responses import JSONResponse
 import base64
 import os
+from models.fileModel import File
+from models.userModel import User
 
 
 def get_files(user):
-    file_list = []
+    files_list = []
     for file in user.files:
-        file_dict = file.to_mongo().to_dict()
-        file_dict["_id"] = str(file_dict["_id"])
-        file_list.append(file_dict)
+        if File.objects(id=file.id).first() is not None:
+            file_dict = file.to_mongo().to_dict()
+            file_dict["_id"] = str(file_dict["_id"])
+            files_list.append(file_dict)
 
     return JSONResponse(content={
-        "files": file_list,
+        "files": files_list,
         "user_name": user.name,
         "role": user.role
     })
@@ -49,3 +51,5 @@ def upload_file(file, user):
             "message": "File created successfully",
             "file_path": save_path
         }
+
+
