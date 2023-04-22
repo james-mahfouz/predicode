@@ -90,11 +90,8 @@ const Landing = () => {
       })
       .then((response) => {
         console.log("File uploaded successfully", response.data);
-        // setUploadedFile([...uploadedFile, response.data]);
       })
-      .catch((error) => {
-        // console.error('Error uploading file', error);
-      });
+      .catch((error) => {});
   };
   return (
     <div className="landing-body">
@@ -182,7 +179,7 @@ const Landing = () => {
             customUpload={true}
             uploadHandler={onUpload}
             multiple
-            accept="application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            accept="application/zip"
             maxFileSize={100000000000000}
             emptyTemplate={
               <p className="m-0">
