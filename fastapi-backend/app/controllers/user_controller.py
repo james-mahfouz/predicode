@@ -3,6 +3,7 @@ from bson import ObjectId
 from fastapi.responses import JSONResponse
 import base64
 import os
+import zipfile
 from models.fileModel import File
 from models.userModel import User
 
@@ -26,7 +27,6 @@ def get_files(user):
 
 
 def upload_file(file, user):
-
     if file.content_type == "data:application/zip;base64":
         decoded_data = base64.b64decode(file.data)
 
@@ -34,15 +34,21 @@ def upload_file(file, user):
         with open(temp_file_path, 'wb') as f:
             f.write(decoded_data)
 
-        save_path = os.path.join('public', temp_file_path)
-        if File.objects(name=temp_file_path).first():
-            os.remove(temp_file_path)
-            temp_file_path += "_copy"
+        with zipfile.ZipFile(temp_file_path, 'r') as zip_ref:
+            zip_ref.extractall()
 
-        with open(temp_file_path, "rb") as src, open(save_path, "wb") as dest:
-            shutil.copyfileobj(src, dest)
+        unzipped_file_name = os.path.splitext(file.name)[0]
 
-        uploaded_file = File(name=file.name, by_user=user.name, path=save_path)
+        save_path = os.path.join('public', unzipped_file_name)
+
+        if File.objects(name=unzipped_file_name).first():
+            unzipped_file_name += "_copy"
+
+        save_path_copy = os.path.join('public', unzipped_file_name)
+
+        shutil.move(unzipped_file_name, save_path)
+
+        uploaded_file = File(name=unzipped_file_name, by_user=user.name, path=save_path)
         uploaded_file.save()
 
         user.files.append(uploaded_file)
@@ -53,5 +59,4 @@ def upload_file(file, user):
             "message": "File created successfully",
             "file_path": save_path
         }
-
 
