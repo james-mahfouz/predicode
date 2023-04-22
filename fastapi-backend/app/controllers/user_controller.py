@@ -3,6 +3,7 @@ import shutil
 from bson import ObjectId
 from fastapi.responses import JSONResponse
 import base64
+import os
 
 
 def get_files(user):
@@ -20,23 +21,31 @@ def get_files(user):
 
 
 def upload_file(file, user):
-    print(file.data)
-    if file.content_type == "application/zip":
-        decoded_data
-    # save_path = f"public/{file.filename}"
-    # if File.objects(name=file.filename).first():
-    #     return {"message": "file with this name already exist"}
-    #
-    # with open(save_path, "wb") as buffer:
-    #     shutil.copyfileobj(file.file, buffer)
-    #
-    # uploaded_file = File(name=file.filename, by_user=user.name, path=save_path)
-    # uploaded_file.save()
-    #
-    # user.files.append(uploaded_file)
-    # user.save()
-    #
-    # return {
-    #     "message": "File created successfully",
-    #     "file_path": save_path
-    # }
+
+    if file.content_type == "data:application/zip;base64":
+        decoded_data = base64.b64decode(file.data)
+        # print(decoded_data)
+
+        temp_file_path = 'temp.zip'
+        with open(temp_file_path, 'wb') as f:
+            f.write(decoded_data)
+
+        save_path = os.path.join('public', 'hello.zip')
+        if File.objects(name="hello.zip").first():
+            os.remove(temp_file_path)
+            return {"message": "file with this name already exist"}
+
+        with open(temp_file_path, "rb") as src, open(save_path, "wb") as dest:
+            shutil.copyfileobj(src, dest)
+
+        uploaded_file = File(name="hello.zip", by_user=user.name, path=save_path)
+        uploaded_file.save()
+
+        user.files.append(uploaded_file)
+        user.save()
+
+        os.remove(temp_file_path)
+        return {
+            "message": "File created successfully",
+            "file_path": save_path
+        }
