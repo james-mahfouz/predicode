@@ -8,6 +8,7 @@ from typing import List
 class FileRequest(BaseModel):
     data: str
     content_type: str
+    name: str
     # file: UploadFile = File(...)
     # name: str = Form(...)
 
