@@ -87,6 +87,7 @@ const Landing = () => {
 
         const data = {
           data: encodedData[1],
+          name: uploaded_file.name,
           content_type: encodedData[0],
         };
 
