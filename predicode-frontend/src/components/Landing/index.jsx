@@ -70,7 +70,6 @@ const Landing = () => {
     localStorage.removeItem("admin_name");
     setVisibleRight(false);
     setSignedIn(false);
-    navigate("/");
   };
 
   const goAdminPage = () => {
