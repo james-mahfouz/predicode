@@ -86,16 +86,74 @@
     width: 100%;
 }
 
-.upload{
+/* .upload{
     display: flex;
     justify-content: center;
     background-color: #D8E9EF;
 }
 
 .upload .card{
-    margin-top: -40px;
+    
+    z-index: 1;
+} */
+
+.upload-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: #D8E9EF;
+    height: 100vh;
+}
+
+
+.wrapper {
+    max-width: 530px;
+    width: 100%;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    margin: auto;
+    margin-top: -30px;
     z-index: 1;
 }
+
+
+.wrapper .form {
+    width: 100%;
+}
+
+.wrapper .form .inputfield {
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.wrapper .form .inputfield label {
+    width: 200px;
+    margin-right: 10px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.wrapper .form .inputfield .register_input {
+    width: 100%;
+    outline: none;
+    border: none;
+    border-bottom: #D8E9EF solid 2px;
+    font-size: 15px;
+    padding: 8px 10px;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.from-to{
+    font-weight: 100;
+    font-size: 0.1rem;
+    /* color: #D8E9EF; */
+} 
+
 
 .use_it{
     background-color: #D8E9EF;

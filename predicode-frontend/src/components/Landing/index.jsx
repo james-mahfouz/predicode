@@ -13,7 +13,7 @@ import { FileUpload } from "primereact/fileupload";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Sidebar } from "primereact/sidebar";
-import { InputText } from "primereact/inputtext";
+import { InputNumber } from "primereact/inputnumber";
 
 import "./index.css";
 
@@ -21,11 +21,12 @@ const Landing = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [files, setFiles] = useState([]);
   const [signedIn, setSignedIn] = useState(false);
-  const [uploadedFile, setUploadedFile] = useState([]);
   const [visibleRight, setVisibleRight] = useState(false);
   const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("james@gmail.com");
   const [isAdmin, setIsAdmin] = useState(false);
+  const [reviews, setReviews] = useState("");
+  const [appName, setAppName] = useState("");
+  const [error, setError] = useState("");
 
   const apiUrl = process.env.API_URL;
   const navigate = useNavigate();
@@ -188,8 +189,8 @@ const Landing = () => {
         </div>
       </section>
 
-      <section className="upload">
-        <div className="card">
+      <section className="upload-wrapper">
+        <div className="wrapper">
           <FileUpload
             name="demo[]"
             customUpload={true}
@@ -203,7 +204,47 @@ const Landing = () => {
               </p>
             }
           />
-        </div>{" "}
+          <div className="form">
+            <div className="inputfield">
+              <label>App Name</label>
+              <input
+                type="text"
+                className="register_input"
+                value={appName}
+                onChange={(e) => setAppName(e.target.value)}
+                // style={{ borderColor: emailError ? "red" : "#D8E9EF" }}
+              ></input>
+            </div>
+            <div className="inputfield">
+              <label>Price ($)</label>
+              <input
+                type="number"
+                className="register_input"
+                value={reviews}
+                onChange={(e) => setReviews(e.target.value)}
+                // style={{ borderColor: passwordError ? "red" : "#D8E9EF" }}
+              ></input>
+            </div>
+
+            <div className="inputfield">
+              <label>Price ($)</label>
+              <input
+                type="number"
+                className="register_input"
+                value={reviews}
+                onChange={(e) => setReviews(e.target.value)}
+                // style={{ borderColor: passwordError ? "red" : "#D8E9EF" }}
+              ></input>
+            </div>
+          </div>
+        </div>
+        {error && (
+          <Message
+            severity="error"
+            text={error}
+            style={{ width: "100%", marginBottom: "10px" }}
+          />
+        )}
       </section>
 
       <section className="use_it">
