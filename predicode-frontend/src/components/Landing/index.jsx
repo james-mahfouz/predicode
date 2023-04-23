@@ -5,6 +5,7 @@ import wait from "../../assets/wait.jpg";
 import create from "../../assets/create.jpg";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import JSZip from "jszip";
 
 import { useNavigate } from "react-router-dom";
 import { Button } from "primereact/button";
@@ -84,7 +85,6 @@ const Landing = () => {
 
       reader.onload = () => {
         const encodedData = reader.result.split(",");
-
         const data = {
           data: encodedData[1],
           name: uploaded_file.name,
@@ -194,8 +194,8 @@ const Landing = () => {
             name="demo[]"
             customUpload={true}
             uploadHandler={onUpload}
-            multiple
             accept="application/zip"
+            webkitdirectory="true"
             maxFileSize={100000000000000}
             emptyTemplate={
               <p className="m-0">
