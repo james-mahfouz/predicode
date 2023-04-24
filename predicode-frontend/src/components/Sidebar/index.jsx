@@ -1,10 +1,24 @@
 import logo from "../../assets/logo.png";
 import React, { useState, useEffect } from "react";
 
+import { useNavigate } from "react-router-dom";
+import { Button } from "primereact/button";
+
 const Sidebar = () => {
   const [visibleRight, setVisibleRight] = useState(false);
   const [username, setUsername] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("admin_name");
+    setVisibleRight(false);
+    setSignedIn(false);
+  };
+
+  const goAdminPage = () => {
+    navigate("/admin");
+  };
 
   return (
     <section className="sidebar">

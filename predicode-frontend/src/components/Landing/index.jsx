@@ -62,17 +62,6 @@ const Landing = () => {
     navigate("/login");
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("admin_name");
-    setVisibleRight(false);
-    setSignedIn(false);
-  };
-
-  const goAdminPage = () => {
-    navigate("/admin");
-  };
-
   return (
     <div className="landing-body">
       <section className="navbar">
