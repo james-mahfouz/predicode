@@ -1,4 +1,4 @@
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo-white-01.png";
 import "./index.css";
 import DisplayUsers from "../DisplayUsers";
 import DisplayFiles from "../DisplayFiles";

@@ -39,10 +39,7 @@ const DisplayFiles = ({ onAdminNameChange }) => {
   return (
     <div className="display-users">
       <h1>Files</h1>
-      <div
-        className="card"
-        style={{ border: "3px solid black", padding: "0rem" }}
-      >
+      <div className="card" style={{ padding: "0rem" }}>
         <DataTable
           value={files}
           scrollable
