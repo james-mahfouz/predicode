@@ -84,7 +84,6 @@ const Landing = () => {
   };
 
   const onUpload = (event) => {
-    console.log(ageFrom, ageTo);
     if (!signedIn) {
       navigate("/login");
       return;
@@ -109,6 +108,11 @@ const Landing = () => {
       return;
     }
 
+    if (ageFrom > ageTo) {
+      const temp = ageFrom;
+      setAgeFrom(ageTo);
+      setAgeTo(temp);
+    }
     if (!appVersion) {
       setError("Please enter your app current Version");
       return;
