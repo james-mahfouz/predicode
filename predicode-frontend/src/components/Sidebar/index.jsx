@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 
 const Sidebar = () => {
   const [visibleRight, setVisibleRight] = useState(false);
+  const [username, setUsername] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
 
   return (
     <section className="sidebar">
