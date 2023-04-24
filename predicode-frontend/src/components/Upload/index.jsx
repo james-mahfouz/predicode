@@ -30,6 +30,7 @@ const Upload = () => {
   const apiUrl = process.env.API_URL;
   const versionRegex = /^(\d+)\.(\d+)\.(\d+)$/;
   const navigate = useNavigate();
+
   const onUpload = (event) => {
     if (!signedIn) {
       navigate("/login");

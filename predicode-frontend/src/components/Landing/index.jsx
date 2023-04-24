@@ -1,20 +1,16 @@
-import logo from "../../assets/logo.png";
 import background from "../../assets/landing-background.png";
+import logo from "../../assets/logo.png";
 import upload from "../../assets/upload.jpg";
 import wait from "../../assets/wait.jpg";
 import create from "../../assets/create.jpg";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import JSZip from "jszip";
+import Sidebar from "../Sidebar";
 
 import { useNavigate } from "react-router-dom";
 import { Button } from "primereact/button";
-import { FileUpload } from "primereact/fileupload";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import { Sidebar } from "primereact/sidebar";
-import { InputNumber } from "primereact/inputnumber";
-import { Message } from "primereact/message";
 
 import "./index.css";
 
@@ -25,13 +21,6 @@ const Landing = () => {
   const [visibleRight, setVisibleRight] = useState(false);
   const [username, setUsername] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
-  const [reviews, setReviews] = useState("");
-  const [appName, setAppName] = useState("");
-  const [price, setPrice] = useState("");
-  const [ageFrom, setAgeFrom] = useState("");
-  const [ageTo, setAgeTo] = useState("");
-  const [appVersion, setAppVersion] = useState("");
-  const [error, setError] = useState("");
 
   const apiUrl = process.env.API_URL;
   const versionRegex = /^(\d+)\.(\d+)\.(\d+)$/;
@@ -84,77 +73,6 @@ const Landing = () => {
     navigate("/admin");
   };
 
-  const onUpload = (event) => {
-    if (!signedIn) {
-      navigate("/login");
-      return;
-    }
-
-    if (!appName) {
-      setError("Please enter your app name");
-      return;
-    }
-
-    if (!price) {
-      setError("Please enter your app price");
-      return;
-    }
-
-    if (!ageFrom) {
-      setError("Please enter your app age Range");
-      return;
-    }
-
-    if (!ageTo) {
-      setError("Please enter your app age Range");
-      return;
-    }
-
-    if (ageFrom > ageTo) {
-      const temp = ageFrom;
-      setAgeFrom(ageTo);
-      setAgeTo(temp);
-    }
-    if (!appVersion) {
-      setError("Please enter your app current Version");
-      return;
-    }
-    if (!versionRegex.test(appVersion)) {
-      setError(`Version must be in this format: 1.0.0`);
-      return;
-    }
-
-    const uploaded_file = event.files[0];
-    if (uploaded_file.type === "application/zip") {
-      const reader = new FileReader();
-      reader.readAsDataURL(uploaded_file);
-
-      reader.onload = () => {
-        const encodedData = reader.result.split(",");
-        const data = {
-          data: encodedData[1],
-          name: uploaded_file.name,
-          content_type: encodedData[0],
-        };
-
-        const token = localStorage.getItem("token");
-
-        axios
-          .post(apiUrl + "user/upload_files/", data, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          })
-          .then((response) => {
-            console.log(response.data);
-          })
-          .catch((error) => {});
-      };
-    } else {
-      console.log("File not zipped");
-    }
-  };
-
   return (
     <div className="landing-body">
       <section className="navbar">
@@ -188,41 +106,7 @@ const Landing = () => {
       </section>
 
       <section className="sidebar">
-        <Sidebar
-          visible={visibleRight}
-          position="right"
-          onHide={() => setVisibleRight(false)}
-        >
-          <div className="sidebar-logo">
-            <img src={logo} />
-          </div>
-
-          <div className="user-infos">
-            <h2>Welcome {username}</h2>
-            <p>
-              Predicode, the website that take your app source code and predict
-              your app rating to have an idea on how to proceed with your idea
-            </p>
-          </div>
-          <div className="sidebar-buttons">
-            {isAdmin && (
-              <div className="logout">
-                <Button
-                  label="Admin Panel"
-                  className="btn logout"
-                  onClick={goAdminPage}
-                />
-              </div>
-            )}
-            <div className="logout sidebar-logout">
-              <Button
-                label="Logout"
-                className="btn logout"
-                onClick={handleLogout}
-              />
-            </div>
-          </div>
-        </Sidebar>
+        <Sidebar />
       </section>
 
       <section className="landing">
