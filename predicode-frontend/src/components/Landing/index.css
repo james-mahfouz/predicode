@@ -108,7 +108,7 @@
 }
 
 
-.wrapper {
+.landing-wrapper {
     max-width: 530px;
     width: 100%;
     background-color: #fff;
@@ -120,24 +120,25 @@
 }
 
 
-.wrapper .form {
+.landing-wrapper .form {
     width: 100%;
+    margin-top: 20px;
 }
 
-.wrapper .form .inputfield {
+.landing-wrapper .form .inputfield {
     margin-bottom: 30px;
     display: flex;
     align-items: center;
 }
 
-.wrapper .form .inputfield label {
+.landing-wrapper .form .inputfield label {
     width: 200px;
     margin-right: 10px;
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 700;
 }
 
-.wrapper .form .inputfield .register_input {
+.landing-wrapper .form .inputfield .register_input {
     width: 100%;
     outline: none;
     border: none;

@@ -14,6 +14,7 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Sidebar } from "primereact/sidebar";
 import { InputNumber } from "primereact/inputnumber";
+import { Message } from "primereact/message";
 
 import "./index.css";
 
@@ -26,6 +27,10 @@ const Landing = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [reviews, setReviews] = useState("");
   const [appName, setAppName] = useState("");
+  const [price, setPrice] = useState("");
+  const [ageFrom, setAgeFrom] = useState("");
+  const [ageTo, setAgeTo] = useState("");
+  const [appVersion, setAppVersion] = useState("");
   const [error, setError] = useState("");
 
   const apiUrl = process.env.API_URL;
@@ -79,6 +84,36 @@ const Landing = () => {
   };
 
   const onUpload = (event) => {
+    console.log(ageFrom, ageTo);
+    if (!signedIn) {
+      navigate("/login");
+      return;
+    }
+
+    if (!appName) {
+      setError("Please enter your app name");
+    }
+
+    if (!price) {
+      setError("Please enter your app price");
+      return;
+    }
+
+    if (!ageFrom) {
+      setError("Please enter your app age Range");
+      return;
+    }
+
+    if (!ageTo) {
+      setError("Please enter your app age Range");
+      return;
+    }
+
+    if (!appVersion) {
+      setError("Please enter your app current Version");
+      return;
+    }
+
     const uploaded_file = event.files[0];
     if (uploaded_file.type === "application/zip") {
       const reader = new FileReader();
@@ -190,7 +225,7 @@ const Landing = () => {
       </section>
 
       <section className="upload-wrapper">
-        <div className="wrapper">
+        <div className="landing-wrapper">
           <FileUpload
             name="demo[]"
             customUpload={true}
@@ -205,6 +240,13 @@ const Landing = () => {
             }
           />
           <div className="form">
+            {error && (
+              <Message
+                severity="error"
+                text={error}
+                style={{ width: "100%", marginBottom: "10px" }}
+              />
+            )}
             <div className="inputfield">
               <label>App Name</label>
               <input
@@ -220,31 +262,70 @@ const Landing = () => {
               <input
                 type="number"
                 className="register_input"
-                value={reviews}
-                onChange={(e) => setReviews(e.target.value)}
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
                 // style={{ borderColor: passwordError ? "red" : "#D8E9EF" }}
               ></input>
             </div>
 
             <div className="inputfield">
-              <label>Price ($)</label>
+              <label>Age Range (from)</label>
               <input
                 type="number"
                 className="register_input"
-                value={reviews}
-                onChange={(e) => setReviews(e.target.value)}
+                value={ageFrom}
+                min={0}
+                max={100}
+                onChange={(e) => setAgeFrom(e.target.value)}
                 // style={{ borderColor: passwordError ? "red" : "#D8E9EF" }}
+              ></input>
+              {/* <InputNumber
+                inputId="minmax-buttons"
+                className="register_input"
+                value={ageFrom}
+                onValueChange={(e) => setAgeFrom(e.value)}
+                mode="decimal"
+                showButtons
+                min={0}
+                max={100}
+                style={{ border: "None" }}
+              /> */}
+            </div>
+            <div className="inputfield">
+              <label>
+                Age Range <br />
+                (to)
+              </label>
+              <input
+                type="number"
+                className="register_input"
+                value={ageTo}
+                onChange={(e) => setAgeTo(e.target.value)}
+                // style={{ borderColor: passwordError ? "red" : "#D8E9EF" }}
+              ></input>
+              {/* <InputNumber
+                inputId="minmax-buttons"
+                className="register_input"
+                value={ageTo}
+                onValueChange={(e) => setAgeTo(e.value)}
+                mode="decimal"
+                showButtons
+                min={0}
+                max={100}
+                style={{ border: "None" }}
+              /> */}
+            </div>
+            <div className="inputfield">
+              <label>Current App version</label>
+              <input
+                type="text"
+                className="register_input"
+                value={appVersion}
+                onChange={(e) => setAppVersion(e.target.value)}
               ></input>
             </div>
           </div>
         </div>
-        {error && (
-          <Message
-            severity="error"
-            text={error}
-            style={{ width: "100%", marginBottom: "10px" }}
-          />
-        )}
       </section>
 
       <section className="use_it">
