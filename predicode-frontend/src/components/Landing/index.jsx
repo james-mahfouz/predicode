@@ -34,6 +34,7 @@ const Landing = () => {
   const [error, setError] = useState("");
 
   const apiUrl = process.env.API_URL;
+  const versionRegex = /^(\d+)\.(\d+)\.(\d+)$/;
   const navigate = useNavigate();
   useEffect(() => {
     function handleResize() {
@@ -91,6 +92,7 @@ const Landing = () => {
 
     if (!appName) {
       setError("Please enter your app name");
+      return;
     }
 
     if (!price) {
@@ -115,6 +117,10 @@ const Landing = () => {
     }
     if (!appVersion) {
       setError("Please enter your app current Version");
+      return;
+    }
+    if (!versionRegex.test(appVersion)) {
+      setError(`Version must be in this format: 1.0.0`);
       return;
     }
 
