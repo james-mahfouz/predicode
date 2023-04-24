@@ -1,8 +1,4 @@
 import logo from "../../assets/logo.png";
-import background from "../../assets/landing-background.png";
-import upload from "../../assets/upload.jpg";
-import wait from "../../assets/wait.jpg";
-import create from "../../assets/create.jpg";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import JSZip from "jszip";
