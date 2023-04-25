@@ -29,22 +29,21 @@ const Navbar = () => {
 
   useEffect(() => {
     const verify = async () => {
-      console.log("hello");
-      //   try {
-      //     const response = await axios.get(apiUrl + "user/get_files", {
-      //       headers: {
-      //         Authorization: `Bearer ${localStorage.getItem("token")}`,
-      //       },
-      //     });
-      //     setUsername(response.data.user_name);
-      //     setFiles(response.data.files);
-      //     setSignedIn(true);
-      //     if (response.data.role === "admin") {
-      //       setIsAdmin(true);
-      //     }
-      //   } catch (e) {
-      //     console.log(e);
-      //   }
+      try {
+        const response = await axios.get(apiUrl + "user/verify", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+        console.log(response);
+        setUsername(response.data.username);
+        setSignedIn(true);
+        if (response.data.role === "admin") {
+          setIsAdmin(true);
+        }
+      } catch (e) {
+        console.log(e);
+      }
     };
     verify();
   }, []);
