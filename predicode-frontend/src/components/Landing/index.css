@@ -76,13 +76,13 @@
 
 .marketing_text{
     position: absolute;
-    width: 170px;
+    width: 220px;
     right: 0;
 }
 
 .marketing_text p {
-    text-align: end;
-    font-weight: bold;
+    text-align: center;
+    font-weight: 500;
     width: 100%;
 }
 

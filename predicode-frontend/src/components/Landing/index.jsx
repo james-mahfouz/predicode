@@ -38,6 +38,11 @@ const Landing = () => {
     getFiles();
   }, []);
 
+  const goUpload = () => {
+    if (signedIn) {
+    }
+  };
+
   return (
     <div className="landing-body">
       <Navbar />
@@ -47,32 +52,23 @@ const Landing = () => {
           <img src={background} alt="" className="wlc_picture" />
         </div>
         <div className="marketing_text">
+          {/* <h3>Want to know your app fututre?</h3> */}
           <p>Predict Your App's Success and Move Forward with Confidence</p>
-          <Button
-            label={"Try Your Code Now"}
-            className="btn footer-btn"
-            onClick={() =>
-              document.querySelector(".card").scrollIntoView({
-                behavior: "smooth",
-                block: "start",
-              })
-            }
-          />
+          <div className="go_upload_button">
+            <Button
+              label={"Try Your Code Now"}
+              className="btn footer-btn"
+              onClick={() =>
+                document.querySelector(".card").scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                })
+              }
+            />
+          </div>
         </div>
       </section>
 
-      <section className="go_upload_button">
-        <Button
-          label={"Try Your Code Now"}
-          className="btn footer-btn"
-          onClick={() =>
-            document.querySelector(".card").scrollIntoView({
-              behavior: "smooth",
-              block: "start",
-            })
-          }
-        />
-      </section>
       <section className="use_it">
         <div>
           <h1>How to use it</h1>
