@@ -76,7 +76,7 @@ const Landing = () => {
   return (
     <div className="landing-body">
       <Navbar />
-      <section className="navbar">
+      {/* <section className="navbar">
         <div className="logo">
           <img src={logo} />
         </div>
@@ -142,7 +142,7 @@ const Landing = () => {
             </div>
           </div>
         </Sidebar>
-      </section>
+      </section> */}
 
       <section className="landing">
         <div className="landing_picture">

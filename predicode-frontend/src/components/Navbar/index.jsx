@@ -1,4 +1,68 @@
+import logo from "../../assets/logo.png";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+
+import { useNavigate } from "react-router-dom";
+import { Button } from "primereact/button";
+import { Sidebar } from "primereact/sidebar";
+
 const Navbar = () => {
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [signedIn, setSignedIn] = useState(false);
+  const [visibleRight, setVisibleRight] = useState(false);
+  const [username, setUsername] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  const apiUrl = process.env.API_URL;
+  const navigate = useNavigate();
+  useEffect(() => {
+    function handleResize() {
+      setIsSmallScreen(window.innerWidth <= 720);
+    }
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    const verify = async () => {
+      console.log("hello");
+      //   try {
+      //     const response = await axios.get(apiUrl + "user/get_files", {
+      //       headers: {
+      //         Authorization: `Bearer ${localStorage.getItem("token")}`,
+      //       },
+      //     });
+      //     setUsername(response.data.user_name);
+      //     setFiles(response.data.files);
+      //     setSignedIn(true);
+      //     if (response.data.role === "admin") {
+      //       setIsAdmin(true);
+      //     }
+      //   } catch (e) {
+      //     console.log(e);
+      //   }
+    };
+    verify();
+  }, []);
+
+  const go_signin = () => {
+    navigate("/login");
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("admin_name");
+    setVisibleRight(false);
+    setSignedIn(false);
+  };
+
+  const goAdminPage = () => {
+    navigate("/admin");
+  };
   return (
     <div>
       <section className="navbar">
