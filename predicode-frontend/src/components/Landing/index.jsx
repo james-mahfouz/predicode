@@ -31,30 +31,12 @@ const Landing = () => {
         });
         setFiles(response.data.files);
         setSignedIn(true);
-        if (response.data.role === "admin") {
-          setIsAdmin(true);
-        }
       } catch (e) {
         console.log(e);
       }
     };
     getFiles();
   }, []);
-
-  const go_signin = () => {
-    navigate("/login");
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("admin_name");
-    setVisibleRight(false);
-    setSignedIn(false);
-  };
-
-  const goAdminPage = () => {
-    navigate("/admin");
-  };
 
   return (
     <div className="landing-body">
@@ -66,9 +48,31 @@ const Landing = () => {
         </div>
         <div className="marketing_text">
           <p>Predict Your App's Success and Move Forward with Confidence</p>
+          <Button
+            label={"Try Your Code Now"}
+            className="btn footer-btn"
+            onClick={() =>
+              document.querySelector(".card").scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              })
+            }
+          />
         </div>
       </section>
 
+      <section className="go_upload_button">
+        <Button
+          label={"Try Your Code Now"}
+          className="btn footer-btn"
+          onClick={() =>
+            document.querySelector(".card").scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            })
+          }
+        />
+      </section>
       <section className="use_it">
         <div>
           <h1>How to use it</h1>
