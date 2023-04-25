@@ -5,7 +5,7 @@ import wait from "../../assets/wait.jpg";
 import create from "../../assets/create.jpg";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Sidebar from "../Sidebar";
+import PredicodeSidebar from "../PredicodeSidebar";
 
 import { useNavigate } from "react-router-dom";
 import { Button } from "primereact/button";
@@ -23,7 +23,6 @@ const Landing = () => {
   const [isAdmin, setIsAdmin] = useState(false);
 
   const apiUrl = process.env.API_URL;
-  const versionRegex = /^(\d+)\.(\d+)\.(\d+)$/;
   const navigate = useNavigate();
   useEffect(() => {
     function handleResize() {
@@ -95,7 +94,7 @@ const Landing = () => {
       </section>
 
       <section className="sidebar">
-        <Sidebar />
+        <PredicodeSidebar visible={visibleRight} />
       </section>
 
       <section className="landing">
