@@ -5,12 +5,12 @@ import wait from "../../assets/wait.jpg";
 import create from "../../assets/create.jpg";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import PredicodeSidebar from "../PredicodeSidebar";
 
 import { useNavigate } from "react-router-dom";
 import { Button } from "primereact/button";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
+import { Sidebar } from "primereact/sidebar";
 
 import "./index.css";
 
@@ -23,6 +23,7 @@ const Landing = () => {
   const [isAdmin, setIsAdmin] = useState(false);
 
   const apiUrl = process.env.API_URL;
+  const versionRegex = /^(\d+)\.(\d+)\.(\d+)$/;
   const navigate = useNavigate();
   useEffect(() => {
     function handleResize() {
@@ -61,6 +62,17 @@ const Landing = () => {
     navigate("/login");
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("admin_name");
+    visibleRight = false;
+    setSignedIn(false);
+  };
+
+  const goAdminPage = () => {
+    navigate("/admin");
+  };
+
   return (
     <div className="landing-body">
       <section className="navbar">
@@ -94,7 +106,41 @@ const Landing = () => {
       </section>
 
       <section className="sidebar">
-        <PredicodeSidebar visible={visibleRight} />
+        <Sidebar
+          visible={visibleRight}
+          position="right"
+          onHide={() => setVisibleRight(false)}
+        >
+          <div className="sidebar-logo">
+            <img src={logo} />
+          </div>
+
+          <div className="user-infos">
+            <h2>Welcome {username}</h2>
+            <p>
+              Predicode, the website that take your app source code and predict
+              your app rating to have an idea on how to proceed with your idea
+            </p>
+          </div>
+          <div className="sidebar-buttons">
+            {isAdmin && (
+              <div className="logout">
+                <Button
+                  label="Admin Panel"
+                  className="btn logout"
+                  onClick={goAdminPage}
+                />
+              </div>
+            )}
+            <div className="logout sidebar-logout">
+              <Button
+                label="Logout"
+                className="btn logout"
+                onClick={handleLogout}
+              />
+            </div>
+          </div>
+        </Sidebar>
       </section>
 
       <section className="landing">
