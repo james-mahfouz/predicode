@@ -5,6 +5,7 @@ import wait from "../../assets/wait.jpg";
 import create from "../../assets/create.jpg";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Navbar from "../Navbar";
 
 import { useNavigate } from "react-router-dom";
 import { Button } from "primereact/button";
@@ -74,6 +75,7 @@ const Landing = () => {
 
   return (
     <div className="landing-body">
+      <Navbar />
       <section className="navbar">
         <div className="logo">
           <img src={logo} />
