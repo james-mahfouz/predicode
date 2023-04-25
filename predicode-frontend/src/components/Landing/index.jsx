@@ -31,21 +31,25 @@ const Landing = () => {
         });
         setFiles(response.data.files);
         setSignedIn(true);
-      } catch (e) {
-        console.log(e);
-      }
+      } catch (e) {}
     };
     getFiles();
   }, []);
 
   const goUpload = () => {
     if (signedIn) {
+      navigate("/upload");
+    } else {
+      navigate("login");
     }
+  };
+  const handleLogout = () => {
+    setSignedIn(false);
   };
 
   return (
     <div className="landing-body">
-      <Navbar />
+      <Navbar onLogout={handleLogout} />
 
       <section className="landing">
         <div className="landing_picture">
@@ -58,12 +62,7 @@ const Landing = () => {
             <Button
               label={"Try Your Code Now"}
               className="btn footer-btn"
-              onClick={() =>
-                document.querySelector(".card").scrollIntoView({
-                  behavior: "smooth",
-                  block: "start",
-                })
-              }
+              onClick={goUpload}
             />
           </div>
         </div>
@@ -118,12 +117,7 @@ const Landing = () => {
             <Button
               label={"Try Your Code Now"}
               className="btn footer-btn"
-              onClick={() =>
-                document.querySelector(".card").scrollIntoView({
-                  behavior: "smooth",
-                  block: "start",
-                })
-              }
+              onClick={goUpload}
             />
           </div>
           <div className="logo footer_logo">

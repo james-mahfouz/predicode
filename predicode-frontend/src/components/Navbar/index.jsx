@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "primereact/button";
 import { Sidebar } from "primereact/sidebar";
 
-const Navbar = () => {
+const Navbar = (props) => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
   const [visibleRight, setVisibleRight] = useState(false);
@@ -35,6 +35,7 @@ const Navbar = () => {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
+
         setUsername(response.data.username);
         setSignedIn(true);
         if (response.data.role === "admin") {
@@ -52,6 +53,7 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
+    props.onLogout();
     localStorage.removeItem("token");
     localStorage.removeItem("admin_name");
     setVisibleRight(false);
