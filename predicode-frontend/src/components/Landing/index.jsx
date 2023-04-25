@@ -16,7 +16,7 @@ import "./index.css";
 
 const Landing = () => {
   const [files, setFiles] = useState([]);
-  const [isLoggedIn] = useState(false);
+  const [signedIn, setSignedIn] = useState(false);
 
   const apiUrl = process.env.API_URL;
   const navigate = useNavigate();
@@ -29,7 +29,6 @@ const Landing = () => {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
-        setUsername(response.data.user_name);
         setFiles(response.data.files);
         setSignedIn(true);
         if (response.data.role === "admin") {
