@@ -35,7 +35,6 @@ const Navbar = () => {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
-        console.log(response);
         setUsername(response.data.username);
         setSignedIn(true);
         if (response.data.role === "admin") {
