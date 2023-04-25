@@ -8,6 +8,13 @@ from models.fileModel import File
 from models.userModel import User
 
 
+def verify_user(user):
+    return JSONResponse(content={
+        "verified": "true",
+        "username": user.name
+    })
+
+
 def get_files(user):
     files_list = []
     for file in user.files:
