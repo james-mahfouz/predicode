@@ -11,7 +11,8 @@ from models.userModel import User
 def verify_user(user):
     return JSONResponse(content={
         "verified": "true",
-        "username": user.name
+        "username": user.name,
+        "role": user.role
     })
 
 
