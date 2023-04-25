@@ -23,7 +23,6 @@ const Landing = () => {
   const [isAdmin, setIsAdmin] = useState(false);
 
   const apiUrl = process.env.API_URL;
-  const versionRegex = /^(\d+)\.(\d+)\.(\d+)$/;
   const navigate = useNavigate();
   useEffect(() => {
     function handleResize() {
@@ -65,7 +64,7 @@ const Landing = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("admin_name");
-    visibleRight = false;
+    setVisibleRight(false);
     setSignedIn(false);
   };
 
