@@ -6,8 +6,6 @@ import JSZip from "jszip";
 import { useNavigate } from "react-router-dom";
 import { Button } from "primereact/button";
 import { FileUpload } from "primereact/fileupload";
-import { DataTable } from "primereact/datatable";
-import { Column } from "primereact/column";
 import { Sidebar } from "primereact/sidebar";
 import { InputNumber } from "primereact/inputnumber";
 import { Message } from "primereact/message";
@@ -18,8 +16,6 @@ const Upload = () => {
   const [signedIn, setSignedIn] = useState(false);
   const [visibleRight, setVisibleRight] = useState(false);
   const [username, setUsername] = useState("");
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [reviews, setReviews] = useState("");
   const [appName, setAppName] = useState("");
   const [price, setPrice] = useState("");
   const [ageFrom, setAgeFrom] = useState("");
