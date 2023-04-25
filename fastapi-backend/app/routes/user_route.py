@@ -18,6 +18,6 @@ async def upload(file: FileRequest, user: User = Depends(get_current_user)):
     return upload_file(file, user=user)
 
 
-@router.post("/verify")
+@router.get("/verify")
 async def verify(user: User = Depends(get_current_user)):
     return verify_user(user=user)
