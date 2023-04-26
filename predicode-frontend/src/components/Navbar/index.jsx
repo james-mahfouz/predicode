@@ -145,9 +145,15 @@ const Navbar = (props) => {
             <div className="sidebar-buttons">
               {isAdmin && (
                 <div className="sidebar-pages">
-                  <h4 className="top-page">Home</h4>
-                  <h4 className="middle-page">Upload</h4>
-                  <h4 className="bottom-page">Admin</h4>
+                  <h4 className="top-page" onClick={goHomePage}>
+                    Home
+                  </h4>
+                  <h4 className="middle-page" onClick={goUploadPage}>
+                    Upload
+                  </h4>
+                  <h4 className="bottom-page" onClick={goAdminPage}>
+                    Admin
+                  </h4>
                   {/* <Button
                     label="Admin Panel"
                     className="btn logout"
