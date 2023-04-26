@@ -82,8 +82,20 @@ const Navbar = (props) => {
 
         {signedIn && !isSmallScreen && (
           <div className="pages">
-            <div className="page">page 1</div>
-            <div className="">page 2</div>
+            <h5 className="page">Home</h5>
+            <h5 className="page">Upload</h5>
+            {isAdmin && (
+              <h5 className="page" onClick={goAdminPage}>
+                Admin
+              </h5>
+            )}
+            <div className="navbar-logout page">
+              <Button
+                label="Logout"
+                className="btn logout"
+                onClick={handleLogout}
+              />
+            </div>
           </div>
         )}
         {signedIn && isSmallScreen && (
