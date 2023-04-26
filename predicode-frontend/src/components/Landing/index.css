@@ -29,6 +29,13 @@
     display: flex;
 }
 
+.navbar-logout{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
 .pages div h4{
     margin-right: 20px;
     font-size: 0.9rem;
@@ -43,8 +50,14 @@
     border-bottom: 3px solid #00D39C;
 }
 
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .sidebar-logo {
-    width: 90%;
+    width: 100%;
 }
 
 .sidebar-logo img {
@@ -53,30 +66,53 @@
 }
 
 .user-infos{
-    margin-top: 30px;
+    display: flex;
+    align-items: center;
 }
 
-.user-infos p {
-    text-align: justify;
+.user-infos h2 {
+    width: 100%;
+    text-align: center;
+}
+
+.sidebar-buttons{
+    margin-top: 0.3rem;
+}
+
+.sidebar-logout{
+    margin-top: 2rem;
+}
+
+.sidebar-pages{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar-pages h4{
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+
+}
+
+.top-page{
+    border-top: rgba(0, 0, 0, 0.6) solid 0.5px;
+}
+
+.middle-page{
+    border-top: rgba(0, 0, 0, 0.6) solid 0.5px;
+    border-bottom: rgba(0, 0, 0, 0.6) solid 0.5px;
+}
+
+.bottom-page{
+    border-bottom: rgba(0, 0, 0, 0.6) solid 0.5px;
 }
 
 .logout{
     width: 100%;
-}
-
-.navbar-logout{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.sidebar-buttons{
-    margin-top: 70px;
-}
-
-.sidebar-logout{
-    margin-top: 10px;
 }
 
 .landing{

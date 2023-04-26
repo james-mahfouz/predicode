@@ -144,10 +144,10 @@ const Navbar = (props) => {
             </div>
             <div className="sidebar-buttons">
               {isAdmin && (
-                <div className="logout">
-                  <h4>Home</h4>
-                  <h4>Upload</h4>
-                  <h4>Admin</h4>
+                <div className="sidebar-pages">
+                  <h4 className="top-page">Home</h4>
+                  <h4 className="middle-page">Upload</h4>
+                  <h4 className="bottom-page">Admin</h4>
                   {/* <Button
                     label="Admin Panel"
                     className="btn logout"
