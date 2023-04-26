@@ -115,9 +115,14 @@ const Upload = () => {
       console.log("File not zipped");
     }
   };
+
+  const handleLogout = () => {
+    setSignedIn(false);
+    navigate("/");
+  };
   return (
     <div>
-      <Navbar />
+      <Navbar onLogout={handleLogout} />
       <section className="upload-wrapper">
         <div className="landing-wrapper">
           <h3>↓ Upload your Folder here ↓</h3>
