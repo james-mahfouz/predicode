@@ -29,8 +29,18 @@
     display: flex;
 }
 
-.page{
-    margin-right: 10%;
+.pages div h4{
+    margin-right: 20px;
+    font-size: 0.9rem;
+    color: rgba(0,0,0,0.8);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: border-bottom-color 0.3s ease-in-out;
+}
+
+.pages div h4:hover{
+    box-sizing: border-box;
+    border-bottom: 3px solid #00D39C;
 }
 
 .sidebar-logo {
@@ -100,16 +110,6 @@
     width: 100%;
 }
 
-/* .upload{
-    display: flex;
-    justify-content: center;
-    background-color: #D8E9EF;
-}
-
-.upload .card{
-    
-    z-index: 1;
-} */
 
 .upload-wrapper {
     display: flex;
@@ -173,7 +173,6 @@
 .from-to{
     font-weight: 100;
     font-size: 0.1rem;
-    /* color: #D8E9EF; */
 } 
 
 
@@ -182,11 +181,16 @@
     padding-top: 50px;
 }
 
+.use_it div h1{
+    color: rgba(0, 0, 0, 0.9);
+}
+
 .use_it_steps{
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    color: rgba(0,0,0,0.8);
 }
 .use_it_step{
     width: 25%;
@@ -205,6 +209,10 @@
     justify-content: center;
     flex-direction: column;
     padding-bottom: 80px;
+}
+
+.expectation_header h1{
+    color: rgba(0, 0, 0, 0.9);
 }
 
 .uploaded_codes{
