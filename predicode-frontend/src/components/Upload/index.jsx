@@ -176,17 +176,6 @@ const Upload = () => {
                 onChange={(e) => setAgeFrom(e.target.value)}
                 // style={{ borderColor: passwordError ? "red" : "#D8E9EF" }}
               ></input>
-              {/* <InputNumber
-                inputId="minmax-buttons"
-                className="register_input"
-                value={ageFrom}
-                onValueChange={(e) => setAgeFrom(e.value)}
-                mode="decimal"
-                showButtons
-                min={0}
-                max={100}
-                style={{ border: "None" }}
-              /> */}
             </div>
             <div className="inputfield">
               <label>
