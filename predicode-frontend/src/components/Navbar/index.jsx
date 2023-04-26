@@ -141,19 +141,18 @@ const Navbar = (props) => {
 
             <div className="user-infos">
               <h2>Welcome {username}</h2>
-              <p>
-                Predicode, the website that take your app source code and
-                predict your app rating to know how to proceed.
-              </p>
             </div>
             <div className="sidebar-buttons">
               {isAdmin && (
                 <div className="logout">
-                  <Button
+                  <h4>Home</h4>
+                  <h4>Upload</h4>
+                  <h4>Admin</h4>
+                  {/* <Button
                     label="Admin Panel"
                     className="btn logout"
                     onClick={goAdminPage}
-                  />
+                  /> */}
                 </div>
               )}
               <div className="logout sidebar-logout">
