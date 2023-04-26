@@ -2,6 +2,7 @@ import logo from "../../assets/logo.png";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import JSZip from "jszip";
+import Navbar from "../Navbar";
 
 import { useNavigate } from "react-router-dom";
 import { Button } from "primereact/button";
@@ -27,6 +28,26 @@ const Upload = () => {
   const versionRegex = /^(\d+)\.(\d+)\.(\d+)$/;
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const verify = async () => {
+      try {
+        const response = await axios.get(apiUrl + "user/verify", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+
+        setUsername(response.data.username);
+        setSignedIn(true);
+        if (response.data.role === "admin") {
+          setIsAdmin(true);
+        }
+      } catch (e) {
+        // navigate("/login");
+      }
+    };
+    verify();
+  }, []);
   const onUpload = (event) => {
     if (!signedIn) {
       navigate("/login");
@@ -98,62 +119,64 @@ const Upload = () => {
     }
   };
   return (
-    <section className="upload-wrapper">
-      <div className="landing-wrapper">
-        <FileUpload
-          name="demo[]"
-          customUpload={true}
-          uploadHandler={onUpload}
-          accept="application/zip"
-          webkitdirectory="true"
-          maxFileSize={100000000000000}
-          emptyTemplate={
-            <p className="m-0">
-              Upload your zipped code folder and see your rating
-            </p>
-          }
-        />
-        <div className="form">
-          {error && (
-            <Message
-              severity="error"
-              text={error}
-              style={{ width: "100%", marginBottom: "10px" }}
-            />
-          )}
-          <div className="inputfield">
-            <label>App Name</label>
-            <input
-              type="text"
-              className="register_input"
-              value={appName}
-              onChange={(e) => setAppName(e.target.value)}
-              // style={{ borderColor: emailError ? "red" : "#D8E9EF" }}
-            ></input>
-          </div>
-          <div className="inputfield">
-            <label>Price ($)</label>
-            <input
-              type="number"
-              className="register_input"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-              // style={{ borderColor: passwordError ? "red" : "#D8E9EF" }}
-            ></input>
-          </div>
+    <div>
+      <Navbar />
+      <section className="upload-wrapper">
+        <div className="landing-wrapper">
+          <FileUpload
+            name="demo[]"
+            customUpload={true}
+            uploadHandler={onUpload}
+            accept="application/zip"
+            webkitdirectory="true"
+            maxFileSize={100000000000000}
+            emptyTemplate={
+              <p className="m-0">
+                Upload your zipped code folder and see your rating
+              </p>
+            }
+          />
+          <div className="form">
+            {error && (
+              <Message
+                severity="error"
+                text={error}
+                style={{ width: "100%", marginBottom: "10px" }}
+              />
+            )}
+            <div className="inputfield">
+              <label>App Name</label>
+              <input
+                type="text"
+                className="register_input"
+                value={appName}
+                onChange={(e) => setAppName(e.target.value)}
+                // style={{ borderColor: emailError ? "red" : "#D8E9EF" }}
+              ></input>
+            </div>
+            <div className="inputfield">
+              <label>Price ($)</label>
+              <input
+                type="number"
+                className="register_input"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+                // style={{ borderColor: passwordError ? "red" : "#D8E9EF" }}
+              ></input>
+            </div>
 
-          <div className="inputfield">
-            <label>Age Range (from)</label>
-            <input
-              type="number"
-              className="register_input"
-              value={ageFrom}
-              min={0}
-              max={100}
-              onChange={(e) => setAgeFrom(e.target.value)}
-              // style={{ borderColor: passwordError ? "red" : "#D8E9EF" }}
-            ></input>
-            {/* <InputNumber
+            <div className="inputfield">
+              <label>Age Range (from)</label>
+              <input
+                type="number"
+                className="register_input"
+                value={ageFrom}
+                min={0}
+                max={100}
+                onChange={(e) => setAgeFrom(e.target.value)}
+                // style={{ borderColor: passwordError ? "red" : "#D8E9EF" }}
+              ></input>
+              {/* <InputNumber
                 inputId="minmax-buttons"
                 className="register_input"
                 value={ageFrom}
@@ -164,20 +187,20 @@ const Upload = () => {
                 max={100}
                 style={{ border: "None" }}
               /> */}
-          </div>
-          <div className="inputfield">
-            <label>
-              Age Range <br />
-              (to)
-            </label>
-            <input
-              type="number"
-              className="register_input"
-              value={ageTo}
-              onChange={(e) => setAgeTo(e.target.value)}
-              // style={{ borderColor: passwordError ? "red" : "#D8E9EF" }}
-            ></input>
-            {/* <InputNumber
+            </div>
+            <div className="inputfield">
+              <label>
+                Age Range <br />
+                (to)
+              </label>
+              <input
+                type="number"
+                className="register_input"
+                value={ageTo}
+                onChange={(e) => setAgeTo(e.target.value)}
+                // style={{ borderColor: passwordError ? "red" : "#D8E9EF" }}
+              ></input>
+              {/* <InputNumber
                 inputId="minmax-buttons"
                 className="register_input"
                 value={ageTo}
@@ -188,19 +211,20 @@ const Upload = () => {
                 max={100}
                 style={{ border: "None" }}
               /> */}
-          </div>
-          <div className="inputfield">
-            <label>Current App version</label>
-            <input
-              type="text"
-              className="register_input"
-              value={appVersion}
-              onChange={(e) => setAppVersion(e.target.value)}
-            ></input>
+            </div>
+            <div className="inputfield">
+              <label>Current App version</label>
+              <input
+                type="text"
+                className="register_input"
+                value={appVersion}
+                onChange={(e) => setAppVersion(e.target.value)}
+              ></input>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 };
 export default Upload;
