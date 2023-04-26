@@ -79,7 +79,14 @@ const Navbar = (props) => {
             />
           </div>
         )}
-        {signedIn && (
+
+        {signedIn && !isSmallScreen && (
+          <div className="pages">
+            <div className="page">page 1</div>
+            <div className="">page 2</div>
+          </div>
+        )}
+        {signedIn && isSmallScreen && (
           <div className="signin_button">
             <Button
               icon="pi pi-user"
@@ -96,41 +103,43 @@ const Navbar = (props) => {
       </section>
 
       <section className="sidebar">
-        <Sidebar
-          visible={visibleRight}
-          position="right"
-          onHide={() => setVisibleRight(false)}
-        >
-          <div className="sidebar-logo">
-            <img src={logo} />
-          </div>
+        {isSmallScreen && (
+          <Sidebar
+            visible={visibleRight}
+            position="right"
+            onHide={() => setVisibleRight(false)}
+          >
+            <div className="sidebar-logo">
+              <img src={logo} />
+            </div>
 
-          <div className="user-infos">
-            <h2>Welcome {username}</h2>
-            <p>
-              Predicode, the website that take your app source code and predict
-              your app rating to have an idea on how to proceed with your idea
-            </p>
-          </div>
-          <div className="sidebar-buttons">
-            {isAdmin && (
-              <div className="logout">
+            <div className="user-infos">
+              <h2>Welcome {username}</h2>
+              <p>
+                Predicode, the website that take your app source code and
+                predict your app rating to know how to proceed.
+              </p>
+            </div>
+            <div className="sidebar-buttons">
+              {isAdmin && (
+                <div className="logout">
+                  <Button
+                    label="Admin Panel"
+                    className="btn logout"
+                    onClick={goAdminPage}
+                  />
+                </div>
+              )}
+              <div className="logout sidebar-logout">
                 <Button
-                  label="Admin Panel"
+                  label="Logout"
                   className="btn logout"
-                  onClick={goAdminPage}
+                  onClick={handleLogout}
                 />
               </div>
-            )}
-            <div className="logout sidebar-logout">
-              <Button
-                label="Logout"
-                className="btn logout"
-                onClick={handleLogout}
-              />
             </div>
-          </div>
-        </Sidebar>
+          </Sidebar>
+        )}
       </section>
     </div>
   );

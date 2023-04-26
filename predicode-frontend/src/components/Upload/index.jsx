@@ -12,10 +12,7 @@ import { InputNumber } from "primereact/inputnumber";
 import { Message } from "primereact/message";
 
 const Upload = () => {
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
-  const [files, setFiles] = useState([]);
   const [signedIn, setSignedIn] = useState(false);
-  const [visibleRight, setVisibleRight] = useState(false);
   const [username, setUsername] = useState("");
   const [appName, setAppName] = useState("");
   const [price, setPrice] = useState("");

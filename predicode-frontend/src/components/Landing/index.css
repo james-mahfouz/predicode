@@ -25,6 +25,9 @@
     height: auto;
 }
 
+.pages{
+    display: flex;
+}
 
 .sidebar-logo {
     width: 90%;
