@@ -13,7 +13,6 @@
     margin-right: 50px;
     margin-top: 10px;
     margin-left: 50px;
-    /* margin-bottom: -30px; */
 }
 
 .logo{
@@ -99,7 +98,6 @@
 }
 
 .sidebar-pages h4:hover{
-    /* background-color: #714DF4; */
     color: #714DF4;
 }
 
@@ -158,7 +156,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    background-color: #FFF;
+    background-color: #D8E9EF;
     height: 100vh;
 }
 
@@ -166,12 +164,10 @@
 .landing-wrapper {
     max-width: 530px;
     width: 100%;
-    background-color: rgba(0,0,0,0.2);
+    background-color: #fff;
     padding-left: 30px;
     padding-bottom: 30px;
     padding-right: 30px;
-    border-radius: 20px;
-    margin: auto;
     z-index: 1;
 }
 
@@ -201,7 +197,6 @@
 }
 
 .landing-wrapper .form .inputfield .register_input {
-    background-color: rgba(0, 0, 0, 0.2);
     width: 100%;
     outline: none;
     border: none;
