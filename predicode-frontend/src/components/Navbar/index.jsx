@@ -52,6 +52,10 @@ const Navbar = (props) => {
     navigate("/login");
   };
 
+  const goUploadPage = () => {
+    navigate("/upload");
+  };
+
   const handleLogout = () => {
     props.onLogout();
     localStorage.removeItem("token");
@@ -62,6 +66,10 @@ const Navbar = (props) => {
 
   const goAdminPage = () => {
     navigate("/admin");
+  };
+
+  const goHomePage = () => {
+    navigate("/");
   };
   return (
     <div>
@@ -83,9 +91,9 @@ const Navbar = (props) => {
         {signedIn && !isSmallScreen && (
           <div className="pages">
             <div className="page">
-              <h4>Home</h4>
+              <h4 onClick={goHomePage}>Home</h4>
             </div>
-            <div className="page">
+            <div className="page" onClick={goUploadPage}>
               <h4>Upload</h4>
             </div>
             <div className="page">
