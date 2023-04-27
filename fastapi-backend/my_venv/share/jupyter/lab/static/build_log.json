@@ -545,6 +545,9 @@
               "requiredVersion": "^13.5.17",
               "singleton": true
             },
+            "@jupyter-widgets/jupyterlab-manager": {
+              "requiredVersion": "5.0.7"
+            },
             "@feiranzhang/jupyterlab-variableinspector": {
               "requiredVersion": "0.1.3"
             },
@@ -574,6 +577,27 @@
             },
             "typestyle": {
               "requiredVersion": "^2.0.4"
+            },
+            "@jupyter-widgets/base": {
+              "requiredVersion": "^6.0.4"
+            },
+            "@jupyter-widgets/base-manager": {
+              "requiredVersion": "^1.0.5"
+            },
+            "@jupyter-widgets/controls": {
+              "requiredVersion": "^5.0.5"
+            },
+            "@jupyter-widgets/output": {
+              "requiredVersion": "^6.0.4"
+            },
+            "@types/backbone": {
+              "requiredVersion": "1.4.14"
+            },
+            "jquery": {
+              "requiredVersion": "^3.1.1"
+            },
+            "semver": {
+              "requiredVersion": "^7.3.5"
             },
             "react-highlighter": {
               "requiredVersion": "^0.4.3"

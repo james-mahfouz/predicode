@@ -593,6 +593,16 @@ export async function main() {
       console.error(e);
     }
   }
+  if (!queuedFederated.includes('@jupyter-widgets/jupyterlab-manager')) {
+    try {
+      let ext = require('@jupyter-widgets/jupyterlab-manager');
+      for (let plugin of activePlugins(ext)) {
+        register.push(plugin);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  }
   if (!queuedFederated.includes('@feiranzhang/jupyterlab-variableinspector')) {
     try {
       let ext = require('@feiranzhang/jupyterlab-variableinspector');
