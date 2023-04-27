@@ -9,6 +9,12 @@ class FileRequest(BaseModel):
     data: str
     content_type: str
     name: str
+    appName: str
+    price: float
+    ageFrom: int
+    ageTo: int
+    appVersion: str
+
     # file: UploadFile = File(...)
     # name: str = Form(...)
 
