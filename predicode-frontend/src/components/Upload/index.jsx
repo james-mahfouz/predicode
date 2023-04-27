@@ -89,7 +89,6 @@ const Upload = () => {
         const encodedData = reader.result.split(",");
         const data = {
           data: encodedData[1],
-          name: uploaded_file.name,
           content_type: encodedData[0],
           appName: appName,
           price: price,
