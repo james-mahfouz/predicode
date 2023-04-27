@@ -1,19 +1,14 @@
-import logo from "../../assets/logo.png";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import JSZip from "jszip";
 import Navbar from "../Navbar";
 
 import { useNavigate } from "react-router-dom";
-import { Button } from "primereact/button";
 import { FileUpload } from "primereact/fileupload";
-import { Sidebar } from "primereact/sidebar";
-import { InputNumber } from "primereact/inputnumber";
 import { Message } from "primereact/message";
 
 const Upload = () => {
   const [signedIn, setSignedIn] = useState(false);
-  const [username, setUsername] = useState("");
   const [appName, setAppName] = useState("");
   const [price, setPrice] = useState("");
   const [ageFrom, setAgeFrom] = useState("");
@@ -33,8 +28,8 @@ const Upload = () => {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
+        console.log(response);
 
-        setUsername(response.data.username);
         setSignedIn(true);
         if (response.data.role === "admin") {
           setIsAdmin(true);
@@ -96,6 +91,11 @@ const Upload = () => {
           data: encodedData[1],
           name: uploaded_file.name,
           content_type: encodedData[0],
+          appName: appName,
+          price: price,
+          ageFrom: ageFrom,
+          ageTo: ageTo,
+          appVersion: appVersion,
         };
 
         const token = localStorage.getItem("token");
@@ -109,7 +109,9 @@ const Upload = () => {
           .then((response) => {
             console.log(response.data);
           })
-          .catch((error) => {});
+          .catch((error) => {
+            console.log(error);
+          });
       };
     } else {
       console.log("File not zipped");
