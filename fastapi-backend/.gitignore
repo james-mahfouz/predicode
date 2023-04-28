@@ -2,4 +2,4 @@
 !/public/
 __pycache__/
 my_venv/
-
+.ipynb_checkpoints/

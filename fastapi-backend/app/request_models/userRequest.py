@@ -8,7 +8,6 @@ from typing import List
 class FileRequest(BaseModel):
     data: str
     content_type: str
-    name: str
     appName: str
     price: float
     ageFrom: int
