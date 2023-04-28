@@ -545,6 +545,9 @@
               "requiredVersion": "^13.5.17",
               "singleton": true
             },
+            "@krassowski/jupyterlab-lsp": {
+              "requiredVersion": "3.10.2"
+            },
             "@jupyter-widgets/jupyterlab-manager": {
               "requiredVersion": "5.0.7"
             },
@@ -577,6 +580,24 @@
             },
             "typestyle": {
               "requiredVersion": "^2.0.4"
+            },
+            "@krassowski/code-jumpers": {
+              "requiredVersion": "~1.2.0"
+            },
+            "@krassowski/completion-theme": {
+              "requiredVersion": "~3.3.1"
+            },
+            "@krassowski/theme-material": {
+              "requiredVersion": "~2.1.1"
+            },
+            "@krassowski/theme-vscode": {
+              "requiredVersion": "~2.1.1"
+            },
+            "lodash.mergewith": {
+              "requiredVersion": "^4.6.1"
+            },
+            "lsp-ws-connection": {
+              "requiredVersion": "~0.7.0"
             },
             "@jupyter-widgets/base": {
               "requiredVersion": "^6.0.4"
