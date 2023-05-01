@@ -6,7 +6,7 @@ import os
 import zipfile
 from models.fileModel import File
 # from models.userModel import User
-category_word_dict = {
+word_dict = {
     'ART_AND_DESIGN': ['painting', 'drawing', 'sculpture', 'architecture', 'photography', 'graphic design', 'fashion',
                        'ceramics', 'illustration', 'printmaking', 'jewelry', 'textile design', 'interior design',
                        'animation', 'visual arts', 'mixed media', 'crafts', 'digital art', 'fine art', 'cartooning',
@@ -313,10 +313,24 @@ def recursive_read_file(folder_path, index):
     return index
 
 
-def read_file(file_path):
+def read_file(file_path, keywords):
     try:
-        with open(file_path, 'r') as f:
-            f.readlines()
+        category_counts = {category: 0 for category in keywords}
+
+        with open(file_path, 'r') as file:
+            text = file.read()
+
+        for category, category_keywords in keywords.items():
+            for keyword in category_keywords:
+                # Use fuzzy matching to find all occurrences of the keyword in the text
+                matches = process.extract(keyword, text, scorer=fuzz.partial_ratio)
+
+                # Increment the category count for each match
+                for match, score in matches:
+                    if score > 80:
+                        category_counts[category] += 1
+
+        return max(category_counts, key=category_counts.get)
         return True
     except:
         return False
