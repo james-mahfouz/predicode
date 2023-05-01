@@ -1,11 +1,11 @@
 import shutil
-from bson import ObjectId
+# from bson import ObjectId
 from fastapi.responses import JSONResponse
 import base64
 import os
 import zipfile
 from models.fileModel import File
-from models.userModel import User
+# from models.userModel import User
 
 
 def verify_user(user):
@@ -35,6 +35,10 @@ def get_files(user):
 
 
 def upload_file(file, user):
+    unzipped_file_path = ""
+    unzipped_file_name = ""
+    temp_file_path = ''
+
     try:
         if file.content_type == "data:application/zip;base64":
             decoded_data = base64.b64decode(file.data)
@@ -65,24 +69,20 @@ def upload_file(file, user):
                 if os.path.exists(macosx_folder):
                     shutil.rmtree(macosx_folder)
 
-                return {
-                    "message": "File created successfully",
-                    "file_path": save_path
-                }
-
             else:
                 os.remove(temp_file_path)
                 shutil.rmtree(unzipped_file_name)
-                return {
-                    "message": "File already exists"
-                }
+
+            index = recursive_read_file(f"public/{unzipped_file_name}", 0)
+            print(index)
 
     except Exception as e:
-        # If an error occurs, print the error message and remove any temporary files
         print(e)
         print("removing content")
-        os.remove(temp_file_path)
-        unzipped_file_path = os.path.join('public', unzipped_file_name)
+        if os.path.exists(temp_file_path):
+            os.remove(temp_file_path)
+        if os.path.exists(unzipped_file_name):
+            unzipped_file_path = os.path.join('public', unzipped_file_name)
         if os.path.exists(unzipped_file_path):
             shutil.rmtree(unzipped_file_path)
 
@@ -90,3 +90,18 @@ def upload_file(file, user):
         return {
             "message": "An error occurred while processing the file"
         }
+
+
+def recursive_read_file(folder_path, index):
+    for item in os.listdir(folder_path):
+        item_path = os.path.join(folder_path, item)
+        if os.path.isdir(item_path):
+            index = recursive_read_file(item_path, index)
+        else:
+            read_file(item_path)
+            index += 1
+    return index
+
+
+def read_file(file_path):
+    print("hello")
