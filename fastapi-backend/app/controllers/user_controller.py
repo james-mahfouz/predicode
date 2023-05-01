@@ -35,7 +35,6 @@ def get_files(user):
 
 
 def upload_file(file, user):
-    print(file.name, file.content_type, file.price, file.ageFrom, file.ageTo, file.appVersion)
     if file.content_type == "data:application/zip;base64":
         decoded_data = base64.b64decode(file.data)
 
