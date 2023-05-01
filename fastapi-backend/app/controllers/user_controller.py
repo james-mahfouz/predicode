@@ -7,53 +7,88 @@ import zipfile
 from models.fileModel import File
 # from models.userModel import User
 category_word_dict = {
-    'ART_AND_DESIGN': ['painting', 'drawing', 'sculpture', 'architecture', 'photography', 'graphic design', 'fashion', 'ceramics', 'illustration', 'printmaking', 'jewelry', 'textile design', 'interior design', 'animation', 'visual arts', 'mixed media', 'crafts', 'digital art', 'fine art', 'cartooning', 'collage', 'public art', 'installation art', 'conceptual art', 'art history', 'performance art', 'decorative arts', 'artistic expression', 'art education', 'art therapy'],
-    'AUTO_AND_VEHICLES': ['car', 'vehicle', 'automobile', 'truck', 'motorcycle', 'boat', 'suv', 'sedan', 'coupe', 'convertible', 'minivan', 'pickup truck', 'off-road vehicle', 'classic car', 'hybrid car', 'electric car', 'car rental', 'car sharing', 'car repair', 'car maintenance', 'auto parts', 'car customization', 'auto racing', 'driving', 'traffic', 'parking', 'gasoline', 'oil change', 'tire'],
-    'BEAUTY': ['makeup', 'skincare', 'haircare', 'perfume', 'nail polish', 'beauty products', 'cosmetics', 'beauty tips', 'facial', 'eyelash', 'eyebrow', 'lipstick', 'foundation', 'blush', 'bronzer', 'mascara', 'shampoo', 'conditioner', 'hair styling', 'haircut', 'hair color', 'skin type', 'anti-aging', 'acne', 'wrinkles', 'dark circles', 'beauty routine', 'beauty trends', 'beauty influencers'],
-    'BOOKS_AND_REFERENCE': ['novel', 'fiction', 'non-fiction', 'literature', 'poetry', 'ebook', 'audiobook', 'bookstore', 'library', 'reading', 'writing', 'author', 'publisher', 'manuscript', 'book club', 'book review', 'reference book', 'encyclopedia', 'dictionary', 'thesaurus', 'biography', 'memoir', 'history book', 'religious book', 'philosophy book', 'cookbook', 'self-help book', 'comic book', 'manga'],
-    'BUSINESS': ['startup', 'entrepreneurship', 'small business', 'marketing', 'finance', 'accounting', 'business plan', 'sales', 'advertising', 'public relations', 'customer service', 'management', 'leadership', 'human resources', 'consulting', 'business strategy', 'e-commerce', 'supply chain', 'logistics', 'mergers and acquisitions', 'business law', 'international business', 'business ethics', 'business news', 'trade', 'industry', 'productivity', 'innovation', 'business networking'],
-    'COMICS': ['comic book', 'cartoon', 'graphic novel', 'superhero', 'manga', 'comic strip', 'webcomic', 'humor', 'animation', 'illustration', 'funny', 'satire', 'fantasy', 'sci-fi', 'villain', 'hero', 'DC Comics', 'Marvel Comics', 'comic convention', 'comic art', 'comic writer', 'comic artist', 'comic collector', 'comic character', 'comic store', 'comic fandom', 'comic movie', 'comic franchise', 'comic merchandise', 'comic culture'],
+    'ART_AND_DESIGN': ['painting', 'drawing', 'sculpture', 'architecture', 'photography', 'graphic design', 'fashion',
+                       'ceramics', 'illustration', 'printmaking', 'jewelry', 'textile design', 'interior design',
+                       'animation', 'visual arts', 'mixed media', 'crafts', 'digital art', 'fine art', 'cartooning',
+                       'collage', 'public art', 'installation art', 'conceptual art', 'art history', 'performance art',
+                       'decorative arts', 'artistic expression', 'art education', 'art therapy'],
+
+    'AUTO_AND_VEHICLES': ['car', 'vehicle', 'automobile', 'truck', 'motorcycle', 'boat', 'suv', 'sedan', 'coupe',
+                          'convertible', 'minivan', 'pickup truck', 'off-road vehicle', 'classic car', 'hybrid car',
+                          'electric car', 'car rental', 'car sharing', 'car repair', 'car maintenance', 'auto parts',
+                          'car customization', 'auto racing', 'driving', 'traffic', 'parking', 'gasoline', 'oil change',
+                          'tire'],
+
+    'BEAUTY': ['makeup', 'skincare', 'haircare', 'perfume', 'nail polish', 'beauty products', 'cosmetics', 'beauty tips',
+               'facial', 'eyelash', 'eyebrow', 'lipstick', 'foundation', 'blush', 'bronzer', 'mascara', 'shampoo',
+               'conditioner', 'hair styling', 'haircut', 'hair color', 'skin type', 'anti-aging', 'acne', 'wrinkles',
+               'dark circles', 'beauty routine', 'beauty trends', 'beauty influencers'],
+
+    'BOOKS_AND_REFERENCE': ['novel', 'fiction', 'non-fiction', 'literature', 'poetry', 'ebook', 'audiobook', 'bookstore',
+                            'library', 'reading', 'writing', 'author', 'publisher', 'manuscript', 'book club', 'book review',
+                            'reference book', 'encyclopedia', 'dictionary', 'thesaurus', 'biography', 'memoir', 'history book',
+                            'religious book', 'philosophy book', 'cookbook', 'self-help book', 'comic book', 'manga'],
+
+    'BUSINESS': ['startup', 'entrepreneurship', 'small business', 'marketing', 'finance', 'accounting', 'business plan',
+                 'sales', 'advertising', 'public relations', 'customer service', 'management', 'leadership', 'human resources',
+                 'consulting', 'business strategy', 'e-commerce', 'supply chain', 'logistics', 'mergers and acquisitions',
+                 'business law', 'international business', 'business ethics', 'business news', 'trade', 'industry',
+                 'productivity', 'innovation', 'business networking'],
+
+    'COMICS': ['comic book', 'cartoon', 'graphic novel', 'superhero', 'manga', 'comic strip', 'webcomic', 'humor', 'animation',
+               'illustration', 'funny', 'satire', 'fantasy', 'sci-fi', 'villain', 'hero', 'DC Comics', 'Marvel Comics',
+               'comic convention', 'comic art', 'comic writer', 'comic artist', 'comic collector', 'comic character',
+               'comic store', 'comic fandom', 'comic movie', 'comic franchise', 'comic merchandise', 'comic culture'],
+
     'COMMUNICATION': ['conversation', 'messaging', 'email', 'telephone', 'face-to-face', 'writing', 'speaking',
                       'social media', 'broadcasting', 'journalism', 'public speaking', 'speech', 'debate', 'dialogue',
                       'interpersonal', 'nonverbal', 'listening', 'tone', 'message', 'media', 'telecommunication',
                       'networking', 'contact', 'information', 'connection', 'expressive', 'communication skills',
                       'communication style', 'communication channels', 'communication barriers'],
+
     'DATING': ['relationship', 'love', 'romance', 'attraction', 'matchmaking', 'compatibility', 'chemistry',
                'courtship', 'flirting', 'seduction', 'intimacy', 'commitment', 'affection', 'infatuation', 'breakup',
                'heartbreak', 'trust', 'communication', 'dating app', 'blind date', 'speed dating', 'online dating',
                'dating advice', 'dating coach', 'dating game', 'dating rules', 'dating etiquette', 'dating culture',
                'dating trends', 'dating rituals'],
+
     'EDUCATION': ['learning', 'teaching', 'school', 'college', 'university', 'teacher', 'student', 'curriculum',
                   'textbook', 'homework', 'lecture', 'classroom', 'exam', 'degree', 'knowledge', 'discipline',
                   'subject', 'academic', 'research', 'training', 'e-learning', 'distance learning', 'tutoring',
                   'mentoring', 'professional development', 'continuing education', 'learning styles',
                   'learning disabilities', 'educational technology', 'educational psychology'],
+
     'ENTERTAINMENT': ['music', 'film', 'television', 'theatre', 'performing arts', 'visual arts', 'comedy', 'drama',
                       'documentary', 'animation', 'horror', 'science fiction', 'fantasy', 'action', 'adventure',
                       'romantic', 'thriller', 'sitcom', 'reality TV', 'celebrity', 'entertainer', 'concert',
                       'live performance', 'festivals', 'awards shows', 'box office', 'critics', 'audience',
                       'entertainment industry'],
+
     'EVENTS': ['conferences', 'meetings', 'festivals', 'concerts', 'ceremonies', 'celebrations', 'exhibitions',
                'workshops', 'trade shows', 'product launches', 'sporting events', 'charity events', 'political events',
                'networking events', 'social events', 'weddings', 'parties', 'conventions', 'performances', 'seminars',
                'competitions', 'awards ceremonies', 'cultural events', 'entertainment', 'fundraisers',
                'music festivals', 'film festivals', 'arts events', 'fairs', 'parades'],
+
     'FAMILY': ['parents', 'children', 'siblings', 'spouses', 'grandparents', 'aunts', 'uncles', 'cousins', 'relatives',
                'in-laws', 'kin', 'nuclear family', 'extended family', 'family tree', 'family history',
                'family dynamics', 'family values', 'family traditions', 'family rituals', 'family time',
                'family support', 'family conflicts', 'family responsibilities', 'family relationships',
                'family communication', 'family structure', 'family roles', 'family health', 'family education',
                'family planning'],
+
     'FINANCE': ['money', 'budgeting', 'investing', 'savings', 'taxes', 'financial planning', 'credit', 'loans',
                 'mortgages', 'insurance', 'retirement', 'wealth', 'debt', 'income', 'expenses', 'assets', 'liabilities',
                 'cash flow', 'stocks', 'bonds', 'real estate', 'personal finance', 'business finance',
                 'financial management', 'financial literacy', 'financial security', 'financial risks',
                 'financial products', 'financial services', 'financial markets'],
+
     'FOOD_AND_DRINK': ['cooking', 'baking', 'recipes', 'cuisine', 'food culture', 'food history', 'food science',
                        'nutrition', 'health', 'diet', 'ingredients', 'cooking techniques', 'kitchen appliances',
                        'food safety', 'culinary arts', 'gastronomy', 'food industry', 'restaurant industry',
                        'food service', 'beverages', 'alcoholic drinks', 'non-alcoholic drinks', 'wine', 'beer',
                        'spirits', 'coffee', 'tea', 'juices', 'smoothies', 'cocktails'],
+
     'GAME': ['video games', 'board games', 'card games', 'role-playing games', 'puzzle games', 'strategy games',
              'action games', 'adventure games', 'sports games', 'simulation games', 'casual games', 'multiplayer games',
              'single-player games', 'console games', 'PC games', 'mobile games', 'online games', 'gaming culture',
@@ -166,11 +201,13 @@ category_word_dict = {
                          'backpacking', 'camping', 'hiking', 'backpacking', 'solo travel', 'budget travel',
                          'luxury travel', 'ecotourism', 'responsible travel', 'cultural experience', 'travel guide',
                          'passport', 'visa', 'currency exchange', 'maps'],
+
     'VIDEO_PLAYERS': ['video', 'streaming', 'media', 'entertainment', 'film', 'TV', 'cinema', 'animation', 'music',
                       'comedy', 'documentary', 'live streaming', 'short film', 'viral', 'videography', 'videographer',
                       'videoblog', 'video sharing', 'video production', 'video editing', 'special effects',
                       'video hosting', 'video game', 'e-sports', 'virtual reality', 'augmented reality',
                       'digital video', 'vlog', 'YouTube'],
+
     'WEATHER': ['forecast', 'temperature', 'humidity', 'wind', 'precipitation', 'climate', 'meteorology', 'sunshine',
                 'storm', 'natural disaster', 'emergency', 'UV', 'air quality', 'pollution', 'rain', 'snow', 'cloud',
                 'frost', 'heat wave', 'cold wave', 'global warming', 'ozone', 'environment', 'weather report',
