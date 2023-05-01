@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { FileUpload } from "primereact/fileupload";
 import { Message } from "primereact/message";
 import { Dropdown } from "primereact/dropdown";
+import { InputNumber } from "primereact/inputnumber";
 
 const optionsCategory = [
   { name: "ART_AND_DESIGN", code: "ART_AND_DESIGN" },
@@ -55,7 +56,7 @@ const optionsContentRating = [
 const Upload = () => {
   // const [signedIn, setSignedIn] = useState(false);
   // const [appName, setAppName] = useState("");
-  // const [price, setPrice] = useState("");
+  const [price, setPrice] = useState(0);
   // const [ageFrom, setAgeFrom] = useState("");
   // const [ageTo, setAgeTo] = useState("");
   // const [appVersion, setAppVersion] = useState("");
@@ -208,6 +209,16 @@ const Upload = () => {
                 options={optionsContentRating}
                 optionLabel="name"
                 placeholder="App Content Rating"
+                className="w-full md:w-14rem"
+              />
+            </div>
+
+            <div className="inputfield">
+              <label>Price $: </label>
+              <InputNumber
+                id="number-input"
+                value={price}
+                onValueChange={(e) => setPrice(e.value)}
                 className="w-full md:w-14rem"
               />
             </div>
