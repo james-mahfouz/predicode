@@ -165,7 +165,7 @@ const Upload = () => {
       <Navbar onLogout={handleLogout} />
       <section className="upload-wrapper">
         <div className="landing-wrapper">
-          <h3>↓ Upload your Folder here ↓</h3>
+          <h3>↓ Upload your ZIPPED Folder here ↓</h3>
           <FileUpload
             name="demo[]"
             customUpload={true}
