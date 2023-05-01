@@ -55,7 +55,7 @@ const optionsContentRating = [
 
 const Upload = () => {
   // const [signedIn, setSignedIn] = useState(false);
-  // const [appName, setAppName] = useState("");
+  const [appName, setAppName] = useState("");
   const [price, setPrice] = useState(0);
   // const [ageFrom, setAgeFrom] = useState("");
   // const [ageTo, setAgeTo] = useState("");
@@ -63,6 +63,7 @@ const Upload = () => {
   const [error, setError] = useState("");
   const [category, setCategory] = useState(null);
   const [content, setContent] = useState(null);
+  const [fileChosen, setFileChosen] = useState(false);
 
   const apiUrl = process.env.API_URL;
   const versionRegex = /^(\d+)\.(\d+)\.(\d+)$/;
@@ -89,15 +90,23 @@ const Upload = () => {
     verify();
   }, []);
 
+  function handleFileSelect(event) {
+    if (event.target.files.length > 0) {
+      setFileChosen(true);
+    } else {
+      setFileChosen(false);
+    }
+  }
+
   const onUpload = (event) => {
     // if (!signedIn) {
     //   navigate("/login");
     //   return;
     // }
-    // if (!appName) {
-    //   setError("Please enter your app name");
-    //   return;
-    // }
+    if (!appName) {
+      setError("Please enter your app name");
+      return;
+    }
     // if (!price) {
     //   setError("Please enter your app price");
     //   return;
@@ -164,7 +173,10 @@ const Upload = () => {
   return (
     <div>
       <Navbar onLogout={handleLogout} />
-      <section className="upload-wrapper">
+      <section
+        className="upload-wrapper"
+        style={{ paddingTop: error ? "50px" : "0px" }}
+      >
         <div className="landing-wrapper">
           <h3>↓ Upload your ZIPPED Folder here ↓</h3>
           <FileUpload
@@ -179,6 +191,7 @@ const Upload = () => {
                 Upload your zipped code folder and see your rating
               </p>
             }
+            onChange={handleFileSelect}
           />
           <div className="form">
             {error && (
