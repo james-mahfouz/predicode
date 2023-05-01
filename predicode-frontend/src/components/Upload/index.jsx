@@ -97,8 +97,7 @@ const Upload = () => {
       reader.readAsDataURL(uploaded_file);
       reader.onload = () => {
         const encodedData = reader.result.split(",");
-        console.log(category.name, content.name, price);
-        console.log(event.files[0].name);
+
         const data = {
           data: encodedData[1],
           content_type: encodedData[0],
