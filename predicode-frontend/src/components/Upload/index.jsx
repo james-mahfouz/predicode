@@ -55,18 +55,12 @@ const optionsContentRating = [
 
 const Upload = () => {
   const [signedIn, setSignedIn] = useState(false);
-  const [appName, setAppName] = useState("");
   const [price, setPrice] = useState(0);
-  // const [ageFrom, setAgeFrom] = useState("");
-  // const [ageTo, setAgeTo] = useState("");
-  // const [appVersion, setAppVersion] = useState("");
   const [error, setError] = useState("");
   const [category, setCategory] = useState(null);
   const [content, setContent] = useState(null);
-  const [fileChosen, setFileChosen] = useState(false);
 
   const apiUrl = process.env.API_URL;
-  const versionRegex = /^(\d+)\.(\d+)\.(\d+)$/;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -106,7 +100,6 @@ const Upload = () => {
         const data = {
           data: encodedData[1],
           content_type: encodedData[0],
-          appName: appName,
           price: price,
         };
         const token = localStorage.getItem("token");
@@ -196,61 +189,6 @@ const Upload = () => {
                 className="w-full md:w-14rem"
               />
             </div>
-            {/* <div className="inputfield">
-              <name>App Name</name>
-              <input
-                type="text"
-                className="register_input"
-                code={appName}
-                onChange={(e) => setAppName(e.target.code)}
-                // style={{ borderColor: emailError ? "red" : "#D8E9EF" }}
-              ></input>
-            </div>
-            <div className="inputfield">
-              <name>Price ($)</name>
-              <input
-                type="number"
-                className="register_input"
-                code={price}
-                onChange={(e) => setPrice(e.target.code)}
-                // style={{ borderColor: passwordError ? "red" : "#D8E9EF" }}
-              ></input>
-            </div>
-
-            <div className="inputfield">
-              <name>Age Range (from)</name>
-              <input
-                type="number"
-                className="register_input"
-                code={ageFrom}
-                min={0}
-                max={100}
-                onChange={(e) => setAgeFrom(e.target.code)}
-                // style={{ borderColor: passwordError ? "red" : "#D8E9EF" }}
-              ></input>
-            </div>
-            <div className="inputfield">
-              <name>
-                Age Range <br />
-                (to)
-              </name>
-              <input
-                type="number"
-                className="register_input"
-                code={ageTo}
-                onChange={(e) => setAgeTo(e.target.code)}
-                // style={{ borderColor: passwordError ? "red" : "#D8E9EF" }}
-              ></input>
-            </div>
-            <div className="inputfield">
-              <name>Current App version</name>
-              <input
-                type="text"
-                className="register_input"
-                code={appVersion}
-                onChange={(e) => setAppVersion(e.target.code)}
-              ></input>
-            </div> */}
           </div>
         </div>
       </section>
