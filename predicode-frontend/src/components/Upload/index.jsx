@@ -77,8 +77,6 @@ const Upload = () => {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
-        console.log(response);
-
         setSignedIn(true);
       } catch (e) {
         console.log(e);
@@ -93,35 +91,12 @@ const Upload = () => {
       navigate("/login");
       return;
     }
-    if (!appName) {
-      setError("Please enter your app name");
-      return;
-    }
+
     if (!price) {
       setError("Please enter your app price");
       return;
     }
-    if (!ageFrom) {
-      setError("Please enter your app age Range");
-      return;
-    }
-    if (!ageTo) {
-      setError("Please enter your app age Range");
-      return;
-    }
-    if (ageFrom > ageTo) {
-      const temp = ageFrom;
-      setAgeFrom(ageTo);
-      setAgeTo(temp);
-    }
-    if (!appVersion) {
-      setError("Please enter your app current Version");
-      return;
-    }
-    if (!versionRegex.test(appVersion)) {
-      setError(`Version must be in this format: 1.0.0`);
-      return;
-    }
+
     const uploaded_file = event.files[0];
     if (uploaded_file.type === "application/zip") {
       const reader = new FileReader();
@@ -133,9 +108,6 @@ const Upload = () => {
           content_type: encodedData[0],
           appName: appName,
           price: price,
-          ageFrom: ageFrom,
-          ageTo: ageTo,
-          appVersion: appVersion,
         };
         const token = localStorage.getItem("token");
         axios
