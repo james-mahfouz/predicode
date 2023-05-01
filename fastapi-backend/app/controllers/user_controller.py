@@ -36,10 +36,8 @@ def get_files(user):
 
 def upload_file(file, user):
     try:
-        if file.content_type == "data:application/zip;base64":  # Fix: Use the correct MIME type for ZIP files
-
+        if file.content_type == "data:application/zip;base64":
             decoded_data = base64.b64decode(file.data)
-
             temp_file_path = file.name
             with open(temp_file_path, 'wb') as f:
                 f.write(decoded_data)
@@ -48,15 +46,14 @@ def upload_file(file, user):
                 zip_ref.extractall()
 
             unzipped_file_name = os.path.splitext(file.name)[0]
-
             if not File.objects(name=unzipped_file_name).first():
-
                 unzip_dir = os.path.commonprefix(zip_ref.namelist()).rstrip('/')
-
                 save_path = os.path.join('public', unzipped_file_name)
                 shutil.move(unzip_dir, save_path)
 
-                uploaded_file = File(name=unzipped_file_name, by_user=user.name, path=save_path)
+                file_size = os.path.getsize(save_path)
+                print(file_size)
+                uploaded_file = File(name=unzipped_file_name, by_user=user.name, path=save_path, size=file.size, category=file.category, content_rating=file.content_rating, price=file.price)
                 uploaded_file.save()
 
                 user.files.append(uploaded_file)

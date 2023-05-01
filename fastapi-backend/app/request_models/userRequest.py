@@ -12,4 +12,5 @@ class FileRequest(BaseModel):
     category: str
     content_rating: str
     name: str
+    size: float
 
