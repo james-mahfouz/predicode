@@ -5,6 +5,8 @@ import base64
 import os
 import zipfile
 from models.fileModel import File
+from fuzzywuzzy import fuzz, process
+
 # from models.userModel import User
 word_dict = {
     'ART_AND_DESIGN': ['painting', 'drawing', 'sculpture', 'architecture', 'photography', 'graphic design', 'fashion',
