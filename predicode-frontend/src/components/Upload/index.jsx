@@ -98,12 +98,14 @@ const Upload = () => {
       reader.onload = () => {
         const encodedData = reader.result.split(",");
         console.log(category.name, content.name, price);
+        console.log(event.files[0].name);
         const data = {
           data: encodedData[1],
           content_type: encodedData[0],
           price: price,
-          category: category,
-          content: content,
+          category: category.name,
+          content_rating: content.name,
+          name: event.files[0].name,
         };
         const token = localStorage.getItem("token");
         axios
