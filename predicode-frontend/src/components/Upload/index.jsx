@@ -54,7 +54,7 @@ const optionsContentRating = [
 ];
 
 const Upload = () => {
-  // const [signedIn, setSignedIn] = useState(false);
+  const [signedIn, setSignedIn] = useState(false);
   const [appName, setAppName] = useState("");
   const [price, setPrice] = useState(0);
   // const [ageFrom, setAgeFrom] = useState("");
@@ -80,90 +80,80 @@ const Upload = () => {
         console.log(response);
 
         setSignedIn(true);
-        if (response.data.role === "admin") {
-          setIsAdmin(true);
-        }
       } catch (e) {
-        // navigate("/login");
+        console.log(e);
+        navigate("/login");
       }
     };
     verify();
   }, []);
 
-  function handleFileSelect(event) {
-    if (event.target.files.length > 0) {
-      setFileChosen(true);
-    } else {
-      setFileChosen(false);
-    }
-  }
-
   const onUpload = (event) => {
-    // if (!signedIn) {
-    //   navigate("/login");
-    //   return;
-    // }
+    if (!signedIn) {
+      navigate("/login");
+      return;
+    }
     if (!appName) {
       setError("Please enter your app name");
       return;
     }
-    // if (!price) {
-    //   setError("Please enter your app price");
-    //   return;
-    // }
-    // if (!ageFrom) {
-    //   setError("Please enter your app age Range");
-    //   return;
-    // }
-    // if (!ageTo) {
-    //   setError("Please enter your app age Range");
-    //   return;
-    // }
-    // if (ageFrom > ageTo) {
-    //   const temp = ageFrom;
-    //   setAgeFrom(ageTo);
-    //   setAgeTo(temp);
-    // }
-    // if (!appVersion) {
-    //   setError("Please enter your app current Version");
-    //   return;
-    // }
-    // if (!versionRegex.test(appVersion)) {
-    //   setError(`Version must be in this format: 1.0.0`);
-    //   return;
-    // }
-    // const uploaded_file = event.files[0];
-    // // if (uploaded_file.type === "application/zip") {
-    // const reader = new FileReader();
-    // reader.readAsDataURL(uploaded_file);
-    // reader.onload = () => {
-    //   const encodedData = reader.result.split(",");
-    //   const data = {
-    //     data: encodedData[1],
-    //     content_type: encodedData[0],
-    //     appName: appName,
-    //     price: price,
-    //     ageFrom: ageFrom,
-    //     ageTo: ageTo,
-    //     appVersion: appVersion,
-    //   };
-    //   const token = localStorage.getItem("token");
-    //   axios
-    //     .post(apiUrl + "user/upload_files/", data, {
-    //       headers: {
-    //         Authorization: `Bearer ${token}`,
-    //       },
-    //     })
-    //     .then((response) => {
-    //       console.log(response.data);
-    //     })
-    //     .catch((error) => {
-    //       console.log(error);
-    //     });
-    // };
-    // } else {
-    //   console.log("File not zipped");
-    // }
+    if (!price) {
+      setError("Please enter your app price");
+      return;
+    }
+    if (!ageFrom) {
+      setError("Please enter your app age Range");
+      return;
+    }
+    if (!ageTo) {
+      setError("Please enter your app age Range");
+      return;
+    }
+    if (ageFrom > ageTo) {
+      const temp = ageFrom;
+      setAgeFrom(ageTo);
+      setAgeTo(temp);
+    }
+    if (!appVersion) {
+      setError("Please enter your app current Version");
+      return;
+    }
+    if (!versionRegex.test(appVersion)) {
+      setError(`Version must be in this format: 1.0.0`);
+      return;
+    }
+    const uploaded_file = event.files[0];
+    if (uploaded_file.type === "application/zip") {
+      const reader = new FileReader();
+      reader.readAsDataURL(uploaded_file);
+      reader.onload = () => {
+        const encodedData = reader.result.split(",");
+        const data = {
+          data: encodedData[1],
+          content_type: encodedData[0],
+          appName: appName,
+          price: price,
+          ageFrom: ageFrom,
+          ageTo: ageTo,
+          appVersion: appVersion,
+        };
+        const token = localStorage.getItem("token");
+        axios
+          .post(apiUrl + "user/upload_files/", data, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then((response) => {
+            console.log(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      };
+    } else {
+      console.log("File not zipped");
+    }
   };
 
   const handleLogout = () => {
@@ -191,7 +181,6 @@ const Upload = () => {
                 Upload your zipped code folder and see your rating
               </p>
             }
-            onChange={handleFileSelect}
           />
           <div className="form">
             {error && (
