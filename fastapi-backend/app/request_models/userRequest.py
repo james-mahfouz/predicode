@@ -11,5 +11,5 @@ class FileRequest(BaseModel):
     price: float
     category: str
     content_rating: str
-
+    name: str
 

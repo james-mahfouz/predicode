@@ -35,10 +35,11 @@ def get_files(user):
 
 
 def upload_file(file, user):
+    print(file.content_rating, file.category, file.price)
     if file.content_type == "data:application/zip;base64":
         decoded_data = base64.b64decode(file.data)
 
-        temp_file_path = file.name
+        temp_file_path = file.filename
         with open(temp_file_path, 'wb') as f:
             f.write(decoded_data)
 
