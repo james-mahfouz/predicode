@@ -97,10 +97,13 @@ const Upload = () => {
       reader.readAsDataURL(uploaded_file);
       reader.onload = () => {
         const encodedData = reader.result.split(",");
+        console.log(category.name, content.name, price);
         const data = {
           data: encodedData[1],
           content_type: encodedData[0],
           price: price,
+          category: category,
+          content: content,
         };
         const token = localStorage.getItem("token");
         axios
@@ -118,6 +121,7 @@ const Upload = () => {
       };
     } else {
       console.log("File not zipped");
+      setError("File should be zipped");
     }
   };
 
