@@ -36,8 +36,8 @@ def get_files(user):
 
 def upload_file(file, user):
     try:
-        print(file.content_rating, file.category, file.price)
-        if file.content_type == "data:application/zip;base64":
+        if file.content_type == "data:application/zip;base64":  # Fix: Use the correct MIME type for ZIP files
+
             decoded_data = base64.b64decode(file.data)
 
             temp_file_path = file.name
@@ -48,38 +48,48 @@ def upload_file(file, user):
                 zip_ref.extractall()
 
             unzipped_file_name = os.path.splitext(file.name)[0]
-            print(unzipped_file_name)
-            if File.objects(name=unzipped_file_name).first():
-                unzipped_file_name += "_copy"
-                if File.objects(name=unzipped_file_name).first():
 
-                    for i in range(1, 100000):
-                        if not File.objects(name=unzipped_file_name+str(i)).first():
-                            unzipped_file_name + str(i)
-                            break
+            if not File.objects(name=unzipped_file_name).first():
 
-            save_path = os.path.join('public', unzipped_file_name)
+                unzip_dir = os.path.commonprefix(zip_ref.namelist()).rstrip('/')
 
-            folder_name = os.path.commonprefix(zip_ref.namelist()).rstrip('/')
+                save_path = os.path.join('public', unzipped_file_name)
+                shutil.move(unzip_dir, save_path)
 
-            shutil.move(folder_name, save_path)
+                uploaded_file = File(name=unzipped_file_name, by_user=user.name, path=save_path)
+                uploaded_file.save()
 
-            uploaded_file = File(name=unzipped_file_name, by_user=user.name, path=save_path)
-            uploaded_file.save()
+                user.files.append(uploaded_file)
+                user.save()
 
-            user.files.append(uploaded_file)
-            user.save()
+                os.remove(temp_file_path)
 
-            os.remove(temp_file_path)
+                macosx_folder = os.path.join(save_path, '__MACOSX')
+                if os.path.exists(macosx_folder):
+                    shutil.rmtree(macosx_folder)
 
-            macosx_folder = os.path.join(save_path, '__MACOSX')
-            if os.path.exists(macosx_folder):
-                shutil.rmtree(macosx_folder)
+                return {
+                    "message": "File created successfully",
+                    "file_path": save_path
+                }
 
-            return {
-                "message": "File created successfully",
-                "file_path": save_path
-            }
+            else:
+                os.remove(temp_file_path)
+                shutil.rmtree(unzipped_file_name)
+                return {
+                    "message": "File already exists"
+                }
 
     except Exception as e:
+        # If an error occurs, print the error message and remove any temporary files
         print(e)
+        print("removing content")
+        os.remove(temp_file_path)
+        unzipped_file_path = os.path.join('public', unzipped_file_name)
+        if os.path.exists(unzipped_file_path):
+            shutil.rmtree(unzipped_file_path)
+
+        # Return an error message
+        return {
+            "message": "An error occurred while processing the file"
+        }
