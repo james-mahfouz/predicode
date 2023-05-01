@@ -159,8 +159,22 @@ category_word_dict = {
               'version control', 'database management', 'file management', 'system utilities', 'security software',
               'data backup', 'cloud storage', 'password managers', 'browser extensions', 'mobile apps', 'web apps',
               'APIs', 'plug-ins', 'add-ons', 'user interface', 'user experience', 'accessibility', 'testing',
-              'debugging', 'documentation', 'support', 'updates', 'upgrades']
+              'debugging', 'documentation', 'support', 'updates', 'upgrades'],
 
+    'TRAVEL_AND_LOCAL': ['flight', 'hotel', 'rental car', 'travel', 'vacation', 'holiday', 'tourism', 'tourist',
+                         'attraction', 'destination', 'sightseeing', 'trip', 'journey', 'cruise', 'adventure',
+                         'backpacking', 'camping', 'hiking', 'backpacking', 'solo travel', 'budget travel',
+                         'luxury travel', 'ecotourism', 'responsible travel', 'cultural experience', 'travel guide',
+                         'passport', 'visa', 'currency exchange', 'maps'],
+    'VIDEO_PLAYERS': ['video', 'streaming', 'media', 'entertainment', 'film', 'TV', 'cinema', 'animation', 'music',
+                      'comedy', 'documentary', 'live streaming', 'short film', 'viral', 'videography', 'videographer',
+                      'videoblog', 'video sharing', 'video production', 'video editing', 'special effects',
+                      'video hosting', 'video game', 'e-sports', 'virtual reality', 'augmented reality',
+                      'digital video', 'vlog', 'YouTube'],
+    'WEATHER': ['forecast', 'temperature', 'humidity', 'wind', 'precipitation', 'climate', 'meteorology', 'sunshine',
+                'storm', 'natural disaster', 'emergency', 'UV', 'air quality', 'pollution', 'rain', 'snow', 'cloud',
+                'frost', 'heat wave', 'cold wave', 'global warming', 'ozone', 'environment', 'weather report',
+                'weather map', 'drought', 'flood', 'hurricane']
 }
 
 
