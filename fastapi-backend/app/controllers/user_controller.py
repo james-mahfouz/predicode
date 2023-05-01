@@ -5,7 +5,7 @@ import base64
 import os
 import zipfile
 from models.fileModel import File
-from fuzzywuzzy import fuzz, process
+from rapidfuzz import fuzz
 
 # from models.userModel import User
 word_dict = {
@@ -215,6 +215,7 @@ word_dict = {
                 'frost', 'heat wave', 'cold wave', 'global warming', 'ozone', 'environment', 'weather report',
                 'weather map', 'drought', 'flood', 'hurricane']
 }
+dict_counts = {category: 0 for category in word_dict}
 
 
 def verify_user(user):
@@ -284,8 +285,8 @@ def upload_file(file, user):
                 os.remove(temp_file_path)
                 shutil.rmtree(unzipped_file_name)
 
-            index = recursive_read_file(f"public/{unzipped_file_name}", 0)
-            print(index)
+            category_won = recursive_read_file(f"public/{unzipped_file_name}", dict_counts)
+            print(category_won)
 
     except Exception as e:
         print(e)
@@ -303,36 +304,41 @@ def upload_file(file, user):
         }
 
 
-def recursive_read_file(folder_path, index):
+def recursive_read_file(folder_path, count):
     for item in os.listdir(folder_path):
         item_path = os.path.join(folder_path, item)
         if os.path.isdir(item_path):
-            index = recursive_read_file(item_path, index)
-        else:
-            if read_file(folder_path):
-                read_file(item_path)
-                index += 1
-    return index
+            count = recursive_read_file(item_path, count)
+            print(count)
+        elif os.path.isfile(item_path):
+            if read_file(item_path, count, word_dict):
+                count = read_file(item_path, count, word_dict)
+                print(count)
+    print(count)
+    return max(count, key=count.get)
 
 
-def read_file(file_path, keywords):
+def read_file(file_path, category_counts,  keywords):
     try:
-        category_counts = {category: 0 for category in keywords}
-
-        with open(file_path, 'r') as file:
+        print("trying")
+        with open(file_path, 'r', errors='ignore') as file:
             text = file.read()
-
+        print("reading")
         for category, category_keywords in keywords.items():
             for keyword in category_keywords:
+
                 # Use fuzzy matching to find all occurrences of the keyword in the text
-                matches = process.extract(keyword, text, scorer=fuzz.partial_ratio)
+                matches = fuzz.partial_ratio(keyword, text, score_cutoff=80)
 
                 # Increment the category count for each match
                 for match, score in matches:
                     if score > 80:
+                        # print(match)
                         category_counts[category] += 1
 
-        return max(category_counts, key=category_counts.get)
-        return True
-    except:
+        # return max(category_counts, key=category_counts.get)
+        return category_counts
+    except Exception as e:
+        print(e)
+        print("can't read")
         return False
