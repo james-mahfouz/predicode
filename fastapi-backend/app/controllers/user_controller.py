@@ -286,7 +286,7 @@ def upload_file(file, user):
                 shutil.rmtree(unzipped_file_name)
 
             category_won = recursive_read_file(f"public/{unzipped_file_name}", dict_counts)
-            print(category_won)
+            print("finalcount: ", category_won)
 
     except Exception as e:
         print(e)
@@ -314,7 +314,7 @@ def recursive_read_file(folder_path, count):
             if read_file(item_path, count, word_dict):
                 count = read_file(item_path, count, word_dict)
                 print(count)
-    print(count)
+    print("finalcount: ",count)
     return max(count, key=count.get)
 
 
@@ -328,13 +328,11 @@ def read_file(file_path, category_counts,  keywords):
             for keyword in category_keywords:
 
                 # Use fuzzy matching to find all occurrences of the keyword in the text
-                matches = fuzz.partial_ratio(keyword, text, score_cutoff=80)
-
-                # Increment the category count for each match
-                for match, score in matches:
+                for word in text.split(" "):
+                    score = fuzz.partial_ratio(keyword, word, score_cutoff=80)
                     if score > 80:
-                        # print(match)
                         category_counts[category] += 1
+                # Increment the category count for each match
 
         # return max(category_counts, key=category_counts.get)
         return category_counts
