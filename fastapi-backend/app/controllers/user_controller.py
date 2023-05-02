@@ -6,6 +6,8 @@ import os
 from zipfile import ZipFile
 from models.fileModel import File
 from rapidfuzz import fuzz
+import mimetypes
+
 
 # from models.userModel import User
 # word_dict = {
@@ -350,7 +352,6 @@ def upload_file(file, user):
 
                         copied_folders.append(str(extracted_file))
 
-
             removed_folders = []
             for extracted_file in extracted_files:
                 if not str(extracted_file).split("/")[0] + "/" in removed_folders:
@@ -405,16 +406,16 @@ def read_file(file_path, category_counts,  keywords):
     try:
         print("trying")
         with open(file_path, 'r', errors='ignore') as file:
-            text = file.read()
-        print("reading")
+            text = file.readlines()
+        print(text)
         for category, category_keywords in keywords.items():
             for keyword in category_keywords:
 
                 # Use fuzzy matching to find all occurrences of the keyword in the text
                 # for word in text.split(" "):
-                for word in text.split(" "):
-                    score = fuzz.partial_ratio(keyword, text, score_cutoff=80)
-                    print(word, keyword, f"match = {score}")
+                for line in text:
+                    for word in line.split(" "):
+                        score = fuzz.partial_ratio(keyword, text, score_cutoff=80)
 
                 if score > 80:
                     category_counts[category] += 1
