@@ -261,10 +261,14 @@ def upload_file(file, user):
                 f.write(decoded_data)
             print("unzipping file")
             with zipfile.ZipFile(temp_file_path, 'r') as zip_ref:
-                zip_ref.extractall()
+                for file1 in zip_ref.namelist():
+                    if '__MACOSX' not in file1:
+                        zip_ref.extract(file1)
             print("unzip complete")
-            unzipped_file_name = os.path.splitext(file.name)[0]
-            print(unzipped_file_name)
+            unzipped_file_name = os.path.splitext(file1)[0]
+            unzipped_file_name = unzipped_file_name.split("/")[0]
+            print("unzipped file", unzipped_file_name)
+
             if not File.objects(name=unzipped_file_name).first():
 
                 save_path = os.path.join('public', unzipped_file_name)
@@ -279,7 +283,7 @@ def upload_file(file, user):
 
                 os.remove(temp_file_path)
 
-                macosx_folder = os.path.join(save_path, '__MACOSX')
+                macosx_folder = os.path.join('__MACOSX', save_path)
                 if os.path.exists(macosx_folder):
                     shutil.rmtree(macosx_folder)
 
@@ -316,8 +320,8 @@ def recursive_read_file(folder_path, count):
             if read_file(item_path, count, word_dict):
                 count = read_file(item_path, count, word_dict)
                 print(count)
-    print("finalcount: ",count)
-    return max(count, key=count.get)
+    print("finalcount: ", max(dict_counts, key=lambda k: dict_counts[k]))
+    return max(dict_counts, key=lambda k: dict_counts[k])
 
 
 def read_file(file_path, category_counts,  keywords):
