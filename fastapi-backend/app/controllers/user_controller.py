@@ -251,15 +251,10 @@ def upload_file(file, user):
 
     try:
         if file.content_type == "data:application/zip;base64":
-            print("entered function")
             decoded_data = base64.b64decode(file.data)
             temp_file_path = f"./{file.name}"
-            print(temp_file_path)
-            print("temp file", temp_file_path)
             with open(temp_file_path, 'wb') as f:
-                print("hello")
                 f.write(decoded_data)
-            print("unzipping file")
 
             extracted_files = []
 
@@ -278,6 +273,7 @@ def upload_file(file, user):
             # print("unzipped file", unzipped_file_name)
             #
             for extracted_file in extracted_files:
+                print(f"extracted file in the for loop : {extracted_file}")
                 if not File.objects(name=extracted_file).first():
 
                     save_path = os.path.join('public', extracted_file)
