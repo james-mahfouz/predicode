@@ -272,12 +272,11 @@ def upload_file(file, user):
             #
             copied_folders = []
             for extracted_file in extracted_files:
-                print(f"extracted file in the for loop : {extracted_file}")
-                print(str(extracted_file).split("/"))
-                if not str(extracted_file).split("/")[0]+"/" in copied_folders:
-
-                    if not File.objects(name=extracted_file).first():
-                        print("I continued eventhought you breaked")
+                # print(f"extracted file in the for loop : {extracted_file}")
+                # print(str(extracted_file).split("/")[0], "/")
+                if not File.objects(name=str(extracted_file).split("/")[0] + "/").first():
+                    print(f"file with name: {str(extracted_file)}/", File.objects(name=str(extracted_file)).first(),)
+                    if not str(extracted_file).split("/")[0] + "/" in copied_folders:
                         save_path = os.path.join('public', extracted_file)
                         shutil.move(extracted_file, save_path)
 
@@ -290,12 +289,27 @@ def upload_file(file, user):
 
                         copied_folders.append(str(extracted_file))
                         print(copied_folders)
+                    else:
+                        print("it is in coppiedfolders")
                 else:
-                    print("it is in coppiedfolders")
+                    print("file already uploaded")
 
+            removed_folders = []
+            for extracted_file in extracted_files:
+                if not str(extracted_file).split("/")[0] + "/" in removed_folders:
+                    print("removed folder")
+                    print(str(extracted_file))
+                    if os.path.exists(extracted_file):
+                        print("it exists")
+                        if os.path.isdir(extracted_file):
+                            print("ohh it is dir")
+                            shutil.rmtree(extracted_file)
+                        else:
+                            print("ohh it is ossss")
+                            os.remove(extracted_file)
 
-
-            # os.remove(extracted_file)
+                    removed_folders.append(str(extracted_file))
+                    print(removed_folders)
             # category_won = recursive_read_file(f"public/{unzipped_file_name}", dict_counts)
             # print("final count: ", category_won)
 
