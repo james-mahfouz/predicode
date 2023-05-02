@@ -315,12 +315,10 @@ def recursive_read_file(folder_path, count):
         item_path = os.path.join(folder_path, item)
         if os.path.isdir(item_path):
             count = recursive_read_file(item_path, count)
-            print(count)
         elif os.path.isfile(item_path):
             if read_file(item_path, count, word_dict):
                 count = read_file(item_path, count, word_dict)
-                print(count)
-    print("finalcount: ", max(dict_counts, key=lambda k: dict_counts[k]))
+    # print("finalcount: ", max(dict_counts, key=lambda k: dict_counts[k]))
     return max(dict_counts, key=lambda k: dict_counts[k])
 
 
@@ -334,10 +332,12 @@ def read_file(file_path, category_counts,  keywords):
             for keyword in category_keywords:
 
                 # Use fuzzy matching to find all occurrences of the keyword in the text
-                for word in text.split(" "):
-                    score = fuzz.partial_ratio(keyword, word, score_cutoff=80)
-                    if score > 95:
-                        category_counts[category] += 1
+                # for word in text.split(" "):
+                score = fuzz.partial_ratio(keyword, word, score_cutoff=80)
+                # print(word, keyword, f"match = {score}")
+
+                if score > 95:
+                    category_counts[category] += 1
                 # Increment the category count for each match
 
         # return max(category_counts, key=category_counts.get)
