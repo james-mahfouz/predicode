@@ -273,29 +273,29 @@ def upload_file(file, user):
             copied_folders = []
             for extracted_file in extracted_files:
                 print(f"extracted file in the for loop : {extracted_file}")
-                print(extracted_file.split("/")[0])
-                if extracted_file.split("/")[0] in copied_folders:
-                    break
-                if not File.objects(name=extracted_file).first():
+                print(str(extracted_file).split("/"))
+                if not str(extracted_file).split("/")[0]+"/" in copied_folders:
 
-                    save_path = os.path.join('public', extracted_file)
-                    shutil.move(extracted_file, save_path)
+                    if not File.objects(name=extracted_file).first():
+                        print("I continued eventhought you breaked")
+                        save_path = os.path.join('public', extracted_file)
+                        shutil.move(extracted_file, save_path)
 
-                    uploaded_file = File(name=extracted_file, by_user=user.name, path=save_path, size=file.size,
-                                         category=file.category, content_rating=file.content_rating, price=file.price)
-                    uploaded_file.save()
+                        uploaded_file = File(name=extracted_file, by_user=user.name, path=save_path, size=file.size,
+                                             category=file.category, content_rating=file.content_rating, price=file.price)
+                        uploaded_file.save()
 
-                    user.files.append(uploaded_file)
-                    user.save()
+                        user.files.append(uploaded_file)
+                        user.save()
 
-                    copied_folders.append(extracted_file)
-                    print(copied_folders)
+                        copied_folders.append(str(extracted_file))
+                        print(copied_folders)
+                else:
+                    print("it is in coppiedfolders")
 
-                    # os.remove(extracted_file)
 
-                # else:
-                    # os.remove(extracted_file)
 
+            # os.remove(extracted_file)
             # category_won = recursive_read_file(f"public/{unzipped_file_name}", dict_counts)
             # print("final count: ", category_won)
 
