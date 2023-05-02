@@ -275,7 +275,6 @@ def upload_file(file, user):
                 # print(f"extracted file in the for loop : {extracted_file}")
                 # print(str(extracted_file).split("/")[0], "/")
                 if not File.objects(name=str(extracted_file).split("/")[0] + "/").first():
-                    print(f"file with name: {str(extracted_file)}/", File.objects(name=str(extracted_file)).first(),)
                     if not str(extracted_file).split("/")[0] + "/" in copied_folders:
                         save_path = os.path.join('public', extracted_file)
                         shutil.move(extracted_file, save_path)
@@ -301,9 +300,9 @@ def upload_file(file, user):
                             os.remove(extracted_file)
 
                     removed_folders.append(str(extracted_file))
-                    print(removed_folders)
-            # category_won = recursive_read_file(f"public/{unzipped_file_name}", dict_counts)
-            # print("final count: ", category_won)
+            for extracted_file in extracted_files:
+                category_won = recursive_read_file(f"public/{extracted_file}", dict_counts)
+                print("final count: ", category_won)
 
     except Exception as e:
         print(e)
