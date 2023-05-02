@@ -263,17 +263,19 @@ def upload_file(file, user):
                     if not filename.startswith("__MACOSX"):
                         zip_ref.extract(filename)
                         if os.path.exists(filename):
-                            print("File extracted:", filename)
                             extracted_files.append(filename)
-            print(extracted_files)
             os.remove(temp_file_path)
             # unzipped_file_name = os.path.splitext(file1)[0]
             # print(unzipped_file_name)
             # unzipped_file_name = unzipped_file_name.split("/")[0]
             # print("unzipped file", unzipped_file_name)
             #
+            copied_folders = []
             for extracted_file in extracted_files:
                 print(f"extracted file in the for loop : {extracted_file}")
+                print(extracted_file.split("/")[0])
+                if extracted_file.split("/")[0] in copied_folders:
+                    break
                 if not File.objects(name=extracted_file).first():
 
                     save_path = os.path.join('public', extracted_file)
@@ -286,10 +288,13 @@ def upload_file(file, user):
                     user.files.append(uploaded_file)
                     user.save()
 
+                    copied_folders.append(extracted_file)
+                    print(copied_folders)
+
                     # os.remove(extracted_file)
 
-                else:
-                    os.remove(extracted_file)
+                # else:
+                    # os.remove(extracted_file)
 
             # category_won = recursive_read_file(f"public/{unzipped_file_name}", dict_counts)
             # print("final count: ", category_won)
