@@ -6,6 +6,8 @@ import os
 import zipfile
 from models.fileModel import File
 from rapidfuzz import fuzz
+import tempfile
+
 
 # from models.userModel import User
 word_dict = {
@@ -244,30 +246,31 @@ def get_files(user):
     })
 
 
-def upload_file(file, user):
+async def upload_file(file, user):
     unzipped_file_path = ""
     unzipped_file_name = ""
     temp_file_path = ''
 
     try:
         if file.content_type == "data:application/zip;base64":
+            print("entered function")
             decoded_data = base64.b64decode(file.data)
-            temp_file_path = file.name
-            with open(temp_file_path, 'wb') as f:
-                f.write(decoded_data)
-
+            temp_file_path = tempfile.mktemp(suffix='.zip')
+            print("temp file", temp_file_path)
+            async with aiofiles.open(temp_file_path, 'wb') as f:
+                await f.write(decoded_data)
+            print("unzipping file")
             with zipfile.ZipFile(temp_file_path, 'r') as zip_ref:
                 zip_ref.extractall()
-
+            print("unzip complete")
             unzipped_file_name = os.path.splitext(file.name)[0]
+            print(unzipped_file_name)
             if not File.objects(name=unzipped_file_name).first():
                 unzip_dir = os.path.commonprefix(
                     zip_ref.namelist()).rstrip('/')
                 save_path = os.path.join('public', unzipped_file_name)
                 shutil.move(unzip_dir, save_path)
 
-                file_size = os.path.getsize(save_path)
-                print(file_size)
                 uploaded_file = File(name=unzipped_file_name, by_user=user.name, path=save_path, size=file.size,
                                      category=file.category, content_rating=file.content_rating, price=file.price)
                 uploaded_file.save()
@@ -330,7 +333,7 @@ def read_file(file_path, category_counts,  keywords):
                 # Use fuzzy matching to find all occurrences of the keyword in the text
                 for word in text.split(" "):
                     score = fuzz.partial_ratio(keyword, word, score_cutoff=80)
-                    if score > 80:
+                    if score > 95:
                         category_counts[category] += 1
                 # Increment the category count for each match
 
