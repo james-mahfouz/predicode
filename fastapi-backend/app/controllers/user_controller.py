@@ -6,7 +6,7 @@ import os
 from zipfile import ZipFile
 from models.fileModel import File
 from rapidfuzz import fuzz
-import mimetypes
+import textract
 
 
 # from models.userModel import User
@@ -405,24 +405,23 @@ def recursive_read_file(folder_path, count):
 def read_file(file_path, category_counts,  keywords):
     try:
         print("trying")
-        with open(file_path, 'r', errors='ignore') as file:
-            text = file.readlines()
+        text = textract.process(file_path).decode('utf-8')
         print(text)
-        for category, category_keywords in keywords.items():
-            for keyword in category_keywords:
-
-                # Use fuzzy matching to find all occurrences of the keyword in the text
-                # for word in text.split(" "):
-                for line in text:
-                    for word in line.split(" "):
-                        score = fuzz.partial_ratio(keyword, text, score_cutoff=80)
-
-                if score > 80:
-                    category_counts[category] += 1
-                # Increment the category count for each match
-
-        # return max(category_counts, key=category_counts.get)
-        return category_counts
+        # for category, category_keywords in keywords.items():
+        #     for keyword in category_keywords:
+        #
+        #         # Use fuzzy matching to find all occurrences of the keyword in the text
+        #         # for word in text.split(" "):
+        #         for line in text:
+        #             for word in line.split(" "):
+        #                 score = fuzz.partial_ratio(keyword, word, score_cutoff=80)
+        #
+        #         if score > 80:
+        #             category_counts[category] += 1
+        #         # Increment the category count for each match
+        #
+        # # return max(category_counts, key=category_counts.get)
+        # return category_counts
     except Exception as e:
         print(e)
         print("can't read")
