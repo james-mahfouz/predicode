@@ -289,23 +289,15 @@ def upload_file(file, user):
 
                         copied_folders.append(str(extracted_file))
                         print(copied_folders)
-                    else:
-                        print("it is in coppiedfolders")
-                else:
-                    print("file already uploaded")
 
             removed_folders = []
             for extracted_file in extracted_files:
                 if not str(extracted_file).split("/")[0] + "/" in removed_folders:
-                    print("removed folder")
-                    print(str(extracted_file))
+
                     if os.path.exists(extracted_file):
-                        print("it exists")
                         if os.path.isdir(extracted_file):
-                            print("ohh it is dir")
                             shutil.rmtree(extracted_file)
                         else:
-                            print("ohh it is ossss")
                             os.remove(extracted_file)
 
                     removed_folders.append(str(extracted_file))
