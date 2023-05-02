@@ -265,15 +265,10 @@ def upload_file(file, user):
                         if os.path.exists(filename):
                             extracted_files.append(filename)
             os.remove(temp_file_path)
-            # unzipped_file_name = os.path.splitext(file1)[0]
-            # print(unzipped_file_name)
-            # unzipped_file_name = unzipped_file_name.split("/")[0]
-            # print("unzipped file", unzipped_file_name)
-            #
+
             copied_folders = []
             for extracted_file in extracted_files:
-                # print(f"extracted file in the for loop : {extracted_file}")
-                # print(str(extracted_file).split("/")[0], "/")
+
                 if not File.objects(name=str(extracted_file).split("/")[0] + "/").first():
                     if not str(extracted_file).split("/")[0] + "/" in copied_folders:
                         save_path = os.path.join('public', extracted_file)
