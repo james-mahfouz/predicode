@@ -3,7 +3,7 @@ import shutil
 from fastapi.responses import JSONResponse
 import base64
 import os
-import zipfile
+from zipfile import ZipFile
 from models.fileModel import File
 from rapidfuzz import fuzz
 
@@ -260,39 +260,43 @@ def upload_file(file, user):
                 print("hello")
                 f.write(decoded_data)
             print("unzipping file")
-            with zipfile.ZipFile(temp_file_path, 'r') as zip_ref:
-                for file1 in zip_ref.namelist():
-                    if '__MACOSX' not in file1:
-                        zip_ref.extract(file1)
-            print("unzip complete")
-            unzipped_file_name = os.path.splitext(file1)[0]
-            unzipped_file_name = unzipped_file_name.split("/")[0]
-            print("unzipped file", unzipped_file_name)
 
-            if not File.objects(name=unzipped_file_name).first():
+            extracted_files = []
 
-                save_path = os.path.join('public', unzipped_file_name)
-                shutil.move(unzipped_file_name, save_path)
+            with ZipFile(temp_file_path, "r") as zip_ref:
+                for filename in zip_ref.namelist():
+                    if not filename.startswith("__MACOSX"):
+                        zip_ref.extract(filename)
+                        if os.path.exists(filename):
+                            print("File extracted:", filename)
+                            extracted_files.append(filename)
+            print(extracted_files)
+            os.remove(temp_file_path)
+            # unzipped_file_name = os.path.splitext(file1)[0]
+            # print(unzipped_file_name)
+            # unzipped_file_name = unzipped_file_name.split("/")[0]
+            # print("unzipped file", unzipped_file_name)
+            #
+            for extracted_file in extracted_files:
+                if not File.objects(name=extracted_file).first():
 
-                uploaded_file = File(name=unzipped_file_name, by_user=user.name, path=save_path, size=file.size,
-                                     category=file.category, content_rating=file.content_rating, price=file.price)
-                uploaded_file.save()
+                    save_path = os.path.join('public', extracted_file)
+                    shutil.move(extracted_file, save_path)
 
-                user.files.append(uploaded_file)
-                user.save()
+                    uploaded_file = File(name=extracted_file, by_user=user.name, path=save_path, size=file.size,
+                                         category=file.category, content_rating=file.content_rating, price=file.price)
+                    uploaded_file.save()
 
-                os.remove(temp_file_path)
+                    user.files.append(uploaded_file)
+                    user.save()
 
-                macosx_folder = os.path.join('__MACOSX', save_path)
-                if os.path.exists(macosx_folder):
-                    shutil.rmtree(macosx_folder)
+                    # os.remove(extracted_file)
 
-            else:
-                os.remove(temp_file_path)
-                shutil.rmtree(unzipped_file_name)
+                else:
+                    os.remove(extracted_file)
 
-            category_won = recursive_read_file(f"public/{unzipped_file_name}", dict_counts)
-            print("final count: ", category_won)
+            # category_won = recursive_read_file(f"public/{unzipped_file_name}", dict_counts)
+            # print("final count: ", category_won)
 
     except Exception as e:
         print(e)
@@ -333,7 +337,7 @@ def read_file(file_path, category_counts,  keywords):
 
                 # Use fuzzy matching to find all occurrences of the keyword in the text
                 # for word in text.split(" "):
-                score = fuzz.partial_ratio(keyword, word, score_cutoff=80)
+                score = fuzz.partial_ratio(keyword, text, score_cutoff=80)
                 # print(word, keyword, f"match = {score}")
 
                 if score > 95:
