@@ -26,13 +26,13 @@
 <!-- Prototyping -->
 <img src="./readme/title3.svg"/>
 
-> We designed Coffee Express using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
+> We designed James Mahfouz using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
 
 ### Wireframes
 
-| Login screen                            | Register screen                       | Landing screen                        |
-| --------------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| Login screen                               | Register screen                          | Landing screen                           |
+| ------------------------------------------ | ---------------------------------------- | ---------------------------------------- |
+| ![Landing](./readme/landing-wireframe.png) | ![fsdaf](./readme/landing-wireframe.png) | ![fsdaf](./readme/landing-wireframe.png) |
 
 ### Mockups
 
