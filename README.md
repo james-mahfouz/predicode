@@ -91,16 +91,50 @@
 <!-- How to run -->
 <img src="./readme/title6.svg"/>
 
-> To set up Coffee Express locally, follow these steps:
+> To set up Predicode locally, follow these steps:
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+Those are the prerequisites before installing the project
 
 - npm
+
   ```sh
   npm install npm@latest -g
   ```
+
+- Python
+
+1. Open the official Python website
+2. Scroll down to find the latest version of Python and download the installer package
+3. Double-click the downloaded package file to launch the installer.
+4. Follow the instructions in the installer to complete the installation process.
+
+- MongoDB
+
+For Mac
+
+1. Download the MongoDB Community Server .tgz file from the official website: https://www.mongodb.com/try/download/community.
+2. Open the downloaded .tgz file and extract the contents to a desired location.
+3. Rename the extracted folder to mongodb.
+4. Move the mongodb folder to the root directory (i.e., /) or to another preferred location.
+5. dd MongoDB's binaries to the system path by adding the following line to your ~/.bash_profile file:
+
+```sh
+export PATH=<mongodb-install-directory>/bin:$PATH
+```
+
+6. Run the mongod command in a terminal window to start the MongoDB server.
+
+For Windows
+
+1. Download the MongoDB Community Server .msi file from the official website: https://www.mongodb.com/try/download/community.
+2. Run the downloaded .msi file and follow the installation wizard.
+3. Choose a custom installation location or keep the default location suggested by the installer.
+4. Choose to install MongoDB as a service or not. Installing as a service allows MongoDB to start automatically when the computer starts.
+5. Complete the installation by clicking the "Install" button.
+6. Open a Command Prompt window and navigate to the bin folder of the MongoDB installation directory.
+7. Run the mongod command in the Command Prompt window to start the MongoDB server.
 
 ### Installation
 
