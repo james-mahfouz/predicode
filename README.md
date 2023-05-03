@@ -26,7 +26,7 @@
 <!-- Prototyping -->
 <img src="./readme/title3.svg"/>
 
-> We designed James Mahfouz using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
+> We designed Predicode using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
 
 ### Wireframes
 
@@ -53,7 +53,7 @@
 <!-- Implementation -->
 <img src="./readme/title4.svg"/>
 
-> Using the wireframes and mockups as a guide, we implemented the Coffee Express app with the following features:
+> Using the wireframes and mockups as a guide, we implemented the Predicode Website with the following features:
 
 ### User Screens (Mobile)
 
