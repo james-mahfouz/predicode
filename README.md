@@ -34,19 +34,19 @@
 | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
 | ![Signin](./readme/wireframes/signin-wireframe.png) | ![Signup](./readme/wireframes/signup-wireframe.png) | ![Landing](./readme/wireframes/admin-wireframe.png) |
 
-| Landing Page                                         | Landing Page                                        | Landing Page                                         |
-| ---------------------------------------------------- | --------------------------------------------------- | ---------------------------------------------------- |
-| ![Signin](./readme/wireframes/landing-wireframe.png) | ![Signup](./readme/wireframes/use-it-wireframe.png) | ![Landing](./readme/wireframes/footer-wireframe.png) |
+| Landing Page                              | Landing Page                             | Landing Page                              |
+| ----------------------------------------- | ---------------------------------------- | ----------------------------------------- |
+| ![Signin](./readme/landing-wireframe.png) | ![Signup](./readme/use-it-wireframe.png) | ![Landing](./readme/footer-wireframe.png) |
 
 ### Mockups
 
-| Login screen                                  | Register screen                               | admin screen                                  |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| ![Signin](./readme/mockups/signin-mockup.png) | ![Signup](./readme/mockups/signup-mockup.png) | ![Landing](./readme/mockups/admin-mockup.png) |
+| Login screen                          | Register screen                       | admin screen                          |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| ![Signin](./readme/signin-mockup.png) | ![Signup](./readme/signup-mockup.png) | ![Landing](./readme/admin-mockup.png) |
 
-| Landing Page                                   | Landing Page                                  | Landing Page                                   |
-| ---------------------------------------------- | --------------------------------------------- | ---------------------------------------------- |
-| ![Signin](./readme/mockups/landing-mockup.png) | ![Signup](./readme/mockups/use-it-mockup.png) | ![Landing](./readme/mockups/footer-mockup.png) |
+| Landing Page                           | Landing Page                          | Landing Page                           |
+| -------------------------------------- | ------------------------------------- | -------------------------------------- |
+| ![Signin](./readme/landing-mockup.png) | ![Signup](./readme/use-it-mockup.png) | ![Landing](./readme/footer-mockup.png) |
 
 <br><br>
 
@@ -54,6 +54,14 @@
 <img src="./readme/title4.svg"/>
 
 > Using the wireframes and mockups as a guide, we implemented the Predicode Website with the following features:
+
+### User Screens (Mobile)
+
+| Login screen                              | Register screen                         | Landing screen                          | Loading screen                          |
+| ----------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
+| Home screen                               | Menu Screen                             | Order Screen                            | Checkout Screen                         |
+| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
 
 ### Admin Screens (Web)
 
