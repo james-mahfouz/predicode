@@ -44,7 +44,7 @@ def upload_file(file, user):
     unzipped_file_path = ""
     unzipped_file_name = ""
     temp_file_path = ''
-
+    rating = 0
     try:
         if file.content_type == "data:application/zip;base64":
             decoded_data = base64.b64decode(file.data)
@@ -94,6 +94,24 @@ def upload_file(file, user):
 
                         copied_folders.append(str(extracted_file))
 
+            if not rating:
+                data = [int(file.size), float(file.price)]
+
+                for i in range(33):
+                    if category_list[i] == file.category:
+                        data.append(1)
+                    else:
+                        data.append(0)
+
+                for i in range(5):
+                    if content_list[i] == file.content_rating:
+                        data.append(1)
+                    else:
+                        data.append(0)
+
+                rating = rf.predict([data])
+                print(rating)
+
             removed_folders = []
             for extracted_file in extracted_files:
                 if not str(extracted_file).split("/")[0] + "/" in removed_folders:
@@ -105,23 +123,6 @@ def upload_file(file, user):
 
                     removed_folders.append(str(extracted_file))
 
-            # rf = joblib.load('../predicode-prediction-model/model.joblib')
-            data = [int(file.size), float(file.price)]
-
-            for i in range(33):
-                if category_list[i] == file.category:
-                    data.append(1)
-                else:
-                    data.append(0)
-
-            for i in range(5):
-                if content_list[i] == file.content_rating:
-                    data.append(1)
-                else:
-                    data.append(0)
-
-            rating = rf.predict([data])
-            print(rating)
             # for extracted_file in extracted_files:
             #     print("started determining category")
             #     dict_counts = {category: 0 for category in word_dict}
