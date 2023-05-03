@@ -79,7 +79,7 @@
 ### Predicode is built using the following technologies:
 
 - This project uses the [Vite Next Generation Frontend Tooling](https://vitejs.dev/). Vite is a fast and efficient build tool and web development platform that simplifies the creation of modern and scalable web applications. It offers fast module reloading, supports popular front-end frameworks, and optimizes the build process for performance.
-- For fast and scalable API development (backend), the website use [FastAPI framework](https://fastapi.tiangolo.com/). Vite is a fast and efficient build tool and web development platform that simplifies the creation of modern and scalable web applications. It offers fast module reloading, supports popular front-end frameworks, and optimizes the build process for performance.
+- For fast and scalable API development (backend), the website use [FastAPI framework](https://fastapi.tiangolo.com/). FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.7+ based on standard Python type hints.
 - For persistent storage (database), the website uses the [Mongodb](https://www.mongodb.com/) package which allows the app to create a custom storage schema and save it to a local database.
 - The app uses the font ["Montserrat"](https://fonts.google.com/specimen/Montserrat) as its main font, and the design of the app adheres to the material design guidelines.
 
