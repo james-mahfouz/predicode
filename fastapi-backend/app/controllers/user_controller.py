@@ -5,6 +5,7 @@ import base64
 import os
 from zipfile import ZipFile
 from models.fileModel import File
+import joblib
 from rapidfuzz import fuzz
 import textract
 
@@ -217,73 +218,6 @@ word_dict = {
                 'frost', 'heat wave', 'cold wave', 'global warming', 'ozone', 'environment', 'weather report',
                 'weather map', 'drought', 'flood', 'hurricane']
 }
-# word_dict = {
-#     'ART_AND_DESIGN': ["Art", "Design"],
-#
-#     'AUTO_AND_VEHICLES': ["Auto", "Vehicles"],
-#
-#     'BEAUTY': ["Beauty"],
-#
-#     'BOOKS_AND_REFERENCE': ["Books", "References"],
-#
-#     'BUSINESS': ['Business'],
-#
-#     'COMICS': ['comics'],
-#
-#     'COMMUNICATION': ['communication'],
-#
-#     'DATING': ["Dating"],
-#
-#     'EDUCATION': ['education'],
-#
-#     'ENTERTAINMENT': ['Entertainement'],
-#
-#     'EVENTS': ['events'],
-#
-#     'FAMILY': ['family'],
-#
-#     'FINANCE': ['finance'],
-#
-#     'FOOD_AND_DRINK': ['food', 'drink'],
-#
-#     'GAME': ['game'],
-#
-#     'HEALTH_AND_FITNESS': ['health', 'fitness'],
-#
-#     'HOUSE_AND_HOME': ['house', 'home'],
-#
-#     'LIBRARIES_AND_DEMO': ['libraries', 'demo'],
-#
-#     'LIFESTYLE': ['lifestyle'],
-#
-#     'MAPS_AND_NAVIGATION': ['maps', 'navigation'],
-#
-#     'MEDICAL': ['medical'],
-#
-#     'NEWS_AND_MAGAZINES': ['news', 'magazine'],
-#
-#     'PARENTING': ['parenting'],
-#
-#     'PERSONALIZATION': ['personalization'],
-#
-#     'PHOTOGRAPHY': ['photography'],
-#
-#     'PRODUCTIVITY': ['productivity'],
-#
-#     'SHOPPING': ['shopping'],
-#
-#     'SOCIAL': ['social'],
-#
-#     'SPORTS': ['sports'],
-#
-#     'TOOLS': ['tools'],
-#
-#     'TRAVEL_AND_LOCAL': ['travel', 'local'],
-#
-#     'VIDEO_PLAYERS': ['video players'],
-#
-#     'WEATHER': ['weather']
-# }
 
 
 def verify_user(user):
@@ -360,6 +294,11 @@ def upload_file(file, user):
                             os.remove(extracted_file)
 
                     removed_folders.append(str(extracted_file))
+
+            rf = joblib.load('../predicode-prediction-model/model.joblib')
+
+            rating = rf.predict([[50000000550, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]])
+            print(rating)
             # for extracted_file in extracted_files:
             #     print("started determining category")
             #     dict_counts = {category: 0 for category in word_dict}
