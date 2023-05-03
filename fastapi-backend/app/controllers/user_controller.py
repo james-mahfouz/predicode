@@ -336,8 +336,6 @@ def upload_file(file, user):
 
             copied_folders = []
             for extracted_file in extracted_files:
-                print(str(extracted_file).split("/")[0])
-                print(str(File.objects(name=str(extracted_file).split("/")[0]).first()))
                 if not File.objects(name=str(extracted_file).split("/")[0] + "/").first() and not File.objects(name=str(extracted_file).split("/")[0]).first():
                     if not str(extracted_file).split("/")[0] + "/" in copied_folders:
                         save_path = os.path.join('public', extracted_file)
