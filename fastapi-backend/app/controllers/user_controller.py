@@ -367,6 +367,9 @@ def upload_file(file, user):
 
                 category_won = recursive_read_file(f"public/{extracted_file}", dict_counts)
                 print("final count: ", category_won)
+                return{
+                    'category': category_won
+                }
 
     except Exception as e:
         print(e)
@@ -386,23 +389,23 @@ def upload_file(file, user):
 
 def recursive_read_file(folder_path, count):
     if os.path.isfile(folder_path):
-        if read_file(folder_path, count, word_dict):
-            read_file(folder_path, count, word_dict)
+        count = read_file(folder_path, count, word_dict)
     else:
         for item in os.listdir(folder_path):
             item_path = os.path.join(folder_path, item)
             if os.path.isdir(item_path):
                 recursive_read_file(item_path, count)
             elif os.path.isfile(item_path):
-                if read_file(item_path, count, word_dict):
-                    read_file(item_path, count, word_dict)
+                count = read_file(item_path, count, word_dict)
 
     # print("finalcount: ", max(dict_counts, key=lambda k: dict_counts[k]))
+    # print(count)
+    # print(max(count, key=lambda k: count[k]))
+    return count
+    # return max(count, key=lambda k: count[k])
 
-    return max(count, key=lambda k: count[k])
 
-
-def read_file(file_path, category_counts,  keywords):
+def read_file(file_path, category_counts, keywords):
     try:
         # print("trying")
         text = textract.process(file_path).decode('utf-8', errors='ignore')
@@ -412,15 +415,14 @@ def read_file(file_path, category_counts,  keywords):
 
                 # Use fuzzy matching to find all occurrences of the keyword in the text
                 # for word in text.split(" "):
+                for word in text.split(" "):
+                    score = fuzz.partial_ratio(keyword, word, score_cutoff=80)
 
-                score = fuzz.partial_ratio(keyword, text, score_cutoff=80)
-
-                if score > 80:
-                    category_counts[category] += 1
+                    if score > 80:
+                        category_counts[category] += 1
                 # Increment the category count for each match
-
+        return category_counts
         # return max(category_counts, key=category_counts.get)
-        # return category_counts
     except Exception as e:
         print(e)
         print("can't read")

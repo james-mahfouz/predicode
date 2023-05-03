@@ -92,6 +92,7 @@ const Upload = () => {
     }
 
     const uploaded_file = event.files[0];
+    setError("");
     if (uploaded_file.type === "application/zip") {
       const reader = new FileReader();
       reader.readAsDataURL(uploaded_file);
@@ -105,6 +106,7 @@ const Upload = () => {
           category: category.name,
           content_rating: content.name,
           name: event.files[0].name,
+          size: event.files[0].size,
         };
         const token = localStorage.getItem("token");
         axios
