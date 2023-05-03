@@ -34,7 +34,8 @@
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | ![Signin](./readme/signin-wireframe.png) | ![Signup](./readme/signup-wireframe.png) | ![Landing](./readme/admin-wireframe.png) |
 
-| Landing Page | Landing Page | Landing Page |
+| Landing Page                              | Landing Page                             | Landing Page                              |
+| ----------------------------------------- | ---------------------------------------- | ----------------------------------------- |
 | ![Signin](./readme/landing-wireframe.png) | ![Signup](./readme/use-it-wireframe.png) | ![Landing](./readme/footer-wireframe.png) |
 
 ### Mockups
