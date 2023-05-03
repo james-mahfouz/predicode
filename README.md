@@ -138,20 +138,55 @@ For Windows
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
    git clone https://github.com/your_username_/Project-Name.git
+   ```
+2. Navigate to the project frontend
+   ```sh
+   cd predicode/predicode-frontend
    ```
 3. Install NPM packages
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = "ENTER YOUR API";
+4. Run the frontend
+   ```sh
+   npm run dev
    ```
+5. Open another command-line
+6. Go to the backend
+   ```sh
+   cd predicode-server
+   ```
+7. Create a virtual environment
+   ```sh
+   python3 -m venv my_venv
+   ```
+8. Activate your virtual environement
+   ```sh
+   source my_venv/bin/activate
+   ```
+9. Install the requirements
+   ```sh
+   pip install -r requirements.txt
+   ```
+10. Go to the app directory
+    ```sh
+    cd app
+    ```
+11. Run the app
+    ```sh
+    uvicorn main:app --reload
+    ```
+12. Open a new command-line
+13. Go to the predicode-prediction-model
+    ```sh
+    cd predicode-server/predicode-prediction-model
+    ```
+14. Run Jupyter lab
+    ```sh
+    Jupyter lab
+    ```
 
-Now, you should be able to run Coffee Express locally and explore its features.
+Now, you should be able to run Predicode locally and explore its features.
