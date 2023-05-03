@@ -44,7 +44,8 @@
 | ------------------------------------- | ------------------------------------- | ------------------------------------- |
 | ![Signin](./readme/signin-mockup.png) | ![Signup](./readme/signup-mockup.png) | ![Landing](./readme/admin-mockup.png) |
 
-| Landing Page | Landing Page | Landing Page |
+| Landing Page                           | Landing Page                          | Landing Page                           |
+| -------------------------------------- | ------------------------------------- | -------------------------------------- |
 | ![Signin](./readme/landing-mockup.png) | ![Signup](./readme/use-it-mockup.png) | ![Landing](./readme/footer-mockup.png) |
 
 <br><br>
