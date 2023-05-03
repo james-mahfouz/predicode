@@ -30,12 +30,11 @@
 
 ### Wireframes
 
-| Login screen                              | Register screen                          | admin screen                               |
-| ----------------------------------------- | ---------------------------------------- | ------------------------------------------ |
-| ![Signin](./readme/signin-wireframe.png)  | ![Signup](./readme/signup-wireframe.png) | ![Landing](./readme/admin-wireframe.png)   |
-| Landing screen                            | Landing screen                           | Landing screen                             |
-| ----------------------------------------  | ---------------------------------------- | ------------------------------------------ |
-| ![Signin](./readme/landing-wireframe.png) | ![Signup](./readme/use-it-wireframe.png) | ![Landing](./readme/footer-wireframe.png)  |
+| Login screen                              | Register screen                          | admin screen                              |
+| ----------------------------------------- | ---------------------------------------- | ----------------------------------------- |
+| ![Signin](./readme/signin-wireframe.png)  | ![Signup](./readme/signup-wireframe.png) | ![Landing](./readme/admin-wireframe.png)  |
+| Landing screen                            | Landing screen                           | Landing screen                            |
+| ![Signin](./readme/landing-wireframe.png) | ![Signup](./readme/use-it-wireframe.png) | ![Landing](./readme/footer-wireframe.png) |
 
 ### Mockups
 
