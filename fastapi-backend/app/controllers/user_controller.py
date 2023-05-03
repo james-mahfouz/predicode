@@ -334,21 +334,23 @@ def upload_file(file, user):
                             extracted_files.append(filename)
             os.remove(temp_file_path)
 
-            copied_files = []
+            copied_folders = []
             for extracted_file in extracted_files:
-                file_name = os.path.basename(extracted_file)
-                if not File.objects(name=file_name).first():
-                    if not extracted_file in copied_files:
-                        save_path = os.path.join('public', file_name)
+                print(str(extracted_file).split("/")[0])
+                print(str(File.objects(name=str(extracted_file).split("/")[0]).first()))
+                if not File.objects(name=str(extracted_file).split("/")[0] + "/").first() and not File.objects(name=str(extracted_file).split("/")[0]).first():
+                    if not str(extracted_file).split("/")[0] + "/" in copied_folders:
+                        save_path = os.path.join('public', extracted_file)
                         shutil.move(extracted_file, save_path)
 
-                        uploaded_file = File(name=file_name, by_user=user.name, path=save_path, size=file.size,
-                                             category=file.category, content_rating=file.content_rating,
-                                             price=file.price)
+                        uploaded_file = File(name=extracted_file, by_user=user.name, path=save_path, size=file.size,
+                                             category=file.category, content_rating=file.content_rating, price=file.price)
                         uploaded_file.save()
 
                         user.files.append(uploaded_file)
                         user.save()
+
+                        copied_folders.append(str(extracted_file))
 
             removed_folders = []
             for extracted_file in extracted_files:
