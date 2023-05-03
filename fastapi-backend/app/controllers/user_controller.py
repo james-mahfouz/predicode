@@ -334,22 +334,21 @@ def upload_file(file, user):
                             extracted_files.append(filename)
             os.remove(temp_file_path)
 
-            copied_folders = []
+            copied_files = []
             for extracted_file in extracted_files:
-
-                if not File.objects(name=str(extracted_file).split("/")[0] + "/").first():
-                    if not str(extracted_file).split("/")[0] + "/" in copied_folders:
-                        save_path = os.path.join('public', extracted_file)
+                file_name = os.path.basename(extracted_file)
+                if not File.objects(name=file_name).first():
+                    if not extracted_file in copied_files:
+                        save_path = os.path.join('public', file_name)
                         shutil.move(extracted_file, save_path)
 
-                        uploaded_file = File(name=extracted_file, by_user=user.name, path=save_path, size=file.size,
-                                             category=file.category, content_rating=file.content_rating, price=file.price)
+                        uploaded_file = File(name=file_name, by_user=user.name, path=save_path, size=file.size,
+                                             category=file.category, content_rating=file.content_rating,
+                                             price=file.price)
                         uploaded_file.save()
 
                         user.files.append(uploaded_file)
                         user.save()
-
-                        copied_folders.append(str(extracted_file))
 
             removed_folders = []
             for extracted_file in extracted_files:
@@ -361,15 +360,15 @@ def upload_file(file, user):
                             os.remove(extracted_file)
 
                     removed_folders.append(str(extracted_file))
-            for extracted_file in extracted_files:
-                print("started determining category")
-                dict_counts = {category: 0 for category in word_dict}
-
-                category_won = recursive_read_file(f"public/{extracted_file}", dict_counts)
-                print("final count: ", category_won)
-                return{
-                    'category': category_won
-                }
+            # for extracted_file in extracted_files:
+            #     print("started determining category")
+            #     dict_counts = {category: 0 for category in word_dict}
+            #
+            #     category_won = recursive_read_file(f"public/{extracted_file}", dict_counts)
+            #     print("final count: ", category_won)
+            #     return{
+            #         'category': category_won
+            #     }
 
     except Exception as e:
         print(e)
@@ -387,43 +386,43 @@ def upload_file(file, user):
         }
 
 
-def recursive_read_file(folder_path, count):
-    if os.path.isfile(folder_path):
-        count = read_file(folder_path, count, word_dict)
-    else:
-        for item in os.listdir(folder_path):
-            item_path = os.path.join(folder_path, item)
-            if os.path.isdir(item_path):
-                recursive_read_file(item_path, count)
-            elif os.path.isfile(item_path):
-                count = read_file(item_path, count, word_dict)
-
-    # print("finalcount: ", max(dict_counts, key=lambda k: dict_counts[k]))
-    # print(count)
-    # print(max(count, key=lambda k: count[k]))
-    return count
-    # return max(count, key=lambda k: count[k])
-
-
-def read_file(file_path, category_counts, keywords):
-    try:
-        # print("trying")
-        text = textract.process(file_path).decode('utf-8', errors='ignore')
-        # print(text)
-        for category, category_keywords in keywords.items():
-            for keyword in category_keywords:
-
-                # Use fuzzy matching to find all occurrences of the keyword in the text
-                # for word in text.split(" "):
-                for word in text.split(" "):
-                    score = fuzz.partial_ratio(keyword, word, score_cutoff=80)
-
-                    if score > 80:
-                        category_counts[category] += 1
-                # Increment the category count for each match
-        return category_counts
-        # return max(category_counts, key=category_counts.get)
-    except Exception as e:
-        print(e)
-        print("can't read")
-        return False
+# def recursive_read_file(folder_path, count):
+#     if os.path.isfile(folder_path):
+#         count = read_file(folder_path, count, word_dict)
+#     else:
+#         for item in os.listdir(folder_path):
+#             item_path = os.path.join(folder_path, item)
+#             if os.path.isdir(item_path):
+#                 recursive_read_file(item_path, count)
+#             elif os.path.isfile(item_path):
+#                 count = read_file(item_path, count, word_dict)
+#
+#     # print("finalcount: ", max(dict_counts, key=lambda k: dict_counts[k]))
+#     # print(count)
+#     # print(max(count, key=lambda k: count[k]))
+#     return count
+#     # return max(count, key=lambda k: count[k])
+#
+#
+# def read_file(file_path, category_counts, keywords):
+#     try:
+#         # print("trying")
+#         text = textract.process(file_path).decode('utf-8', errors='ignore')
+#         # print(text)
+#         for category, category_keywords in keywords.items():
+#             for keyword in category_keywords:
+#
+#                 # Use fuzzy matching to find all occurrences of the keyword in the text
+#                 # for word in text.split(" "):
+#                 for word in text.split(" "):
+#                     score = fuzz.partial_ratio(keyword, word, score_cutoff=80)
+#
+#                     if score > 80:
+#                         category_counts[category] += 1
+#                 # Increment the category count for each match
+#         return category_counts
+#         # return max(category_counts, key=category_counts.get)
+#     except Exception as e:
+#         print(e)
+#         print("can't read")
+#         return False
