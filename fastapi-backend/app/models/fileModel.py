@@ -9,3 +9,4 @@ class File(Document):
     content_rating = StringField(required=True)
     price = FloatField(required=True)
     size = FloatField(required=True)
+    rating = FloatField(required=True)
