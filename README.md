@@ -30,15 +30,18 @@
 
 ### Wireframes
 
-| Login screen                             | Register screen                          | Landing screen                             |
-| ---------------------------------------- | ---------------------------------------- | ------------------------------------------ |
-| ![Signin](./readme/signin-wireframe.png) | ![Signup](./readme/signup-wireframe.png) | ![Landing](./readme/landing-wireframe.png) |
+| Login screen                              | Register screen                          | admin screen                               |
+| ----------------------------------------- | ---------------------------------------- | ------------------------------------------ |
+| ![Signin](./readme/signin-wireframe.png)  | ![Signup](./readme/signup-wireframe.png) | ![Landing](./readme/admin-wireframe.png)   |
+| Landing screen                            | Landing screen                           | Landing screen                             |
+| ----------------------------------------  | ---------------------------------------- | ------------------------------------------ |
+| ![Signin](./readme/landing-wireframe.png) | ![Signup](./readme/use-it-wireframe.png) | ![Landing](./readme/footer-wireframe.png)  |
 
 ### Mockups
 
-| Home screen                             | Menu Screen                           | Order Screen                          |
-| --------------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| Home screen                            | Menu Screen                            | Order Screen                     |
+| -------------------------------------- | -------------------------------------- | -------------------------------- |
+| ![Signin](./readme/demo/1440x1024.png) | ![signup](./readme/demo/1440x1024.png) | ![](./readme/demo/1440x1024.png) |
 
 <br><br>
 
