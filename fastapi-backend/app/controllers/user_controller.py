@@ -9,7 +9,7 @@ import joblib
 from rapidfuzz import fuzz
 import textract
 
-
+rf = joblib.load('../predicode-prediction-model/model.joblib')
 category_list = ['ART_AND_DESIGN', 'AUTO_AND_VEHICLES', 'BEAUTY', 'BOOKS_AND_REFERENCE', 'BUSINESS', 'COMICS', 'COMMUNICATION', 'DATING', 'EDUCATION', 'ENTERTAINMENT', 'EVENTS', 'FAMILY', 'FINANCE', 'FOOD_AND_DRINK', 'GAME', 'HEALTH_AND_FITNESS', 'HOUSE_AND_HOME', 'LIBRARIES_AND_DEMO', 'LIFESTYLE', 'MAPS_AND_NAVIGATION', 'MEDICAL', 'NEWS_AND_MAGAZINES', 'PARENTING', 'PERSONALIZATION', 'PHOTOGRAPHY', 'PRODUCTIVITY', 'SHOPPING', 'SOCIAL', 'SPORTS', 'TOOLS', 'TRAVEL_AND_LOCAL', 'VIDEO_PLAYERS', 'WEATHER']
 content_list = ['Adults only 18+', 'Everyone', 'Everyone 10+', 'Mature 17+', 'Teen']
 
@@ -89,7 +89,7 @@ def upload_file(file, user):
 
                     removed_folders.append(str(extracted_file))
 
-            rf = joblib.load('../predicode-prediction-model/model.joblib')
+            # rf = joblib.load('../predicode-prediction-model/model.joblib')
             data = [int(file.size), float(file.price)]
 
             for i in range(33):
@@ -104,7 +104,7 @@ def upload_file(file, user):
                 else:
                     data.append(0)
 
-            print(data)
+
             rating = rf.predict([data])
             print(rating)
             # for extracted_file in extracted_files:
