@@ -121,7 +121,7 @@ def upload_file(file, user):
                             os.remove(extracted_file)
 
                     removed_folders.append(str(extracted_file))
-            return {"rating": rating}
+            return {"rating": rating[0]}
             # for extracted_file in extracted_files:
             #     print("started determining category")
             #     dict_counts = {category: 0 for category in word_dict}
