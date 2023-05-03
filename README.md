@@ -106,14 +106,14 @@ Those are the prerequisites before installing the project
 
 - Python
 
-1. Open the official Python website
+1. Open the official Python website https://www.python.org/downloads/
 2. Scroll down to find the latest version of Python and download the installer package
 3. Double-click the downloaded package file to launch the installer.
 4. Follow the instructions in the installer to complete the installation process.
 
 - MongoDB
 
-For Mac
+  -For Mac
 
 1. Download the MongoDB Community Server .tgz file from the official website: https://www.mongodb.com/try/download/community.
 2. Open the downloaded .tgz file and extract the contents to a desired location.
