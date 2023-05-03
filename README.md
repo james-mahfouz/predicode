@@ -30,9 +30,9 @@
 
 ### Wireframes
 
-| Login screen                               | Register screen                          | Landing screen                           |
-| ------------------------------------------ | ---------------------------------------- | ---------------------------------------- |
-| ![Landing](./readme/landing-wireframe.png) | ![fsdaf](./readme/landing-wireframe.png) | ![fsdaf](./readme/landing-wireframe.png) |
+| Login screen                             | Register screen                          | Landing screen                             |
+| ---------------------------------------- | ---------------------------------------- | ------------------------------------------ |
+| ![Signin](./readme/signin-wireframe.png) | ![Signup](./readme/signup-wireframe.png) | ![Landing](./readme/landing-wireframe.png) |
 
 ### Mockups
 
