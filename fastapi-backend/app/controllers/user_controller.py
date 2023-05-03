@@ -110,7 +110,6 @@ def upload_file(file, user):
                         data.append(0)
 
                 rating = rf.predict([data])
-                print(rating)
 
             removed_folders = []
             for extracted_file in extracted_files:
@@ -122,7 +121,7 @@ def upload_file(file, user):
                             os.remove(extracted_file)
 
                     removed_folders.append(str(extracted_file))
-
+            return {"rating": rating}
             # for extracted_file in extracted_files:
             #     print("started determining category")
             #     dict_counts = {category: 0 for category in word_dict}
@@ -145,7 +144,8 @@ def upload_file(file, user):
 
         # Return an error message
         return {
-            "message": "An error occurred while processing the file"
+            "message": "An error occurred while processing the file",
+            "error": e
         }
 
 
