@@ -85,10 +85,12 @@ const Upload = () => {
       navigate("/login");
       return;
     }
+    if (!category) {
+      setError("Enter your category");
+    }
 
-    if (!price) {
-      setError("Please enter your app price");
-      return;
+    if (!content) {
+      setError("Enter your content rating");
     }
 
     const uploaded_file = event.files[0];
