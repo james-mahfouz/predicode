@@ -63,6 +63,7 @@ const Upload = () => {
   const [category, setCategory] = useState(null);
   const [content, setContent] = useState(null);
   const [rating, setRating] = useState("");
+  const [uploadedFile, setUploadedFile] = useState(null);
 
   const handleRatingChange = (event) => {
     setRatingValue(event.value);
@@ -103,6 +104,8 @@ const Upload = () => {
     }
 
     const uploaded_file = event.files[0];
+    setUploadedFile(uploaded_file);
+
     setError("");
     if (uploaded_file.type === "application/zip") {
       const reader = new FileReader();
@@ -141,6 +144,17 @@ const Upload = () => {
     }
   };
 
+  const try_another = () => {};
+
+  const clearFile = () => {
+    // const fileInput = document.querySelector('input[type="file"]');
+    // fileInput.value = null;
+    setCategory(null);
+    setContent(null);
+    setUploadedFile(null);
+    setRating("");
+  };
+
   const handleLogout = () => {
     setSignedIn(false);
     navigate("/");
@@ -166,7 +180,7 @@ const Upload = () => {
             <h1>{rating} / 5</h1>
             <Button
               label="Try another code"
-              // onClick={props.onClick}
+              onClick={clearFile}
               // className={props.className}
             />
           </div>
