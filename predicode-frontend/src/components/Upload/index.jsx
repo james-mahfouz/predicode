@@ -61,13 +61,9 @@ const Upload = () => {
   const [error, setError] = useState("");
   const [category, setCategory] = useState(null);
   const [content, setContent] = useState(null);
-  const [rating, setRating] = useState("");
+  const [rating, setRating] = useState(null);
   const [uploadedFile, setUploadedFile] = useState(null);
   const [uploading, setUploading] = useState(false);
-
-  const handleRatingChange = (event) => {
-    setRatingValue(event.value);
-  };
 
   const apiUrl = process.env.API_URL;
   const navigate = useNavigate();
@@ -130,10 +126,8 @@ const Upload = () => {
             },
           })
           .then((response) => {
-            console.log(response.data);
             setRating(parseFloat(response.data.rating));
             setUploading(false);
-            console.log(rating);
           })
           .catch((error) => {
             console.log(error);

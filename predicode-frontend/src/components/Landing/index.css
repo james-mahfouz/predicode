@@ -272,9 +272,35 @@
 
 .uploaded_codes{
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
     margin-top: 50px;
+    width: 100%;
 }
+.form_upload{
+    width: 30%;
+}
+
+.form_upload img{
+    width: 100%;
+}
+
+.right_arrow{
+    width: 5%;
+}
+
+.right_arrow img{
+    width: 100%;
+}
+.form_result{
+    width: 30%;
+}
+
+.form_result img{
+    width: 100%;
+}
+
 .footer{
     display: flex;
     flex-direction: column;

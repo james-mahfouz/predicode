@@ -1,5 +1,8 @@
 import background from "../../assets/landing-background.png";
 import logo from "../../assets/logo.png";
+import form_upload from "../../assets/form_upload.png";
+import form_result from "../../assets/form_result.png";
+import right_arrow from "../../assets/right-arrow.png";
 import upload from "../../assets/upload.jpg";
 import wait from "../../assets/wait.jpg";
 import create from "../../assets/create.jpg";
@@ -96,7 +99,19 @@ const Landing = () => {
           <h1>What to expect</h1>
         </div>
         <div className="uploaded_codes">
-          <DataTable value={files} style={{ width: "80%", height: "auto" }}>
+          <div className="form_upload">
+            <img src={form_upload} alt="" />
+          </div>
+
+          <div className="right_arrow">
+            <img src={right_arrow} alt="" />
+          </div>
+
+          <div className="form_result">
+            <img src={form_result} alt="" />
+          </div>
+
+          {/* <DataTable value={files} style={{ width: "80%", height: "auto" }}>
             <Column
               field="name"
               header="Code Uploaded"
@@ -107,7 +122,7 @@ const Landing = () => {
               header="Result"
               headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
             ></Column>
-          </DataTable>
+          </DataTable> */}
         </div>
       </section>
 

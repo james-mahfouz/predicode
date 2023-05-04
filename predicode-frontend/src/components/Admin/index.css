@@ -73,19 +73,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #00D39C;
-    border: solid 3px #00D39C;
-    border-radius: 10px;
+    color: #FF4136;
     height: 40px;
     width: 90px;
     cursor: pointer;
     transition: all 0.3s ease;
-}
-
-.logout-btn:hover{
-    background-color: #fff;
-    border: solid 3px #00D39C;
-    color: #00D39C;
 }
 
 .display-users{
