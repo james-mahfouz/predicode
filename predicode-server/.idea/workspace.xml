@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="344a509d-69c3-480d-8168-3503c6dccc68" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../fastapi-backend/app/controllers/user_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/../fastapi-backend/app/controllers/user_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../predicode-frontend/src/components/Landing/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/../predicode-frontend/src/components/Landing/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../predicode-frontend/src/components/Upload/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../predicode-frontend/src/components/Upload/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>

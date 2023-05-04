@@ -136,14 +136,14 @@ def upload_file(file, user):
             #     }
 
     except Exception as e:
-        print(e)
-        print("removing content")
-        if os.path.exists(temp_file_path):
-            os.remove(temp_file_path)
-        if os.path.exists(unzipped_file_name):
-            unzipped_file_path = os.path.join('public', unzipped_file_name)
-        if os.path.exists(unzipped_file_path):
-            shutil.rmtree(unzipped_file_path)
+        # print(e)
+        # print("removing content")
+        # if os.path.exists(temp_file_path):
+        #     os.remove(temp_file_path)
+        # if os.path.exists(unzipped_file_name):
+        #     unzipped_file_path = os.path.join('public', unzipped_file_name)
+        # if os.path.exists(unzipped_file_path):
+        #     shutil.rmtree(unzipped_file_path)
 
         # Return an error message
         return {

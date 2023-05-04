@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import JSZip from "jszip";
 import Navbar from "../Navbar";
-import star from "../../assets/star.png";
 import StarRatings from "react-star-ratings";
 
 import { useNavigate } from "react-router-dom";
@@ -11,6 +9,7 @@ import { Message } from "primereact/message";
 import { Dropdown } from "primereact/dropdown";
 import { InputNumber } from "primereact/inputnumber";
 import { Button } from "primereact/button";
+import { ProgressBar } from "primereact/progressbar";
 
 const optionsCategory = [
   { name: "ART_AND_DESIGN", code: "ART_AND_DESIGN" },
@@ -64,6 +63,7 @@ const Upload = () => {
   const [content, setContent] = useState(null);
   const [rating, setRating] = useState("");
   const [uploadedFile, setUploadedFile] = useState(null);
+  const [uploading, setUploading] = useState(false);
 
   const handleRatingChange = (event) => {
     setRatingValue(event.value);
@@ -105,7 +105,7 @@ const Upload = () => {
 
     const uploaded_file = event.files[0];
     setUploadedFile(uploaded_file);
-
+    setUploading(true);
     setError("");
     if (uploaded_file.type === "application/zip") {
       const reader = new FileReader();
@@ -132,23 +132,22 @@ const Upload = () => {
           .then((response) => {
             console.log(response.data);
             setRating(parseFloat(response.data.rating));
+            setUploading(false);
             console.log(rating);
           })
           .catch((error) => {
             console.log(error);
+            setUploading(false);
           });
       };
     } else {
       console.log("File not zipped");
       setError("File should be zipped");
+      setUploading(false);
     }
   };
 
-  const try_another = () => {};
-
-  const clearFile = () => {
-    // const fileInput = document.querySelector('input[type="file"]');
-    // fileInput.value = null;
+  const try_another = () => {
     setCategory(null);
     setContent(null);
     setUploadedFile(null);
@@ -178,11 +177,7 @@ const Upload = () => {
               halfStarEnabled={true}
             />
             <h1>{rating} / 5</h1>
-            <Button
-              label="Try another code"
-              onClick={clearFile}
-              // className={props.className}
-            />
+            <Button label="Try another code" onClick={try_another} />
           </div>
         )}
         {!rating && (
@@ -201,6 +196,14 @@ const Upload = () => {
                 </p>
               }
             />
+
+            {uploading && (
+              <ProgressBar
+                mode="indeterminate"
+                style={{ height: "6px" }}
+              ></ProgressBar>
+            )}
+
             <div className="form">
               {error && (
                 <Message
