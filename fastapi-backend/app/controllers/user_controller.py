@@ -85,7 +85,8 @@ def upload_file(file, user):
                                 data.append(0)
 
                         rating = rf.predict([data])
-                        print(rating)
+                        rating = str(rating)[:4]
+
                         uploaded_file = File(name=extracted_file, by_user=user.name, path=save_path, size=file.size,
                                              category=file.category, content_rating=file.content_rating, price=file.price, rating=rating)
                         uploaded_file.save()
@@ -111,6 +112,7 @@ def upload_file(file, user):
                         data.append(0)
 
                 rating = rf.predict([data])
+                rating = str(rating[0])[:4]
 
             removed_folders = []
             for extracted_file in extracted_files:
@@ -122,7 +124,7 @@ def upload_file(file, user):
                             os.remove(extracted_file)
 
                     removed_folders.append(str(extracted_file))
-            return {"rating": rating[0]}
+            return {"rating": rating}
             # for extracted_file in extracted_files:
             #     print("started determining category")
             #     dict_counts = {category: 0 for category in word_dict}
