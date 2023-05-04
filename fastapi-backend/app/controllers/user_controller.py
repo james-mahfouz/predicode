@@ -85,7 +85,7 @@ def upload_file(file, user):
                                 data.append(0)
 
                         rating = rf.predict([data])
-                        rating = str(rating)[:4]
+                        rating = str(rating[0])[:4]
 
                         uploaded_file = File(name=extracted_file, by_user=user.name, path=save_path, size=file.size,
                                              category=file.category, content_rating=file.content_rating, price=file.price, rating=rating)
