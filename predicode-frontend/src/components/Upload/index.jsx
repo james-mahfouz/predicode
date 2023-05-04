@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import JSZip from "jszip";
 import Navbar from "../Navbar";
+import star from "../../assets/star.png";
+import StarRatings from "react-star-ratings";
 
 import { useNavigate } from "react-router-dom";
 import { FileUpload } from "primereact/fileupload";
 import { Message } from "primereact/message";
 import { Dropdown } from "primereact/dropdown";
 import { InputNumber } from "primereact/inputnumber";
+import { Button } from "primereact/button";
 
 const optionsCategory = [
   { name: "ART_AND_DESIGN", code: "ART_AND_DESIGN" },
@@ -59,6 +62,11 @@ const Upload = () => {
   const [error, setError] = useState("");
   const [category, setCategory] = useState(null);
   const [content, setContent] = useState(null);
+  const [ratingValue, setRatingValue] = useState(3.5);
+
+  const handleRatingChange = (event) => {
+    setRatingValue(event.value);
+  };
 
   const apiUrl = process.env.API_URL;
   const navigate = useNavigate();
@@ -199,6 +207,19 @@ const Upload = () => {
               />
             </div>
           </div>
+        </div>
+
+        <div className="prediction">
+          <h1>Your App Rating</h1>
+          <StarRatings
+            rating={3.5}
+            starRatedColor="orange"
+            numberOfStars={5}
+            starDimension="40px"
+            starSpacing="2px"
+            halfStarEnabled={true}
+          />
+          <h1>4.5/10</h1>
         </div>
       </section>
     </div>
