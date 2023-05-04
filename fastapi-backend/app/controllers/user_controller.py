@@ -7,6 +7,7 @@ from models.fileModel import File
 import joblib
 import openai
 from configs.config import OPEN_AI_KEY
+import inspect
 
 openai.api_key = OPEN_AI_KEY
 rf = joblib.load('../predicode-prediction-model/model.joblib')
@@ -142,6 +143,21 @@ def upload_file(file, user):
         }
 
 
+def check_maintainability(code):
+    prompt = "Please check the following code and tell me if it's maintainable or not:\n\n" + code + "\n\nWhat are the potential issues with this code?\n\nWhat changes would you suggest to improve its maintainability?\n\nAnswer: "
+    response = openai.Completion.create(
+        engine="text-davinci-002",
+        prompt=prompt,
+        temperature=0.7,
+        max_tokens=2048,
+        top_p=1,
+        frequency_penalty=0,
+        presence_penalty=0
+    )
+
+    return response.choices[0].text.strip()
+# response = check_maintainability(inspect.getsource(verify_user) + inspect.getsource(get_files))
+# print(response)
 # def recursive_read_file(folder_path, count):
 #     if os.path.isfile(folder_path):
 #         count = read_file(folder_path, count, word_dict)
