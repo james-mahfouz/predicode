@@ -6,8 +6,7 @@ import os
 from zipfile import ZipFile
 from models.fileModel import File
 import joblib
-from rapidfuzz import fuzz
-import textract
+import openai
 
 rf = joblib.load('../predicode-prediction-model/model.joblib')
 
