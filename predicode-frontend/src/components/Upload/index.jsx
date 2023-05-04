@@ -62,7 +62,7 @@ const Upload = () => {
   const [error, setError] = useState("");
   const [category, setCategory] = useState(null);
   const [content, setContent] = useState(null);
-  const [ratingValue, setRatingValue] = useState(3.5);
+  const [rating, setRating] = useState(4);
 
   const handleRatingChange = (event) => {
     setRatingValue(event.value);
@@ -149,6 +149,23 @@ const Upload = () => {
         className="upload-wrapper"
         style={{ paddingTop: error ? "50px" : "0px" }}
       >
+        {/* <div className="prediction">
+          <h1>Your App Rating</h1>
+          <StarRatings
+            rating={rating}
+            starRatedColor="orange"
+            numberOfStars={5}
+            starDimension="40px"
+            starSpacing="2px"
+            halfStarEnabled={true}
+          />
+          <h1>{rating} / 5</h1>
+          <Button
+            label="Try another code"
+            // onClick={props.onClick}
+            // className={props.className}
+          />
+        </div> */}
         <div className="landing-wrapper">
           <h3>↓ Upload your ZIPPED Folder here ↓</h3>
           <FileUpload
@@ -207,19 +224,6 @@ const Upload = () => {
               />
             </div>
           </div>
-        </div>
-
-        <div className="prediction">
-          <h1>Your App Rating</h1>
-          <StarRatings
-            rating={3.5}
-            starRatedColor="orange"
-            numberOfStars={5}
-            starDimension="40px"
-            starSpacing="2px"
-            halfStarEnabled={true}
-          />
-          <h1>4.5/10</h1>
         </div>
       </section>
     </div>
