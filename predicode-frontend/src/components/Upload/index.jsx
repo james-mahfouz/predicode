@@ -62,7 +62,7 @@ const Upload = () => {
   const [error, setError] = useState("");
   const [category, setCategory] = useState(null);
   const [content, setContent] = useState(null);
-  const [rating, setRating] = useState(4);
+  const [rating, setRating] = useState("");
 
   const handleRatingChange = (event) => {
     setRatingValue(event.value);
@@ -81,7 +81,6 @@ const Upload = () => {
         });
         setSignedIn(true);
       } catch (e) {
-        console.log(e);
         navigate("/login");
       }
     };
@@ -129,6 +128,8 @@ const Upload = () => {
           })
           .then((response) => {
             console.log(response.data);
+            setRating(parseFloat(response.data.rating));
+            console.log(rating);
           })
           .catch((error) => {
             console.log(error);
@@ -149,86 +150,90 @@ const Upload = () => {
       <Navbar onLogout={handleLogout} />
       <section
         className="upload-wrapper"
-        style={{ paddingTop: error ? "50px" : "0px" }}
+        // style={{ paddingTop: error ? "50px" : "0px" }}
       >
-        {/* <div className="prediction">
-          <h1>Your App Rating</h1>
-          <StarRatings
-            rating={rating}
-            starRatedColor="orange"
-            numberOfStars={5}
-            starDimension="40px"
-            starSpacing="2px"
-            halfStarEnabled={true}
-          />
-          <h1>{rating} / 5</h1>
-          <Button
-            label="Try another code"
-            // onClick={props.onClick}
-            // className={props.className}
-          />
-        </div> */}
-        <div className="landing-wrapper">
-          <h3>↓ Upload your ZIPPED Folder here ↓</h3>
-          <FileUpload
-            name="demo[]"
-            customUpload={true}
-            uploadHandler={onUpload}
-            accept=".zip, .folder, application/zip, application/x-zip-compressed, multipart/x-zip"
-            webkitdirectory="true"
-            maxFileSize={100000000000000}
-            emptyTemplate={
-              <p className="m-0">
-                Upload your zipped code folder and see your rating
-              </p>
-            }
-          />
-          <div className="form">
-            {error && (
-              <Message
-                severity="error"
-                text={error}
-                style={{ width: "100%", marginBottom: "10px" }}
-              />
-            )}
+        {rating && (
+          <div className="prediction">
+            <h1>Your App Rating</h1>
+            <StarRatings
+              rating={rating}
+              starRatedColor="orange"
+              numberOfStars={5}
+              starDimension="40px"
+              starSpacing="2px"
+              halfStarEnabled={true}
+            />
+            <h1>{rating} / 5</h1>
+            <Button
+              label="Try another code"
+              // onClick={props.onClick}
+              // className={props.className}
+            />
+          </div>
+        )}
+        {!rating && (
+          <div className="landing-wrapper">
+            <h3>↓ Upload your ZIPPED Folder here ↓</h3>
+            <FileUpload
+              name="demo[]"
+              customUpload={true}
+              uploadHandler={onUpload}
+              accept=".zip, .folder, application/zip, application/x-zip-compressed, multipart/x-zip"
+              webkitdirectory="true"
+              maxFileSize={100000000000000}
+              emptyTemplate={
+                <p className="m-0">
+                  Upload your zipped code folder and see your rating
+                </p>
+              }
+            />
+            <div className="form">
+              {error && (
+                <Message
+                  severity="error"
+                  text={error}
+                  style={{ width: "100%", marginBottom: "10px" }}
+                />
+              )}
 
-            <div className="inputfield">
-              <label>Category: </label>
-              <Dropdown
-                value={category}
-                onChange={(e) => setCategory(e.value)}
-                options={optionsCategory}
-                optionLabel="name"
-                placeholder="App Category"
-                className="w-full md:w-14rem"
-                // onBlur={handleCategoryBlur}
-              />
-            </div>
+              <div className="inputfield">
+                <label>Category: </label>
+                <Dropdown
+                  value={category}
+                  onChange={(e) => setCategory(e.value)}
+                  options={optionsCategory}
+                  optionLabel="name"
+                  placeholder="App Category"
+                  className="w-full md:w-14rem"
+                  // onBlur={handleCategoryBlur}
+                />
+              </div>
 
-            <div className="inputfield">
-              <label>Content Rating: </label>
-              <Dropdown
-                value={content}
-                onChange={(e) => setContent(e.value)}
-                options={optionsContentRating}
-                optionLabel="name"
-                placeholder="App Content Rating"
-                className="w-full md:w-14rem"
-                // onBlur={handleContentBlur}
-              />
-            </div>
+              <div className="inputfield">
+                <label>Content Rating: </label>
+                <Dropdown
+                  value={content}
+                  onChange={(e) => setContent(e.value)}
+                  options={optionsContentRating}
+                  optionLabel="name"
+                  placeholder="App Content Rating"
+                  className="w-full md:w-14rem"
+                  // onBlur={handleContentBlur}
+                />
+              </div>
 
-            <div className="inputfield">
-              <label>Price $: </label>
-              <InputNumber
-                id="number-input"
-                value={price}
-                onValueChange={(e) => setPrice(e.value)}
-                className="w-full md:w-14rem"
-              />
+              <div className="inputfield">
+                <label>Price $: </label>
+                <InputNumber
+                  id="number-input"
+                  value={price}
+                  onValueChange={(e) => setPrice(e.value)}
+                  className="w-full md:w-14rem"
+                />
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </section>
     </div>
   );
