@@ -10,13 +10,13 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-right: 50px;
+    margin-right: 3rem;
     margin-top: 10px;
-    margin-left: 50px;
+    margin-left: 2rem;
 }
 
 .logo{
-    width: 250px;
+    width: 17rem;
 }
 
 .logo img{
@@ -36,7 +36,7 @@
 }
 
 .pages div h4{
-    margin-right: 20px;
+    margin-right: 1rem;
     font-size: 0.9rem;
     color: rgba(0,0,0,0.8);
     cursor: pointer;
@@ -124,7 +124,7 @@
     align-items: center;
     justify-content: space-between;
     position: relative;
-    margin-right: 75px;
+    margin-right: 3rem;
 }
 
 .landing_picture{
@@ -139,7 +139,7 @@
 
 .marketing_text{
     position: absolute;
-    width: 220px;
+    width: 15rem;
     right: 0;
 }
 
@@ -163,13 +163,13 @@
 }
 
 .prediction {
-    margin-top: 80px;
+    margin-top: 5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #fff;
-    padding: 20px;
-    border-radius: 20px;
+    padding: 1.2rem;
+    border-radius: 1.2rem;
 }
 
 .prediction h1 {
@@ -209,7 +209,7 @@
 .landing-wrapper .form .inputfield label {
     width: 200px;
     margin-right: 10px;
-    font-size: 15px;
+    font-size: 1rem;
     font-weight: 700;
     color: rgba(0,0,0,0.6);
 }
@@ -218,7 +218,7 @@
     width: 100%;
     outline: none;
     border: none;
-    border-bottom: #D8E9EF solid 2px;
+    border-bottom: #f0f5f8 solid 2px;
     font-size: 15px;
     padding: 8px 10px;
     border-radius: 3px;
@@ -232,7 +232,7 @@
 
 
 .use_it{
-    background-color: #D8E9EF;
+    background-color: #f0f5f8;
     padding-top: 50px;
 }
 
@@ -259,7 +259,7 @@
 }
 
 .expectation {
-    background-color: #D8E9EF;
+    background-color: #f0f5f8;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -332,8 +332,11 @@
 
 
 
-/* @media only screen and (max-width: 720px) {
-    .navbar{
+@media only screen and (max-width: 720px) {
+    html {
+        font-size: 12px;
+    }
+    /* .navbar{
         margin-right: 20px;
         margin-left: 20px;
         margin-bottom: 0px;
@@ -353,6 +356,14 @@
     .marketing_text {
         width: 25%;
         margin-left: -120px;
-    }
+    } */
 
-} */
+}
+@media only screen and (max-width: 450px) {
+    html{
+        font-size: 10px;
+    }
+    .landing_picture{
+        width: 100%;
+    }
+}
