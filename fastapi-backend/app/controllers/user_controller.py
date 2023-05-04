@@ -1,5 +1,4 @@
 import shutil
-# from bson import ObjectId
 from fastapi.responses import JSONResponse
 import base64
 import os
@@ -7,7 +6,9 @@ from zipfile import ZipFile
 from models.fileModel import File
 import joblib
 import openai
+from configs.config import OPEN_AI_KEY
 
+openai.api_key = OPEN_AI_KEY
 rf = joblib.load('../predicode-prediction-model/model.joblib')
 
 category_list = ['ART_AND_DESIGN', 'AUTO_AND_VEHICLES', 'BEAUTY', 'BOOKS_AND_REFERENCE', 'BUSINESS', 'COMICS', 'COMMUNICATION', 'DATING', 'EDUCATION', 'ENTERTAINMENT', 'EVENTS', 'FAMILY', 'FINANCE', 'FOOD_AND_DRINK', 'GAME', 'HEALTH_AND_FITNESS', 'HOUSE_AND_HOME', 'LIBRARIES_AND_DEMO', 'LIFESTYLE', 'MAPS_AND_NAVIGATION', 'MEDICAL', 'NEWS_AND_MAGAZINES', 'PARENTING', 'PERSONALIZATION', 'PHOTOGRAPHY', 'PRODUCTIVITY', 'SHOPPING', 'SOCIAL', 'SPORTS', 'TOOLS', 'TRAVEL_AND_LOCAL', 'VIDEO_PLAYERS', 'WEATHER']
@@ -135,16 +136,6 @@ def upload_file(file, user):
             #     }
 
     except Exception as e:
-        # print(e)
-        # print("removing content")
-        # if os.path.exists(temp_file_path):
-        #     os.remove(temp_file_path)
-        # if os.path.exists(unzipped_file_name):
-        #     unzipped_file_path = os.path.join('public', unzipped_file_name)
-        # if os.path.exists(unzipped_file_path):
-        #     shutil.rmtree(unzipped_file_path)
-
-        # Return an error message
         return {
             "message": "An error occurred while processing the file",
             "error": e
