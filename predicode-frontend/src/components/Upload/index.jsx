@@ -95,10 +95,12 @@ const Upload = () => {
     }
     if (!category) {
       setError("Enter your category");
+      return;
     }
 
     if (!content) {
       setError("Enter your content rating");
+      return;
     }
 
     const uploaded_file = event.files[0];
@@ -199,6 +201,7 @@ const Upload = () => {
                 optionLabel="name"
                 placeholder="App Category"
                 className="w-full md:w-14rem"
+                // onBlur={handleCategoryBlur}
               />
             </div>
 
@@ -211,6 +214,7 @@ const Upload = () => {
                 optionLabel="name"
                 placeholder="App Content Rating"
                 className="w-full md:w-14rem"
+                // onBlur={handleContentBlur}
               />
             </div>
 
