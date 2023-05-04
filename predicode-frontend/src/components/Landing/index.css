@@ -288,6 +288,7 @@
 
 .right_arrow{
     width: 5%;
+    filter: brightness(50%) saturate(100%) grayscale(100%) contrast(80%);
 }
 
 .right_arrow img{
