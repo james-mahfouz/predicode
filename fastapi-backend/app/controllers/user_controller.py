@@ -1,5 +1,6 @@
 import shutil
 from fastapi.responses import JSONResponse
+from fastapi import HTTPException, status
 import base64
 import os
 from zipfile import ZipFile
@@ -46,6 +47,9 @@ def get_files(user):
 
 
 def upload_file(file, user):
+    if file.size < 819200:
+        raise HTTPException(status_code=404, detail="file is too small")
+
     rating = 0
     try:
         if file.content_type == "data:application/zip;base64":
@@ -90,6 +94,11 @@ def upload_file(file, user):
             for extracted_file in extracted_files:
                 if not str(extracted_file).split("/")[0] + "/" in searched_folders:
                     functions = search_java_files(extracted_file)
+                    if len(functions) == 0:
+                        raise HTTPException(status_code=404, detail="This isn't a Java Project")
+                    if len(functions) < 5:
+                        raise HTTPException(status_code=500, detail="This project is too small to be deployed")
+
                     selected_functions = random.sample(functions, 3)
                     functions_string = "\n".join(selected_functions)
                     maintainability = check_maintainability(functions_string)
