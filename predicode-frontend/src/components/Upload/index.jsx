@@ -102,12 +102,12 @@ const Upload = () => {
 
     const uploaded_file = event.files[0];
 
-    if (event.files[0].size < 819200) {
+    if (event.files[0].size < 614000) {
       setError("this file is too small");
       return;
     }
 
-    if (event.files[0].size > 614400) {
+    if (event.files[0].size > 28147456) {
       setError("this file is too Big");
       return;
     }
