@@ -86,7 +86,6 @@ def upload_file(file, user):
                     functions_string = "\n".join(selected_functions)
                     maintainability = check_maintainability(functions_string)
                     searched_folders.append(str(extracted_file))
-                    remove_folders(extracted_files)
 
             copied_folders = []
             for extracted_file in extracted_files:
@@ -106,6 +105,7 @@ def upload_file(file, user):
                         user.save()
 
                         copied_folders.append(str(extracted_file))
+                        remove_folders(extracted_files)
 
             if not rating:
                 rating = predict(size=file.size, price=file.price, category=file.category, content=file.content_rating)
