@@ -43,9 +43,7 @@ def get_files(user):
 
 
 def upload_file(file, user):
-    unzipped_file_path = ""
-    unzipped_file_name = ""
-    temp_file_path = ''
+
     rating = 0
     try:
         if file.content_type == "data:application/zip;base64":
@@ -126,15 +124,6 @@ def upload_file(file, user):
 
                     removed_folders.append(str(extracted_file))
             return {"rating": rating}
-            # for extracted_file in extracted_files:
-            #     print("started determining category")
-            #     dict_counts = {category: 0 for category in word_dict}
-            #
-            #     category_won = recursive_read_file(f"public/{extracted_file}", dict_counts)
-            #     print("final count: ", category_won)
-            #     return{
-            #         'category': category_won
-            #     }
 
     except Exception as e:
         return {
