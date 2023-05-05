@@ -70,22 +70,8 @@ def upload_file(file, user):
                         save_path = os.path.join('public', extracted_file)
                         shutil.move(extracted_file, save_path)
 
-                        data = [int(file.size), float(file.price)]
-
-                        for i in range(33):
-                            if category_list[i] == file.category:
-                                data.append(1)
-                            else:
-                                data.append(0)
-
-                        for i in range(5):
-                            if content_list[i] == file.content_rating:
-                                data.append(1)
-                            else:
-                                data.append(0)
-
-                        rating = rf.predict([data])
-                        rating = str(rating[0])[:4]
+                        rating = predict(size=file.size, price=file.price, category=file.category,
+                                         content=file.content_rating)
 
                         uploaded_file = File(name=extracted_file, by_user=user.name, path=save_path, size=file.size,
                                              category=file.category, content_rating=file.content_rating, price=file.price, rating=rating)
@@ -97,22 +83,7 @@ def upload_file(file, user):
                         copied_folders.append(str(extracted_file))
 
             if not rating:
-                data = [int(file.size), float(file.price)]
-
-                for i in range(33):
-                    if category_list[i] == file.category:
-                        data.append(1)
-                    else:
-                        data.append(0)
-
-                for i in range(5):
-                    if content_list[i] == file.content_rating:
-                        data.append(1)
-                    else:
-                        data.append(0)
-
-                rating = rf.predict([data])
-                rating = str(rating[0])[:4]
+                rating = predict(size=file.size, price=file.price, category=file.category, content=file.content_rating)
 
             removed_folders = []
             for extracted_file in extracted_files:
