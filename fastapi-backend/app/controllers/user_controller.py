@@ -119,7 +119,7 @@ def upload_file(file, user):
 
 
 def check_maintainability(code):
-    # prompt = "Please check the following code and tell me if it's maintainable or not:\n\n" + code + "\n\nWhat are the potential issues with this code?\n\nWhat changes would you suggest to improve its maintainability?\n\nAnswer: "
+    # prompt = "those are 3 functions form a project Please check the following functions and tell me if it's maintainable or not:\n\n" + code + "\n\nWhat are the potential issues with this code?\n\nWhat changes would you suggest to improve its maintainability?\n\nAnswer: "
     # response = openai.Completion.create(
     #     engine="text-davinci-002",
     #     prompt=prompt,
