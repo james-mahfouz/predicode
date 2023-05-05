@@ -46,7 +46,6 @@ def get_files(user):
 
 
 def upload_file(file, user):
-
     rating = 0
     try:
         if file.content_type == "data:application/zip;base64":
@@ -88,11 +87,14 @@ def upload_file(file, user):
                 rating = predict(size=file.size, price=file.price, category=file.category, content=file.content_rating)
 
             searched_folders = []
+            results = {}
             for extracted_file in extracted_files:
                 if not str(extracted_file).split("/")[0] + "/" in searched_folders:
                     functions = search_java_files(extracted_file)
                     selected_functions = random.sample(functions, 3)
-
+                    functions_string = "\n".join(selected_functions)
+                    maintainability = check_maintainability(functions_string)
+                    print(maintainability)
                     searched_folders.append(str(extracted_file))
 
             removed_folders = []
@@ -105,7 +107,10 @@ def upload_file(file, user):
                             os.remove(extracted_file)
 
                     removed_folders.append(str(extracted_file))
-            return {"rating": rating}
+            return {
+                "rating": rating,
+                "maintainability": maintainability
+            }
 
     except Exception as e:
         return {
@@ -115,18 +120,19 @@ def upload_file(file, user):
 
 
 def check_maintainability(code):
-    prompt = "Please check the following code and tell me if it's maintainable or not:\n\n" + code + "\n\nWhat are the potential issues with this code?\n\nWhat changes would you suggest to improve its maintainability?\n\nAnswer: "
-    response = openai.Completion.create(
-        engine="text-davinci-002",
-        prompt=prompt,
-        temperature=0.7,
-        max_tokens=2048,
-        top_p=1,
-        frequency_penalty=0,
-        presence_penalty=0
-    )
-
-    return response.choices[0].text.strip()
+    # prompt = "Please check the following code and tell me if it's maintainable or not:\n\n" + code + "\n\nWhat are the potential issues with this code?\n\nWhat changes would you suggest to improve its maintainability?\n\nAnswer: "
+    # response = openai.Completion.create(
+    #     engine="text-davinci-002",
+    #     prompt=prompt,
+    #     temperature=0.7,
+    #     max_tokens=2048,
+    #     top_p=1,
+    #     frequency_penalty=0,
+    #     presence_penalty=0
+    # )
+    #
+    # return response.choices[0].text.strip()
+    return "hello world"
 
 
 def search_java_files(folder_path, count=3, functions=[]):
