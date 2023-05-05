@@ -163,7 +163,8 @@
 }
 
 .prediction {
-    margin-top: 5rem;
+    margin-top: 4rem;
+    max-width: 530px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -174,6 +175,10 @@
 
 .prediction h1 {
     color: rgba(0,0,0,0.7);
+}
+
+.prediction p{
+    text-align: justify;
 }
 
 .landing-wrapper {

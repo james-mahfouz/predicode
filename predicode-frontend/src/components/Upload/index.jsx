@@ -64,6 +64,7 @@ const Upload = () => {
   const [rating, setRating] = useState(null);
   const [uploadedFile, setUploadedFile] = useState(null);
   const [uploading, setUploading] = useState(false);
+  const [maintainability, setMaintainability] = useState("");
 
   const apiUrl = process.env.API_URL;
   const navigate = useNavigate();
@@ -126,7 +127,9 @@ const Upload = () => {
             },
           })
           .then((response) => {
+            console.log(response);
             setRating(parseFloat(response.data.rating));
+            setMaintainability(response.data.maintainability);
             setUploading(false);
           })
           .catch((error) => {
@@ -171,6 +174,7 @@ const Upload = () => {
               halfStarEnabled={true}
             />
             <h1>{rating} / 5</h1>
+            <p>{maintainability}</p>
             <Button label="Try another code" onClick={try_another} />
           </div>
         )}
