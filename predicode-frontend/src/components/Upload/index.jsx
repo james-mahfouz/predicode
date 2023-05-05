@@ -101,6 +101,11 @@ const Upload = () => {
     }
 
     const uploaded_file = event.files[0];
+
+    if (event.files[0].size < 819200) {
+      setError("this file is too small");
+      return;
+    }
     setUploadedFile(uploaded_file);
     setUploading(true);
     setError("");
@@ -183,13 +188,21 @@ const Upload = () => {
         {!rating && (
           <div className="landing-wrapper">
             <h3>↓ Upload your ZIPPED Folder here ↓</h3>
+            <Message
+              severity="warn"
+              text="This form only accept valid zipped java android project"
+              style={{ width: "100%", marginBottom: "10px" }}
+            />
             <FileUpload
               name="demo[]"
               customUpload={true}
               uploadHandler={onUpload}
               accept=".zip, .folder, application/zip, application/x-zip-compressed, multipart/x-zip"
               webkitdirectory="true"
-              maxFileSize={100000000000000}
+              maxFileSize={31457280}
+              onFileSizeError={(file) => {
+                setError("File is too big");
+              }}
               emptyTemplate={
                 <p className="m-0">
                   Upload your zipped code folder and see your rating

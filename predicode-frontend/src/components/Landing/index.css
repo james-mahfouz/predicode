@@ -159,7 +159,7 @@
     background-image: url(../../assets/landing-background.png);
     background-size: cover;
     background-position: center;
-    height: 100vh;
+    /* height: 100vh; */
 }
 
 .prediction {
@@ -186,6 +186,7 @@
     width: 100%;
     background-color: #fff;
     margin-top: 3rem;
+    margin-bottom: 3rem;
     padding-left: 30px;
     padding-bottom: 30px;
     padding-right: 30px;
