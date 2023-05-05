@@ -49,7 +49,7 @@ def get_files(user):
 def upload_file(file, user):
     if file.size < 614400:
         raise HTTPException(status_code=404, detail="file is too small")
-    if file.size < 614400:
+    if file.size > 28147456:
         raise HTTPException(status_code=404, detail="file is too big")
     rating = 0
     try:
