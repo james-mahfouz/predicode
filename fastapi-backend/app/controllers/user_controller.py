@@ -147,6 +147,7 @@ def check_maintainability(code):
 
     return response.choices[0].text.strip()
 
+
 def search_java_files(folder_path, count=3, functions=[]):
     if count == 0:
         return functions
@@ -173,6 +174,27 @@ def search_java_files(folder_path, count=3, functions=[]):
         functions = search_java_files(dir_path, count, functions)
 
     return functions
+
+
+def predict(size, price, category, content):
+    data = [int(size), float(price)]
+
+    for i in range(33):
+        if category_list[i] == category:
+            data.append(1)
+        else:
+            data.append(0)
+
+    for i in range(5):
+        if content_list[i] == content:
+            data.append(1)
+        else:
+            data.append(0)
+
+    rating = rf.predict([data])
+    rating = str(rating[0])[:4]
+
+    return rating
 # response = check_maintainability(inspect.getsource(verify_user) + inspect.getsource(get_files))
 # print(response)
 # def recursive_read_file(folder_path, count):
