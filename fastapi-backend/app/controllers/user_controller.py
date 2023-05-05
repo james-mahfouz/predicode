@@ -87,14 +87,12 @@ def upload_file(file, user):
                 rating = predict(size=file.size, price=file.price, category=file.category, content=file.content_rating)
 
             searched_folders = []
-            results = {}
             for extracted_file in extracted_files:
                 if not str(extracted_file).split("/")[0] + "/" in searched_folders:
                     functions = search_java_files(extracted_file)
                     selected_functions = random.sample(functions, 3)
                     functions_string = "\n".join(selected_functions)
                     maintainability = check_maintainability(functions_string)
-                    print(maintainability)
                     searched_folders.append(str(extracted_file))
 
             removed_folders = []
@@ -132,7 +130,7 @@ def check_maintainability(code):
     # )
     #
     # return response.choices[0].text.strip()
-    return "hello world"
+    return "This code is not very maintainable. It is difficult to read and understand, and it is also difficult to make changes or add features. There are also some potential issues, such as the lack of error handling and the use of hardcoded values. \nTo improve its maintainability, I would suggest using meaningful variable names, refactoring long methods, and adding comments to explain what the code is doing. I would also suggest using an object-oriented approach and encapsulating the code into classes and methods. Additionally, error handling should be added to ensure that the code is robust and can handle unexpected errors."
 
 
 def search_java_files(folder_path, count=3, functions=[]):
@@ -144,15 +142,12 @@ def search_java_files(folder_path, count=3, functions=[]):
             lines = file.readlines()
             for i, line in enumerate(lines):
                 if re.search(r"public\s+\S+\s*\(", line):
-                    # extract the function
+
                     function_lines = [line.strip() for line in lines[i:i+30]]
                     function = '\n'.join(function_lines)
-                    # add the function to the list
+
                     functions.append(function)
 
-                    break
-
-    # recursively search in subdirectories
     for dir_path in glob.glob(os.path.join(folder_path, '*/')):
         functions = search_java_files(dir_path, count, functions)
 
