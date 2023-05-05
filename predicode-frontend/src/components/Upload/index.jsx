@@ -129,7 +129,7 @@ const Upload = () => {
           .then((response) => {
             console.log(response);
             setRating(parseFloat(response.data.rating));
-            setMaintainability(response.data.maintainability);
+            setMaintainability(response.data.maintainability.split("\n"));
             setUploading(false);
           })
           .catch((error) => {
@@ -174,7 +174,9 @@ const Upload = () => {
               halfStarEnabled={true}
             />
             <h1>{rating} / 5</h1>
-            <p>{maintainability}</p>
+            {maintainability.map((line, index) => (
+              <p key={index}>{line}</p>
+            ))}
             <Button label="Try another code" onClick={try_another} />
           </div>
         )}
