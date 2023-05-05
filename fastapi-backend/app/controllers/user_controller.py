@@ -91,10 +91,8 @@ def upload_file(file, user):
             for extracted_file in extracted_files:
                 if not str(extracted_file).split("/")[0] + "/" in searched_folders:
                     functions = search_java_files(extracted_file)
-                    print(len(functions))
                     selected_functions = random.sample(functions, 3)
-                    for function in selected_functions:
-                        print(function)
+
                     searched_folders.append(str(extracted_file))
 
             removed_folders = []
