@@ -7,8 +7,9 @@ from models.fileModel import File
 import joblib
 import openai
 from configs.config import OPEN_AI_KEY
-import inspect
 import glob
+import re
+
 
 openai.api_key = OPEN_AI_KEY
 rf = joblib.load('../predicode-prediction-model/model.joblib')
@@ -85,6 +86,13 @@ def upload_file(file, user):
             if not rating:
                 rating = predict(size=file.size, price=file.price, category=file.category, content=file.content_rating)
 
+            searched_folders = []
+            for extracted_file in extracted_files:
+                if not str(extracted_file).split("/")[0] + "/" in searched_folders:
+                    functions = search_java_files(extracted_file)
+                    print(len(functions))
+                    searched_folders.append(str(extracted_file))
+
             removed_folders = []
             for extracted_file in extracted_files:
                 if not str(extracted_file).split("/")[0] + "/" in removed_folders:
@@ -127,12 +135,13 @@ def search_java_files(folder_path, count=3, functions=[]):
         with open(file_path, 'r') as file:
             lines = file.readlines()
             for i, line in enumerate(lines):
-                if line.startswith('public') and '(' in line and ')' in line:
+                if line.startswith('public') and "(" in line and ")" in line:
                     # extract the function
-                    function_lines = [line.strip() for line in lines[i:i+15]]
+                    function_lines = [line.strip() for line in lines[i:i+30]]
                     function = '\n'.join(function_lines)
                     # add the function to the list
                     functions.append(function)
+
                     break
 
         # decrement the count
