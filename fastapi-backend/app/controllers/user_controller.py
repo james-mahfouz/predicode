@@ -8,6 +8,7 @@ import joblib
 import openai
 from configs.config import OPEN_AI_KEY
 import glob
+import random
 import re
 
 
@@ -91,6 +92,9 @@ def upload_file(file, user):
                 if not str(extracted_file).split("/")[0] + "/" in searched_folders:
                     functions = search_java_files(extracted_file)
                     print(len(functions))
+                    selected_functions = random.sample(functions, 3)
+                    for function in selected_functions:
+                        print(function)
                     searched_folders.append(str(extracted_file))
 
             removed_folders = []
@@ -135,7 +139,7 @@ def search_java_files(folder_path, count=3, functions=[]):
         with open(file_path, 'r') as file:
             lines = file.readlines()
             for i, line in enumerate(lines):
-                if line.startswith('public') and "(" in line and ")" in line:
+                if re.search(r"public\s+\S+\s*\(", line):
                     # extract the function
                     function_lines = [line.strip() for line in lines[i:i+30]]
                     function = '\n'.join(function_lines)
@@ -143,11 +147,6 @@ def search_java_files(folder_path, count=3, functions=[]):
                     functions.append(function)
 
                     break
-
-        # decrement the count
-        count -= 1
-        if count == 0:
-            break
 
     # recursively search in subdirectories
     for dir_path in glob.glob(os.path.join(folder_path, '*/')):
