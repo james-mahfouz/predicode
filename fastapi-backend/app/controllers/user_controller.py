@@ -94,7 +94,9 @@ def upload_file(file, user):
             for extracted_file in extracted_files:
                 if not str(extracted_file).split("/")[0] + "/" in searched_folders:
                     functions = search_java_files(extracted_file)
+                    print(len(functions))
                     if len(functions) == 0:
+                        print("removing")
                         remove_folders(extracted_files)
                         raise HTTPException(status_code=404, detail="This isn't a Java Project")
                     if len(functions) < 5:
@@ -113,10 +115,7 @@ def upload_file(file, user):
             }
 
     except Exception as e:
-        return {
-            "message": "An error occurred while processing the file",
-            "error": e
-        }
+        raise e
 
 
 def check_maintainability(code):
