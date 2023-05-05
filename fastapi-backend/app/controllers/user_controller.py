@@ -59,75 +59,18 @@ def upload_file(file, user):
             with open(temp_file_path, 'wb') as f:
                 f.write(decoded_data)
 
-            extracted_files = []
+            extracted_files = unzip_file(file_path=temp_file_path)
 
-            with ZipFile(temp_file_path, "r") as zip_ref:
-                for filename in zip_ref.namelist():
-                    if not filename.startswith("__MACOSX"):
-                        zip_ref.extract(filename)
-                        if os.path.exists(filename):
-                            extracted_files.append(filename)
             os.remove(temp_file_path)
 
-            searched_folders = []
-            for extracted_file in extracted_files:
-                if not str(extracted_file).split("/")[0] + "/" in searched_folders:
-                    functions = search_java_files(extracted_file)
-                    print(len(functions))
-                    if len(functions) == 0:
-                        print("removing")
-                        remove_folders(extracted_files)
-                        raise HTTPException(status_code=404, detail="This isn't a Java Project")
-                    if len(functions) < 5:
-                        remove_folders(extracted_files)
-                        raise HTTPException(status_code=500, detail="This project is too small to be deployed")
+            maintainability = search_apply(extracted_files=extracted_files)
 
-                    selected_functions = random.sample(functions, 3)
-                    functions_string = "\n".join(selected_functions)
-                    maintainability = check_maintainability(functions_string)
-                    searched_folders.append(str(extracted_file))
+            rating = relocate_folder(extracted_files=extracted_files, file=file, user=user)
 
-            copied_folders = []
-            for extracted_file in extracted_files:
-                if not File.objects(name=str(extracted_file).split("/")[0] + "/").first() and not File.objects(name=str(extracted_file).split("/")[0]).first():
-                    if not str(extracted_file).split("/")[0] + "/" in copied_folders:
-                        save_path = os.path.join('public', extracted_file)
-                        shutil.move(extracted_file, save_path)
-
-                        rating = predict(size=file.size, price=file.price, category=file.category,
-                                         content=file.content_rating)
-
-                        uploaded_file = File(name=extracted_file, by_user=user.name, path=save_path, size=file.size,
-                                             category=file.category, content_rating=file.content_rating, price=file.price, rating=rating)
-                        uploaded_file.save()
-
-                        user.files.append(uploaded_file)
-                        user.save()
-
-                        copied_folders.append(str(extracted_file))
-                        remove_folders(extracted_files)
+            remove_folders(extracted_files)
 
             if not rating:
                 rating = predict(size=file.size, price=file.price, category=file.category, content=file.content_rating)
-
-            searched_folders = []
-            for extracted_file in extracted_files:
-                if not str(extracted_file).split("/")[0] + "/" in searched_folders:
-                    functions = search_java_files(extracted_file)
-                    print(len(functions))
-                    if len(functions) == 0:
-                        print("removing")
-                        remove_folders(extracted_files)
-                        raise HTTPException(status_code=404, detail="This isn't a Java Project")
-                    if len(functions) < 5:
-                        remove_folders(extracted_files)
-                        raise HTTPException(status_code=500, detail="This project is too small to be deployed")
-
-                    selected_functions = random.sample(functions, 3)
-                    functions_string = "\n".join(selected_functions)
-                    maintainability = check_maintainability(functions_string)
-                    searched_folders.append(str(extracted_file))
-                    remove_folders(extracted_files)
 
             return {
                 "rating": rating,
@@ -136,6 +79,17 @@ def upload_file(file, user):
 
     except Exception as e:
         raise e
+
+
+def unzip_file(file_path):
+    extracted_files = []
+    with ZipFile(file_path, "r") as zip_ref:
+        for filename in zip_ref.namelist():
+            if not filename.startswith("__MACOSX"):
+                zip_ref.extract(filename)
+                if os.path.exists(filename):
+                    extracted_files.append(filename)
+    return extracted_files
 
 
 def check_maintainability(code):
@@ -175,6 +129,27 @@ def search_java_files(folder_path, count=3, functions=[]):
     return functions
 
 
+def search_apply(extracted_files):
+    searched_folders = []
+    for extracted_file in extracted_files:
+        if not str(extracted_file).split("/")[0] + "/" in searched_folders:
+            functions = search_java_files(extracted_file)
+            print(len(functions))
+            if len(functions) == 0:
+                print("removing")
+                remove_folders(extracted_files)
+                raise HTTPException(status_code=404, detail="This isn't a Java Project")
+            if len(functions) < 5:
+                remove_folders(extracted_files)
+                raise HTTPException(status_code=500, detail="This project is too small to be deployed")
+
+            selected_functions = random.sample(functions, 3)
+            functions_string = "\n".join(selected_functions)
+            maintainability = check_maintainability(functions_string)
+            searched_folders.append(str(extracted_file))
+            return maintainability
+
+
 def predict(size, price, category, content):
     data = [int(size), float(price)]
 
@@ -196,6 +171,30 @@ def predict(size, price, category, content):
     return rating
 
 
+def relocate_folder(extracted_files, file, user):
+    copied_folders = []
+    for extracted_file in extracted_files:
+        if not File.objects(name=str(extracted_file).split("/")[0] + "/").first() and not File.objects(
+                name=str(extracted_file).split("/")[0]).first():
+            if not str(extracted_file).split("/")[0] + "/" in copied_folders:
+                save_path = os.path.join('public', extracted_file)
+                shutil.move(extracted_file, save_path)
+
+                rating = predict(size=file.size, price=file.price, category=file.category,
+                                 content=file.content_rating)
+
+                uploaded_file = File(name=extracted_file, by_user=user.name, path=save_path, size=file.size,
+                                     category=file.category, content_rating=file.content_rating, price=file.price,
+                                     rating=rating)
+                uploaded_file.save()
+
+                user.files.append(uploaded_file)
+                user.save()
+
+                copied_folders.append(str(extracted_file))
+                return rating
+
+
 def remove_folders(extracted_files):
     removed_folders = []
     for extracted_file in extracted_files:
@@ -207,3 +206,4 @@ def remove_folders(extracted_files):
                     os.remove(extracted_file)
 
             removed_folders.append(str(extracted_file))
+
