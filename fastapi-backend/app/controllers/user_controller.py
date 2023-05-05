@@ -8,6 +8,7 @@ import joblib
 import openai
 from configs.config import OPEN_AI_KEY
 import inspect
+import glob
 
 openai.api_key = OPEN_AI_KEY
 rf = joblib.load('../predicode-prediction-model/model.joblib')
@@ -145,6 +146,33 @@ def check_maintainability(code):
     )
 
     return response.choices[0].text.strip()
+
+def search_java_files(folder_path, count=3, functions=[]):
+    if count == 0:
+        return functions
+
+    for file_path in glob.glob(os.path.join(folder_path, '*.java')):
+        with open(file_path, 'r') as file:
+            lines = file.readlines()
+            for i, line in enumerate(lines):
+                if line.startswith('public') and '(' in line and ')' in line:
+                    # extract the function
+                    function_lines = [line.strip() for line in lines[i:i+15]]
+                    function = '\n'.join(function_lines)
+                    # add the function to the list
+                    functions.append(function)
+                    break
+
+        # decrement the count
+        count -= 1
+        if count == 0:
+            break
+
+    # recursively search in subdirectories
+    for dir_path in glob.glob(os.path.join(folder_path, '*/')):
+        functions = search_java_files(dir_path, count, functions)
+
+    return functions
 # response = check_maintainability(inspect.getsource(verify_user) + inspect.getsource(get_files))
 # print(response)
 # def recursive_read_file(folder_path, count):
