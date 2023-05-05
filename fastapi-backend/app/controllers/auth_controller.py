@@ -16,15 +16,15 @@ async def register(request):
         existing_user = User.objects(email=request.email.lower()).first()
         if len(request.name) < 3:
             details = {"error": "name", "detail": "Name must have 3 characters or more"}
-            raise HTTPException(status_code=404, detail=details)
+            raise HTTPException(status_code=500, detail=details)
 
         if not email_pattern.match(request.email.lower()):
             details = {"error": "email", "detail": "Email must be in name@mail.com format"}
-            raise HTTPException(status_code=422, detail=details)
+            raise HTTPException(status_code=500, detail=details)
 
         if existing_user:
             details = {"error": "email", "detail": "Email already exists"}
-            raise HTTPException(status_code=404, detail=details)
+            raise HTTPException(status_code=500, detail=details)
 
         if len(request.password) < 8:
             details = {"error": "password", "detail": "password must be at least 8 characters"}

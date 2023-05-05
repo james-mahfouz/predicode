@@ -95,25 +95,18 @@ def upload_file(file, user):
                 if not str(extracted_file).split("/")[0] + "/" in searched_folders:
                     functions = search_java_files(extracted_file)
                     if len(functions) == 0:
+                        remove_folders(extracted_files)
                         raise HTTPException(status_code=404, detail="This isn't a Java Project")
                     if len(functions) < 5:
+                        remove_folders(extracted_files)
                         raise HTTPException(status_code=500, detail="This project is too small to be deployed")
 
                     selected_functions = random.sample(functions, 3)
                     functions_string = "\n".join(selected_functions)
                     maintainability = check_maintainability(functions_string)
                     searched_folders.append(str(extracted_file))
+                    remove_folders(extracted_files)
 
-            removed_folders = []
-            for extracted_file in extracted_files:
-                if not str(extracted_file).split("/")[0] + "/" in removed_folders:
-                    if os.path.exists(extracted_file):
-                        if os.path.isdir(extracted_file):
-                            shutil.rmtree(extracted_file)
-                        else:
-                            os.remove(extracted_file)
-
-                    removed_folders.append(str(extracted_file))
             return {
                 "rating": rating,
                 "maintainability": maintainability
@@ -182,6 +175,19 @@ def predict(size, price, category, content):
     rating = str(rating[0])[:4]
 
     return rating
+
+
+def remove_folders(extracted_files):
+    removed_folders = []
+    for extracted_file in extracted_files:
+        if not str(extracted_file).split("/")[0] + "/" in removed_folders:
+            if os.path.exists(extracted_file):
+                if os.path.isdir(extracted_file):
+                    shutil.rmtree(extracted_file)
+                else:
+                    os.remove(extracted_file)
+
+            removed_folders.append(str(extracted_file))
 # response = check_maintainability(inspect.getsource(verify_user) + inspect.getsource(get_files))
 # print(response)
 # def recursive_read_file(folder_path, count):
