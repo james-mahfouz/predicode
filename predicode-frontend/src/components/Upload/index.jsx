@@ -106,6 +106,11 @@ const Upload = () => {
       setError("this file is too small");
       return;
     }
+
+    if (event.files[0].size > 28147456) {
+      setError("this file is too Big");
+      return;
+    }
     setUploadedFile(uploaded_file);
     setUploading(true);
     setError("");
@@ -138,7 +143,7 @@ const Upload = () => {
             setUploading(false);
           })
           .catch((error) => {
-            console.log(error);
+            setError(error.response.data.detail);
             setUploading(false);
           });
       };
@@ -199,10 +204,7 @@ const Upload = () => {
               uploadHandler={onUpload}
               accept=".zip, .folder, application/zip, application/x-zip-compressed, multipart/x-zip"
               webkitdirectory="true"
-              maxFileSize={31457280}
-              onFileSizeError={(file) => {
-                setError("File is too big");
-              }}
+              maxFileSize={28147456}
               emptyTemplate={
                 <p className="m-0">
                   Upload your zipped code folder and see your rating
