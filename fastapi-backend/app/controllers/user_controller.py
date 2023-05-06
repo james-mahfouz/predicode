@@ -1,6 +1,6 @@
 import shutil
 from fastapi.responses import JSONResponse
-from fastapi import HTTPException, status
+from fastapi import HTTPException
 import base64
 import os
 from zipfile import ZipFile
@@ -16,7 +16,11 @@ import re
 openai.api_key = OPEN_AI_KEY
 rf = joblib.load('../predicode-prediction-model/model.joblib')
 
-category_list = ['ART_AND_DESIGN', 'AUTO_AND_VEHICLES', 'BEAUTY', 'BOOKS_AND_REFERENCE', 'BUSINESS', 'COMICS', 'COMMUNICATION', 'DATING', 'EDUCATION', 'ENTERTAINMENT', 'EVENTS', 'FAMILY', 'FINANCE', 'FOOD_AND_DRINK', 'GAME', 'HEALTH_AND_FITNESS', 'HOUSE_AND_HOME', 'LIBRARIES_AND_DEMO', 'LIFESTYLE', 'MAPS_AND_NAVIGATION', 'MEDICAL', 'NEWS_AND_MAGAZINES', 'PARENTING', 'PERSONALIZATION', 'PHOTOGRAPHY', 'PRODUCTIVITY', 'SHOPPING', 'SOCIAL', 'SPORTS', 'TOOLS', 'TRAVEL_AND_LOCAL', 'VIDEO_PLAYERS', 'WEATHER']
+category_list = ['ART_AND_DESIGN', 'AUTO_AND_VEHICLES', 'BEAUTY', 'BOOKS_AND_REFERENCE', 'BUSINESS', 'COMICS',
+                 'COMMUNICATION', 'DATING', 'EDUCATION', 'ENTERTAINMENT', 'EVENTS', 'FAMILY', 'FINANCE',
+                 'FOOD_AND_DRINK', 'GAME', 'HEALTH_AND_FITNESS', 'HOUSE_AND_HOME', 'LIBRARIES_AND_DEMO', 'LIFESTYLE',
+                 'MAPS_AND_NAVIGATION', 'MEDICAL', 'NEWS_AND_MAGAZINES', 'PARENTING', 'PERSONALIZATION', 'PHOTOGRAPHY',
+                 'PRODUCTIVITY', 'SHOPPING', 'SOCIAL', 'SPORTS', 'TOOLS', 'TRAVEL_AND_LOCAL', 'VIDEO_PLAYERS', 'WEATHER']
 content_list = ['Adults only 18+', 'Everyone', 'Everyone 10+', 'Mature 17+', 'Teen']
 
 
@@ -105,7 +109,7 @@ def check_maintainability(code):
     # )
     #
     # return response.choices[0].text.strip()
-    return "This code is not very maintainable. It is difficult to read and understand, and it is also difficult to make changes or add features. There are also some potential issues, such as the lack of error handling and the use of hardcoded values. \nTo improve its maintainability, I would suggest using meaningful variable names, refactoring long methods, and adding comments to explain what the code is doing. I would also suggest using an object-oriented approach and encapsulating the code into classes and methods. Additionally, error handling should be added to ensure that the code is robust and can handle unexpected errors."
+    return "The code is organized into logical modules, functions and classes with clear separation of concerns. This makes it easy to identify and modify specific areas of the codebase without affecting other parts of the application. The code is also written with readability and maintainability in mind, using meaningful variable and function names, and clear and concise code comments where necessary."
 
 
 def search_java_files(folder_path, count=3, functions=[]):
