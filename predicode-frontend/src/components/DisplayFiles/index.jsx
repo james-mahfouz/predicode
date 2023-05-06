@@ -23,10 +23,8 @@ const DisplayFiles = ({ onAdminNameChange }) => {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
-        // console.log(response.data.files);
 
         setFiles(response.data.files);
-        // console.log(response.data.files[1].content);
         localStorage.setItem("admin_name", response.data.admin_name);
       } catch (e) {
         if (e.response.data.detail.access === "denied") {
@@ -40,36 +38,46 @@ const DisplayFiles = ({ onAdminNameChange }) => {
   function adjustDataForSlideMenu(files) {
     const menuItems = [];
 
-    // Loop through each file object in the array
     for (let file of files) {
-      // Create a new menu item object
-      console.log(file.name);
       const menuItem = {
         label: file.name,
         icon: file.type === "folder" ? "pi pi-folder" : "pi pi-file",
       };
 
-      // If the file is a folder, recursively add its contents as subitems
       if (file.type === "folder") {
         menuItem.items = adjustDataForSlideMenu(file.items);
       } else if (file.type === "file") {
-        // Otherwise, set the onclick function to open the file
         menuItem.command = () => window.open(`${apiUrl}${file.path}`);
       }
 
-      // Add the new menu item to the array of menu items
       menuItems.push(menuItem);
     }
 
     return menuItems;
   }
 
-  const viewFile = (path) => {
-    window.open(`${apiUrl}${path}`);
-  };
+  function SlideMenuWrapper({ rowData }) {
+    const menu = useRef(null);
 
-  const hello = adjustDataForSlideMenu(files);
-  console.log(hello);
+    return (
+      <>
+        <SlideMenu
+          ref={menu}
+          model={adjustDataForSlideMenu(rowData.items)}
+          popup
+          viewportHeight={220}
+          menuWidth={175}
+        ></SlideMenu>
+        <Button
+          type="button"
+          icon="pi pi-bars"
+          label="Show"
+          onClick={(event) => menu.current.toggle(event)}
+        ></Button>
+      </>
+    );
+  }
+
   return (
     <div className="display-users">
       <h1>Files</h1>
@@ -102,31 +110,14 @@ const DisplayFiles = ({ onAdminNameChange }) => {
             headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
           ></Column>
           <Column
-            header="View File"
+            header="View Project"
             // body={(rowData) => (
             //   <Button
             //     label="View File"
             //     onClick={() => viewFile(rowData.path)}
             //   />
             // )}
-            body={(rowData) => (
-              <>
-                {/* {console.log("rowData:", rowData.content)} */}
-                <SlideMenu
-                  ref={menu}
-                  model={hello}
-                  popup
-                  viewportHeight={220}
-                  menuWidth={175}
-                ></SlideMenu>
-                <Button
-                  type="button"
-                  icon="pi pi-bars"
-                  label="Show"
-                  onClick={(event) => menu.current.toggle(event)}
-                ></Button>
-              </>
-            )}
+            body={(rowData) => <SlideMenuWrapper rowData={rowData} />}
             headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
           />
         </DataTable>
