@@ -5,45 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="344a509d-69c3-480d-8168-3503c6dccc68" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/controllers/user_controller/check_maintainability.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/controllers/user_controller/remove_folder.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/controllers/user_controller/unzip_file.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/routes/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fastapi-backend/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fastapi-backend/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fastapi-backend/app/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/app/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fastapi-backend/app/configs/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/app/configs/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fastapi-backend/app/configs/config_example.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/configs/config_example.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fastapi-backend/app/configs/db_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/configs/db_config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fastapi-backend/app/controllers/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fastapi-backend/app/controllers/admin_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fastapi-backend/app/controllers/auth_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/auth_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fastapi-backend/app/controllers/user_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/user_controller/user_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fastapi-backend/app/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fastapi-backend/app/middlewares/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/user_controller/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fastapi-backend/app/middlewares/adminMiddleware.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/middlewares/adminMiddleware.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fastapi-backend/app/middlewares/authMiddleware.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/middlewares/authMiddleware.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fastapi-backend/app/models/fileModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/fileModel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fastapi-backend/app/models/userModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/userModel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fastapi-backend/app/request_models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/middlewares/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fastapi-backend/app/request_models/authRequest.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/request_models/authRequest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fastapi-backend/app/request_models/userRequest.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/request_models/userRequest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fastapi-backend/app/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fastapi-backend/app/routes/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/request_models/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fastapi-backend/app/routes/admin_route.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/admin_route.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fastapi-backend/app/routes/auth_route.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/auth_route.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fastapi-backend/app/routes/user_route.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/user_route.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fastapi-backend/predicode-prediction-model/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/predicode-prediction-model/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fastapi-backend/predicode-prediction-model/dataset/googleplaystore.csv" beforeDir="false" afterPath="$PROJECT_DIR$/predicode-prediction-model/dataset/googleplaystore.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fastapi-backend/predicode-prediction-model/model.joblib" beforeDir="false" afterPath="$PROJECT_DIR$/predicode-prediction-model/model.joblib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fastapi-backend/predicode-prediction-model/predicode-model.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/predicode-prediction-model/predicode-model.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fastapi-backend/requirements.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../predicode-frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../predicode-frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../predicode-frontend/src/assets/form_result.png" beforeDir="false" afterPath="$PROJECT_DIR$/../predicode-frontend/src/assets/form_result.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../predicode-frontend/src/components/DisplayFiles/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../predicode-frontend/src/components/DisplayFiles/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/blur/FastBlur.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/blur/FastBlur.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/blur/ZoomOutPageTransformer.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/blur/ZoomOutPageTransformer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/photoview/Info.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/photoview/Info.java" afterDir="false" />

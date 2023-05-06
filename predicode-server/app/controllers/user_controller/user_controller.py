@@ -6,15 +6,13 @@ import os
 
 from controllers.user_controller.check_maintainability import check_maintainability
 from controllers.user_controller.remove_folder import remove_folders
+from controllers.user_controller.search_java_file import search_java_files
 from controllers.user_controller.unzip_file import unzip_file
 from models.fileModel import File
 import joblib
 import openai
 from configs.config import OPEN_AI_KEY
-import glob
 import random
-import re
-
 
 openai.api_key = OPEN_AI_KEY
 rf = joblib.load('../predicode-prediction-model/model.joblib')
@@ -86,27 +84,6 @@ def upload_file(file, user):
 
     except Exception as e:
         raise e
-
-
-def search_java_files(folder_path, count=3, functions=[]):
-    if count == 0:
-        return functions
-
-    for file_path in glob.glob(os.path.join(folder_path, '*.java')):
-        with open(file_path, 'r') as file:
-            lines = file.readlines()
-            for i, line in enumerate(lines):
-                if re.search(r"public\s+\S+\s*\(", line):
-
-                    function_lines = [line.strip() for line in lines[i:i+30]]
-                    function = '\n'.join(function_lines)
-
-                    functions.append(function)
-
-    for dir_path in glob.glob(os.path.join(folder_path, '*/')):
-        functions = search_java_files(dir_path, count, functions)
-
-    return functions
 
 
 def search_apply(extracted_files):
