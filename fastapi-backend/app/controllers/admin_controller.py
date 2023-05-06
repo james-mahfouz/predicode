@@ -8,21 +8,22 @@ def get_files(user):
     files = File.objects.all()
     files_list = []
     for file in files:
-        get_directory_contents(file.path)
+        project_content = get_directory_contents(file.path)
         file_dict = file.to_mongo().to_dict()
         file_dict["_id"] = str(file_dict["_id"])
+        file_dict["content"] = project_content
         files_list.append(file_dict)
 
-    # return JSONResponse(content={
-    #     "files": files_list,
-    #     "admin_name": user.name
-    # })
+    return JSONResponse(content={
+        "files": files_list,
+        "admin_name": user.name
+    })
 
 
 def get_directory_contents(path):
     contents = []
     if os.path.isfile(path):
-        print(path)
+
         basename = os.path.basename(path)
         contents.append({
             'type': 'file',
@@ -33,7 +34,7 @@ def get_directory_contents(path):
     else:
         for entry in os.scandir(path):
             if entry.is_file():
-                print(entry.name)
+
                 contents.append({
                     'type': 'file',
                     'name': entry.name,
@@ -48,7 +49,7 @@ def get_directory_contents(path):
                     'path': entry.path,
                     'contents': subdir_contents
                 })
-        # return contents
+    return contents
 
 
 def get_users(user):
