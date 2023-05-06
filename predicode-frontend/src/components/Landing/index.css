@@ -263,6 +263,8 @@
 .use_it_step img{
     width: 100%;
     height: auto;
+    border-radius: 10px;
+
 }
 
 .expectation {
@@ -291,6 +293,7 @@
 
 .form_upload img{
     width: 100%;
+    border-radius: 10px;
 }
 
 .right_arrow{
@@ -307,6 +310,7 @@
 
 .form_result img{
     width: 100%;
+    border-radius: 10px;
 }
 
 .footer{
