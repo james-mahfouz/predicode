@@ -23,8 +23,8 @@ const DisplayFiles = ({ onAdminNameChange }) => {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
-
         setFiles(response.data.files);
+        console.log(response.data.files);
         localStorage.setItem("admin_name", response.data.admin_name);
       } catch (e) {
         if (e.response.data.detail.access === "denied") {
@@ -102,6 +102,48 @@ const DisplayFiles = ({ onAdminNameChange }) => {
           <Column
             field="name"
             header="File Name"
+            style={{ width: "20%" }}
+            sortable
+            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
+          ></Column>
+          <Column
+            field="category"
+            header="Category"
+            style={{ width: "20%" }}
+            sortable
+            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
+          ></Column>
+          <Column
+            field="content_rating"
+            header="Content Rating"
+            style={{ width: "20%" }}
+            sortable
+            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
+          ></Column>
+          <Column
+            field="rating"
+            header="Rating"
+            style={{ width: "20%" }}
+            sortable
+            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
+          ></Column>
+          <Column
+            field="price"
+            header="Price"
+            style={{ width: "20%" }}
+            sortable
+            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
+          ></Column>
+          <Column
+            field="size"
+            header="Size"
+            style={{ width: "20%" }}
+            sortable
+            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
+          ></Column>
+          <Column
+            field="_id"
+            header="Id"
             style={{ width: "20%" }}
             sortable
             headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
