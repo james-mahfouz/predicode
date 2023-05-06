@@ -87,6 +87,7 @@ const DisplayFiles = ({ onAdminNameChange }) => {
           scrollable
           scrollHeight="400px"
           virtualScrollerOptions={{ itemSize: 46 }}
+          sortMode="multiple"
           tableStyle={{
             minWidth: "50rem",
           }}
@@ -95,28 +96,25 @@ const DisplayFiles = ({ onAdminNameChange }) => {
             field="_id"
             header="Id"
             style={{ width: "20%" }}
+            sortable
             headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
           ></Column>
           <Column
             field="name"
             header="File Name"
             style={{ width: "20%" }}
+            sortable
             headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
           ></Column>
           <Column
             field="by_user"
             header="File Owner"
             style={{ width: "20%" }}
+            sortable
             headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
           ></Column>
           <Column
             header="View Project"
-            // body={(rowData) => (
-            //   <Button
-            //     label="View File"
-            //     onClick={() => viewFile(rowData.path)}
-            //   />
-            // )}
             body={(rowData) => <SlideMenuWrapper rowData={rowData} />}
             headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
           />
