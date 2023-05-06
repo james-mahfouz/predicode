@@ -3,16 +3,14 @@ from fastapi import HTTPException
 import base64
 import os
 
-from controllers.user_controller.check_maintainability import check_maintainability
 from controllers.user_controller.predict import predict
 from controllers.user_controller.relocate_folder import relocate_folder
 from controllers.user_controller.remove_folder import remove_folders
-from controllers.user_controller.search_java_file import search_java_files
+from controllers.user_controller.search_apply import search_apply
 from controllers.user_controller.unzip_file import unzip_file
 from models.fileModel import File
 import openai
 from configs.config import OPEN_AI_KEY
-import random
 
 openai.api_key = OPEN_AI_KEY
 
@@ -76,25 +74,5 @@ def upload_file(file, user):
 
     except Exception as e:
         raise e
-
-
-def search_apply(extracted_files):
-    searched_folders = []
-    for extracted_file in extracted_files:
-        if not str(extracted_file).split("/")[0] + "/" in searched_folders:
-            functions = search_java_files(extracted_file)
-            if len(functions) == 0:
-                print("removing")
-                remove_folders(extracted_files)
-                raise HTTPException(status_code=404, detail="This isn't a Java Project")
-            if len(functions) < 5:
-                remove_folders(extracted_files)
-                raise HTTPException(status_code=500, detail="This project is too small to be deployed")
-
-            selected_functions = random.sample(functions, 3)
-            functions_string = "\n".join(selected_functions)
-            maintainability = check_maintainability(functions_string)
-            searched_folders.append(str(extracted_file))
-            return maintainability
 
 
