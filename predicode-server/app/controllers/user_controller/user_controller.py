@@ -1,4 +1,3 @@
-import shutil
 from fastapi.responses import JSONResponse
 from fastapi import HTTPException
 import base64
@@ -6,11 +5,11 @@ import os
 
 from controllers.user_controller.check_maintainability import check_maintainability
 from controllers.user_controller.predict import predict
+from controllers.user_controller.relocate_folder import relocate_folder
 from controllers.user_controller.remove_folder import remove_folders
 from controllers.user_controller.search_java_file import search_java_files
 from controllers.user_controller.unzip_file import unzip_file
 from models.fileModel import File
-import joblib
 import openai
 from configs.config import OPEN_AI_KEY
 import random
@@ -97,29 +96,5 @@ def search_apply(extracted_files):
             maintainability = check_maintainability(functions_string)
             searched_folders.append(str(extracted_file))
             return maintainability
-
-
-def relocate_folder(extracted_files, file, user):
-    copied_folders = []
-    for extracted_file in extracted_files:
-        if not File.objects(name=str(extracted_file).split("/")[0] + "/").first() and not File.objects(
-                name=str(extracted_file).split("/")[0]).first():
-            if not str(extracted_file).split("/")[0] + "/" in copied_folders:
-                save_path = os.path.join('public', extracted_file)
-                shutil.move(extracted_file, save_path)
-
-                rating = predict(size=file.size, price=file.price, category=file.category,
-                                 content=file.content_rating)
-
-                uploaded_file = File(name=extracted_file, by_user=user.name, path=save_path, size=file.size,
-                                     category=file.category, content_rating=file.content_rating, price=file.price,
-                                     rating=rating)
-                uploaded_file.save()
-
-                user.files.append(uploaded_file)
-                user.save()
-
-                copied_folders.append(str(extracted_file))
-                return rating
 
 
