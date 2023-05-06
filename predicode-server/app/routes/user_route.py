@@ -1,5 +1,5 @@
-from fastapi import APIRouter, UploadFile, File
-from controllers.user_controller import get_files, upload_file, verify_user
+from fastapi import APIRouter
+from controllers.user_controller.user_controller import get_files, upload_file, verify_user
 from middlewares.authMiddleware import get_current_user
 from fastapi import Depends
 from models.userModel import User

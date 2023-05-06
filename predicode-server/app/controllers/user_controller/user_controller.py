@@ -3,7 +3,10 @@ from fastapi.responses import JSONResponse
 from fastapi import HTTPException
 import base64
 import os
-from zipfile import ZipFile
+
+from controllers.user_controller.check_maintainability import check_maintainability
+from controllers.user_controller.remove_folder import remove_folders
+from controllers.user_controller.unzip_file import unzip_file
 from models.fileModel import File
 import joblib
 import openai
@@ -83,33 +86,6 @@ def upload_file(file, user):
 
     except Exception as e:
         raise e
-
-
-def unzip_file(file_path):
-    extracted_files = []
-    with ZipFile(file_path, "r") as zip_ref:
-        for filename in zip_ref.namelist():
-            if not filename.startswith("__MACOSX"):
-                zip_ref.extract(filename)
-                if os.path.exists(filename):
-                    extracted_files.append(filename)
-    return extracted_files
-
-
-def check_maintainability(code):
-    prompt = "those are 3 functions form a project Please check the following functions and tell me if it's maintainable or not:\n\n" + code + "\n\nWhat are the potential issues with this code?\n\nWhat changes would you suggest to improve its maintainability?\n\nAnswer: "
-    response = openai.Completion.create(
-        engine="text-davinci-002",
-        prompt=prompt,
-        temperature=0.7,
-        max_tokens=2048,
-        top_p=1,
-        frequency_penalty=0,
-        presence_penalty=0
-    )
-
-    return response.choices[0].text.strip()
-    # return "The code is organized into logical modules, functions and classes with clear separation of concerns. This makes it easy to identify and modify specific areas of the codebase without affecting other parts of the application. The code is also written with readability and maintainability in mind, using meaningful variable and function names, and clear and concise code comments where necessary."
 
 
 def search_java_files(folder_path, count=3, functions=[]):
@@ -197,16 +173,4 @@ def relocate_folder(extracted_files, file, user):
                 copied_folders.append(str(extracted_file))
                 return rating
 
-
-def remove_folders(extracted_files):
-    removed_folders = []
-    for extracted_file in extracted_files:
-        if not str(extracted_file).split("/")[0] + "/" in removed_folders:
-            if os.path.exists(extracted_file):
-                if os.path.isdir(extracted_file):
-                    shutil.rmtree(extracted_file)
-                else:
-                    os.remove(extracted_file)
-
-            removed_folders.append(str(extracted_file))
 

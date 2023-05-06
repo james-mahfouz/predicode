@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Button } from "primereact/button";
+import { SlideMenu } from "primereact/slidemenu";
 
 const DisplayFiles = ({ onAdminNameChange }) => {
   const [files, setFiles] = useState([]);
@@ -21,6 +22,7 @@ const DisplayFiles = ({ onAdminNameChange }) => {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
+        console.log(response.data);
         setFiles(response.data.files);
         localStorage.setItem("admin_name", response.data.admin_name);
       } catch (e) {
@@ -68,13 +70,30 @@ const DisplayFiles = ({ onAdminNameChange }) => {
             headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
           ></Column>
           <Column
-            header="Enroll"
-            body={(rowData) => (
-              <Button
-                label="View File"
-                onClick={() => viewFile(rowData.path)}
-              />
-            )}
+            header="View File"
+            // body={(rowData) => (
+            //   <Button
+            //     label="View File"
+            //     onClick={() => viewFile(rowData.path)}
+            //   />
+            // )}
+            // body={(rowData) => (
+            //   <>
+            //     <SlideMenu
+            //       ref={menu}
+            //       model={items}
+            //       popup
+            //       viewportHeight={220}
+            //       menuWidth={175}
+            //     ></SlideMenu>
+            //     <Button
+            //       type="button"
+            //       icon="pi pi-bars"
+            //       label="Show"
+            //       onClick={(event) => menu.current.toggle(event)}
+            //     ></Button>
+            //   </>
+            // )}
             headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
           />
         </DataTable>
