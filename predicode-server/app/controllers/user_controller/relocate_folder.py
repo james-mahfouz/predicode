@@ -1,7 +1,7 @@
 import os
 import shutil
 
-from controllers.user_controller.user_controller import predict
+from controllers.user_controller.predict import predict
 from models.fileModel import File
 
 

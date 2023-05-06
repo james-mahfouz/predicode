@@ -4,6 +4,7 @@ import base64
 import os
 
 from controllers.user_controller.check_maintainability import check_maintainability
+from controllers.user_controller.predict import predict
 from controllers.user_controller.relocate_folder import relocate_folder
 from controllers.user_controller.remove_folder import remove_folders
 from controllers.user_controller.search_java_file import search_java_files
@@ -104,26 +105,5 @@ def search_apply(extracted_files):
             maintainability = check_maintainability(functions_string)
             searched_folders.append(str(extracted_file))
             return maintainability
-
-
-def predict(size, price, category, content):
-    data = [int(size), float(price)]
-
-    for i in range(33):
-        if category_list[i] == category:
-            data.append(1)
-        else:
-            data.append(0)
-
-    for i in range(5):
-        if content_list[i] == content:
-            data.append(1)
-        else:
-            data.append(0)
-
-    rating = rf.predict([data])
-    rating = str(rating[0])[:4]
-
-    return rating
 
 
