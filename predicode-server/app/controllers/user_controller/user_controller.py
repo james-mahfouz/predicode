@@ -9,10 +9,6 @@ from controllers.user_controller.remove_folder import remove_folders
 from controllers.user_controller.search_apply import search_apply
 from controllers.user_controller.unzip_file import unzip_file
 from models.fileModel import File
-import openai
-from configs.config import OPEN_AI_KEY
-
-openai.api_key = OPEN_AI_KEY
 
 
 def verify_user(user):

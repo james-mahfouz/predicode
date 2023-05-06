@@ -11,7 +11,11 @@ def get_files(user):
         project_content = get_directory_contents(file.path)
         file_dict = file.to_mongo().to_dict()
         file_dict["_id"] = str(file_dict["_id"])
-        file_dict["content"] = project_content
+        if os.path.isfile(file.path):
+            file_dict['type'] = 'file'
+        else:
+            file_dict['type'] = 'folder'
+        file_dict["items"] = project_content
         files_list.append(file_dict)
 
     return JSONResponse(content={
@@ -23,23 +27,19 @@ def get_files(user):
 def get_directory_contents(path):
     contents = []
     if os.path.isfile(path):
-
         basename = os.path.basename(path)
         contents.append({
             'type': 'file',
             'name': basename,
             'path': path,
-            'onclick': f"window.open('{path}')"
         })
     else:
         for entry in os.scandir(path):
             if entry.is_file():
-
                 contents.append({
                     'type': 'file',
                     'name': entry.name,
                     'path': entry.path,
-                    'onclick': f"window.open('{entry.path}')"
                 })
             elif entry.is_dir():
                 subdir_contents = get_directory_contents(entry.path)
@@ -47,7 +47,7 @@ def get_directory_contents(path):
                     'type': 'folder',
                     'name': entry.name,
                     'path': entry.path,
-                    'contents': subdir_contents
+                    'items': subdir_contents
                 })
     return contents
 
@@ -56,20 +56,20 @@ def get_users(user):
     users = User.objects.all()
     users_list = []
     for u in users:
-        if u != user:
-            user_dict = u.to_mongo().to_dict()
-            user_dict["_id"] = str(user_dict["_id"])
 
-            files = user_dict.get("files", [])
-            for i, file_id in enumerate(files):
-                file_obj = File.objects.filter(id=file_id).first()
-                if file_obj:
-                    files[i] = {"id": str(file_id), "name": file_obj.name}
-                else:
-                    files[i] = str(file_id)
-            user_dict["files"] = files
+        user_dict = u.to_mongo().to_dict()
+        user_dict["_id"] = str(user_dict["_id"])
 
-            users_list.append(user_dict)
+        files = user_dict.get("files", [])
+        for i, file_id in enumerate(files):
+            file_obj = File.objects.filter(id=file_id).first()
+            if file_obj:
+                files[i] = {"id": str(file_id), "name": file_obj.name}
+            else:
+                files[i] = str(file_id)
+        user_dict["files"] = files
+
+        users_list.append(user_dict)
 
     return JSONResponse(content={
         "users": users_list,
