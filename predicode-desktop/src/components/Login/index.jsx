@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Message } from "primereact/message";
 import "./index.css";
 import logo from "../../assets/logo.png";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -11,8 +12,14 @@ const Login = () => {
   const [error, setError] = useState("");
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
   const navigate = useNavigate();
   const apiUrl = process.env.API_URL;
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -63,13 +70,18 @@ const Login = () => {
 
           <div className="inputfield">
             <label>Password</label>
-            <input
-              type="password"
-              className="register_input"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              style={{ borderColor: passwordError ? "red" : "#D8E9EF" }}
-            ></input>
+            <div className="password-input-container">
+              <input
+                type={showPassword ? "text" : "password"}
+                className="register_input"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                style={{ borderColor: passwordError ? "red" : "#D8E9EF" }}
+              ></input>
+              <button type="button" onClick={togglePasswordVisibility}>
+                {showPassword ? <FaEyeSlash /> : <FaEye />}{" "}
+              </button>
+            </div>
           </div>
 
           {error && (

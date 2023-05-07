@@ -38,8 +38,8 @@
 }
 
 .wrapper .title h2 {
-    font-weight: 1100;
-    font-size: 30px;
+    font-weight: 800;
+    font-size: 1.9rem;
 }
 
 .wrapper .form {
@@ -50,13 +50,36 @@
     margin-bottom: 30px;
     display: flex;
     align-items: center;
+    position: relative;
+}
+
+.password-input-container {
+    position: relative;
+    width: 100%;
+}
+
+.password-input-container button {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: #999;
+    font-size: 1.2em;
+}
+
+.password-input-container input {
+    padding-right: 30px;
 }
 
 .wrapper .form .inputfield label {
     width: 200px;
     margin-right: 10px;
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 14px;
+    font-weight: 600;
 }
 
 .wrapper .form .inputfield .register_input {
@@ -69,22 +92,6 @@
     border-radius: 3px;
     transition: all 0.3s ease;
 }
-
-/* .wrapper .form .inputfield .custom_select {
-    position: relative;
-    width: 100%;
-    height: 37px;
-}
-
-.wrapper .form .inputfield .custom_select select {
-    width: 100%;
-    height: 100%;
-    padding: 8px 10px;
-    font-size: 15px;
-    background-color: #FAFAFA;
-    border: 1px solid #d5dbd9;
-    border-radius: 3px;
-} */
 
 .wrapper .form .inputfield .btn {
     width: 100%;
