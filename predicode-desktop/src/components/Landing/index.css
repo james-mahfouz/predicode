@@ -1,0 +1,381 @@
+.landing-body{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 3rem;
+    margin-top: 10px;
+    margin-left: 2rem;
+}
+
+.logo{
+    width: 17rem;
+}
+
+.logo img{
+    width: 100%;
+    height: auto;
+}
+
+.pages{
+    display: flex;
+}
+
+.navbar-logout{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.pages div h4{
+    margin-right: 1rem;
+    font-size: 0.9rem;
+    color: rgba(0,0,0,0.8);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: border-bottom-color 0.3s ease-in-out;
+}
+
+.pages div h4:hover{
+    box-sizing: border-box;
+    border-bottom: 3px solid #00D39C;
+}
+
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar-logo {
+    width: 100%;
+}
+
+.sidebar-logo img {
+    width: 100%;
+    height: auto;
+}
+
+.user-infos{
+    display: flex;
+    align-items: center;
+}
+
+.user-infos h2 {
+    width: 100%;
+    text-align: center;
+}
+
+.sidebar-buttons{
+    margin-top: 0.3rem;
+}
+
+.sidebar-logout{
+    margin-top: 2rem;
+}
+
+.sidebar-pages{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar-pages h4{
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    padding: 0.8rem;
+    cursor: pointer;
+}
+
+.sidebar-pages h4:hover{
+    color: #714DF4;
+}
+
+.top-page{
+    border-top: rgba(0, 0, 0, 0.6) solid 0.5px;
+}
+
+.middle-page{
+    border-top: rgba(0, 0, 0, 0.6) solid 0.5px;
+    border-bottom: rgba(0, 0, 0, 0.6) solid 0.5px;
+}
+
+.bottom-page{
+    border-bottom: rgba(0, 0, 0, 0.6) solid 0.5px;
+}
+
+.logout{
+    width: 100%;
+}
+
+.landing{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    margin-right: 3rem;
+}
+
+.landing_picture{
+    width: 80%;
+    height: auto;
+}
+
+.wlc_picture{
+    width: 100%;
+    height: auto;
+}
+
+.marketing_text{
+    position: absolute;
+    width: 15rem;
+    right: 0;
+}
+
+.marketing_text p {
+    text-align: center;
+    font-weight: 500;
+    width: 100%;
+}
+
+
+.upload-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: #f0f5f8;
+    background-image: url(../../assets/landing-background.png);
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    /* height: 100vh; */
+}
+
+.prediction {
+    margin-top: 4rem;
+    max-width: 530px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    padding: 1.2rem;
+    border-radius: 1.2rem;
+}
+
+.prediction h1 {
+    color: rgba(0,0,0,0.7);
+}
+
+.prediction p{
+    text-align: justify;
+    width: 100%;
+}
+
+.landing-wrapper {
+    max-width: 530px;
+    width: 100%;
+    background-color: #fff;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    padding-left: 30px;
+    padding-bottom: 30px;
+    padding-right: 30px;
+    border-radius: 20px;
+    z-index: 1;
+}
+
+
+.landing-wrapper h3{
+    text-align: center;
+    color: rgba(0,0,0,0.8);
+}
+
+
+.landing-wrapper .form {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.landing-wrapper .form .inputfield {
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.landing-wrapper .form .inputfield label {
+    width: 200px;
+    margin-right: 10px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: rgba(0,0,0,0.6);
+}
+
+.landing-wrapper .form .inputfield .register_input {
+    width: 100%;
+    outline: none;
+    border: none;
+    border-bottom: #f0f5f8 solid 2px;
+    font-size: 15px;
+    padding: 8px 10px;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.from-to{
+    font-weight: 100;
+    font-size: 0.1rem;
+} 
+
+
+.use_it{
+    background-color: #f0f5f8;
+    padding-top: 50px;
+}
+
+.use_it div h1{
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.use_it_steps{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0,0,0,0.8);
+}
+.use_it_step{
+    width: 25%;
+    height: auto;
+    margin: 5%;
+}
+
+.use_it_step img{
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+
+}
+
+.expectation {
+    background-color: #f0f5f8;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-bottom: 80px;
+}
+
+.expectation_header h1{
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.uploaded_codes{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 50px;
+    width: 100%;
+}
+.form_upload{
+    width: 30%;
+}
+
+.form_upload img{
+    width: 100%;
+    border-radius: 10px;
+}
+
+.right_arrow{
+    width: 5%;
+    filter: brightness(50%) saturate(100%) grayscale(100%) contrast(80%);
+}
+
+.right_arrow img{
+    width: 100%;
+}
+.form_result{
+    width: 30%;
+}
+
+.form_result img{
+    width: 100%;
+    border-radius: 10px;
+}
+
+.footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+.upper_footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-btn{
+    height: 50px;
+    margin-top: 20px;
+    margin-right: 30px;
+}
+
+.footer_logo{
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+.bolder-icon .pi {
+    font-weight: 900;
+}
+
+
+
+
+@media only screen and (max-width: 720px) {
+    html {
+        font-size: 12px;
+    }
+    /* .navbar{
+        margin-right: 20px;
+        margin-left: 20px;
+        margin-bottom: 0px;
+    }
+
+    .signin_button{
+        width: 200px;
+    }
+    .btn{
+        width: 30%;
+        height: 30px;
+    }
+    .logo{
+        width: 150px;
+    }
+
+    .marketing_text {
+        width: 25%;
+        margin-left: -120px;
+    } */
+
+}
+@media only screen and (max-width: 450px) {
+    html{
+        font-size: 10px;
+    }
+    .landing_picture{
+        width: 100%;
+    }
+}
