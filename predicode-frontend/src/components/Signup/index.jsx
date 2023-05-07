@@ -4,6 +4,7 @@ import axios from "axios";
 import "../Login/index.css";
 import logo from "../../assets/logo.png";
 import { Message } from "primereact/message";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 function Signup() {
   const [name, setName] = useState("");
@@ -14,8 +15,14 @@ function Signup() {
   const [nameError, setNameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
+  const [showPassword, setShowPassword] = useState(false); // add state for showing password
+
   const navigate = useNavigate();
   const apiUrl = process.env.API_URL;
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -107,13 +114,18 @@ function Signup() {
 
           <div className="inputfield">
             <label>Password</label>
-            <input
-              type="password"
-              className="register_input"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              style={{ borderColor: passwordError ? "red" : "#D8E9EF" }}
-            ></input>
+            <div className="password-input-container">
+              <input
+                type={showPassword ? "text" : "password"}
+                className="register_input"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                style={{ borderColor: passwordError ? "red" : "#D8E9EF" }}
+              ></input>
+              <button type="button" onClick={togglePasswordVisibility}>
+                {showPassword ? <FaEyeSlash /> : <FaEye />}{" "}
+              </button>
+            </div>
           </div>
 
           <div className="inputfield">

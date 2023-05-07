@@ -50,6 +50,29 @@
     margin-bottom: 30px;
     display: flex;
     align-items: center;
+    position: relative;
+}
+
+.password-input-container {
+    position: relative;
+    width: 100%;
+}
+
+.password-input-container button {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: #999;
+    font-size: 1.2em;
+}
+
+.password-input-container input {
+    padding-right: 30px;
 }
 
 .wrapper .form .inputfield label {
