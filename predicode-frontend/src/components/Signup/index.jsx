@@ -9,6 +9,7 @@ function Signup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [verifyPassword, setVerifyPassword] = useState("");
   const [error, setError] = useState("");
   const [nameError, setNameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
@@ -39,7 +40,14 @@ function Signup() {
       setPasswordError(true);
       return;
     }
+    console.log("hewear");
 
+    if (password != verifyPassword) {
+      setError("Password different from the verified password");
+      setPasswordError(true);
+      return;
+    }
+    console.log("sureee ");
     const data = {
       name: name,
       email: email,
@@ -113,8 +121,8 @@ function Signup() {
             <input
               type="password"
               className="register_input"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={verifyPassword}
+              onChange={(e) => setVerifyPassword(e.target.value)}
               style={{ borderColor: passwordError ? "red" : "#D8E9EF" }}
             ></input>
           </div>
