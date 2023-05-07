@@ -129,14 +129,19 @@ function Signup() {
           </div>
 
           <div className="inputfield">
-            <label className="verify_password">Verify Password</label>
-            <input
-              type="password"
-              className="register_input"
-              value={verifyPassword}
-              onChange={(e) => setVerifyPassword(e.target.value)}
-              style={{ borderColor: passwordError ? "red" : "#D8E9EF" }}
-            ></input>
+            <label>Verify Password</label>
+            <div className="password-input-container">
+              <input
+                type={showPassword ? "text" : "password"}
+                className="register_input"
+                value={verifyPassword}
+                onChange={(e) => setVerifyPassword(e.target.value)}
+                style={{ borderColor: passwordError ? "red" : "#D8E9EF" }}
+              ></input>
+              <button type="button" onClick={togglePasswordVisibility}>
+                {showPassword ? <FaEyeSlash /> : <FaEye />}{" "}
+              </button>
+            </div>
           </div>
 
           {error && (
