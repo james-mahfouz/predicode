@@ -108,6 +108,17 @@ function Signup() {
             ></input>
           </div>
 
+          <div className="inputfield">
+            <label className="verify_password">Verify Password</label>
+            <input
+              type="password"
+              className="register_input"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              style={{ borderColor: passwordError ? "red" : "#D8E9EF" }}
+            ></input>
+          </div>
+
           {error && (
             <Message
               severity="error"

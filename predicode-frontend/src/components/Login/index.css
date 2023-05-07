@@ -55,8 +55,8 @@
 .wrapper .form .inputfield label {
     width: 200px;
     margin-right: 10px;
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 
 .wrapper .form .inputfield .register_input {

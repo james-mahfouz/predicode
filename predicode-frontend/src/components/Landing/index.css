@@ -378,4 +378,8 @@
     .landing_picture{
         width: 100%;
     }
+
+    .bolder-icon{
+        font-size: 2rem;
+    }
 }
