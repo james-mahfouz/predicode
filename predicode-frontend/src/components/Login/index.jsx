@@ -5,6 +5,7 @@ import { Message } from "primereact/message";
 import "./index.css";
 import logo from "../../assets/logo.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import GoogleButton from "react-google-button";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -46,6 +47,16 @@ const Login = () => {
     }
   };
 
+  const handleGoogleLogin = async () => {
+    const { data } = await axios.get("/api/login/google");
+    setUser(data.user);
+    setSessionToken(data.session_token);
+  };
+
+  const buttonStyle = {
+    borderRadius: "10px",
+    width: "100%",
+  };
   return (
     <div className="signin-wrapper">
       <div className="signin-logo">
@@ -99,6 +110,11 @@ const Login = () => {
               onClick={handleSubmit}
             ></input>
           </div>
+          <GoogleButton
+            onClick={handleGoogleLogin}
+            type="light"
+            style={buttonStyle}
+          />
 
           <p>
             Don't have an account? <a href="/signup">Sign-Up</a>
