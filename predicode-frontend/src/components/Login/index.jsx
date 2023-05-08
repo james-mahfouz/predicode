@@ -134,8 +134,14 @@ const Login = () => {
               console.log("Login Failed");
             }}
           /> */}
-          <GoogleOAuthProvider clientId="111529295665-lnv5grbrltgtbbgt87ms12ieu61fcaiu.apps.googleusercontent.com">
-            <Google />
+          <GoogleOAuthProvider
+            clientId="111529295665-lnv5grbrltgtbbgt87ms12ieu61fcaiu.apps.googleusercontent.com"
+            style={{ width: "100%", borderRadius: "10px" }}
+          >
+            <Google
+              clientId="111529295665-lnv5grbrltgtbbgt87ms12ieu61fcaiu.apps.googleusercontent.com"
+              style={{ width: "100%", borderRadius: "10px" }}
+            />
           </GoogleOAuthProvider>
           <p>
             Don't have an account? <a href="/signup">Sign-Up</a>
