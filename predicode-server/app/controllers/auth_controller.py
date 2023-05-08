@@ -111,7 +111,7 @@ async def google_login(token):
             token = jwt.encode({"id": str(user.id), "email": user.email}, SECRET_KEY, algorithm="HS256")
             new_user = user.to_mongo().to_dict()
             del new_user["_id"]
-            del new_user["password"]
+
             return {"user": new_user, "token": token}, status.HTTP_201_CREATED
     except ValueError:
         raise HTTPException(status_code=401, detail='Invalid token.')
