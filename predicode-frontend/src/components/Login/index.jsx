@@ -5,7 +5,7 @@ import { Message } from "primereact/message";
 import "./index.css";
 import logo from "../../assets/logo.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-// import { GoogleLogin } from "@react-oauth/google";
+import { GoogleLogin } from "@react-oauth/google";
 
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Google from "../../google";
@@ -50,15 +50,13 @@ const Login = () => {
     }
   };
 
-  // const handleGoogleLogin = async (googleUser) => {
-  //   const idToken = googleUser.getAuthResponse().id_token;
-  //   const response = await axios.get(apiUrl + "/auth/google_login", {
-  //     id_token: idToken,
-  //   });
-  //   console.log(response);
-  //   setUser(data.user);
-  //   setSessionToken(data.session_token);
-  // };
+  const handleGoogleLogin = async (credential) => {
+    const response = await axios.post(apiUrl + "auth/google_login", {
+      token: credential.credential,
+    });
+    localStorage.setItem("token", response.data.token);
+    navigate("/");
+  };
 
   // const handleGoogleLoginFailure = (error) => {
   //   setError("Failed to log in with Google:", error);
@@ -119,28 +117,18 @@ const Login = () => {
               onClick={handleSubmit}
             ></input>
           </div>
-          {/* <GoogleButton
-            onClick={handleGoogleLogin}
-            onSuccess={handleGoogleLogin}
-            onFailure={handleGoogleLoginFailure}
-            style={buttonStyle}
-            type="light"
-          /> */}
-          {/* <GoogleLogin
-            onSuccess={(credentialResponse) => {
-              console.log(credentialResponse);
-            }}
-            onError={() => {
-              console.log("Login Failed");
-            }}
-          /> */}
+
           <GoogleOAuthProvider
             clientId="111529295665-lnv5grbrltgtbbgt87ms12ieu61fcaiu.apps.googleusercontent.com"
             style={{ width: "100%", borderRadius: "10px" }}
           >
-            <Google
-              clientId="111529295665-lnv5grbrltgtbbgt87ms12ieu61fcaiu.apps.googleusercontent.com"
-              style={{ width: "100%", borderRadius: "10px" }}
+            <GoogleLogin
+              onSuccess={(credentialResponse) => {
+                handleGoogleLogin(credentialResponse);
+              }}
+              onError={() => {
+                console.log("Login Failed");
+              }}
             />
           </GoogleOAuthProvider>
           <p>
