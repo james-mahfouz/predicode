@@ -58,11 +58,11 @@ async def login(request):
                 status_code=404,
                 detail="email"
             )
-        if user.login_method == "normal":
-            raise HTTPException(
-                status_code=404,
-                detail="you are signed in using google"
-            )
+        # if user.login_method == "normal":
+        #     raise HTTPException(
+        #         status_code=404,
+        #         detail="you are signed in using google"
+        #     )
         hashed_password = hashlib.sha256(password.encode()).hexdigest()
         print(hashed_password)
         print(user.password)
@@ -106,6 +106,7 @@ async def google_login(token):
             user = User(
                 name=user_name,
                 email=user_email.lower(),
+                login_method="google"
             )
             user.save()
             token = jwt.encode({"id": str(user.id), "email": user.email}, SECRET_KEY, algorithm="HS256")
