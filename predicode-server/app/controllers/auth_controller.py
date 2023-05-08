@@ -5,9 +5,8 @@ from fastapi import HTTPException, status
 from mongoengine import ValidationError
 import re
 import hashlib
-import google.auth.transport.requests
-import google.oauth2.id_token
-
+from google.oauth2 import id_token
+from google.auth.transport import requests
 
 email_regex = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
 email_pattern = re.compile(email_regex)
@@ -79,16 +78,23 @@ async def login(request):
 
 async def google_login(token):
     try:
-        print(token)
-        # idinfo = google.oauth2.id_token.verify_oauth2_token(
-        #     token, google.auth.transport.requests.Request())
-        #
-        # if idinfo['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
-        #     raise ValueError('Wrong issuer.')
-        #
-        # user_email = idinfo['email']
-        # user_name = idinfo['name']
-        # print(user_email, user_name)
+        token = str(token)
+        token = token.split('token=')[1]
+        token = token.strip("'")
+        idinfo = id_token.verify_oauth2_token(token, requests.Request())
+
+        if idinfo['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
+            raise ValueError('Invalid issuer')
+
+        idinfo = google.oauth2.id_token.verify_oauth2_token(
+            token, google.auth.transport.requests.Request())
+
+        if idinfo['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
+            raise ValueError('Wrong issuer.')
+
+        user_email = idinfo['email']
+        user_name = idinfo['name']
+        print(user_email, user_name)
 
     except ValueError:
         # Invalid token
