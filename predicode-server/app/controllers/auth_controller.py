@@ -93,7 +93,6 @@ async def google_login(token):
 
         user_email = idinfo['email']
         user_name = idinfo['name']
-        print(user_email, user_name)
         existing_user = User.objects(email=user_email).first()
         if existing_user:
             token = jwt.encode({"id": str(existing_user.id), "email": existing_user.email}, SECRET_KEY, algorithm="HS256")
