@@ -58,6 +58,11 @@ async def login(request):
                 status_code=404,
                 detail="email"
             )
+        if user.login_method == "normal":
+            raise HTTPException(
+                status_code=404,
+                detail="you are signed in using google"
+            )
         hashed_password = hashlib.sha256(password.encode()).hexdigest()
         print(hashed_password)
         print(user.password)
@@ -86,16 +91,22 @@ async def google_login(token):
         if idinfo['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
             raise ValueError('Invalid issuer')
 
-        idinfo = google.oauth2.id_token.verify_oauth2_token(
-            token, google.auth.transport.requests.Request())
-
-        if idinfo['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
-            raise ValueError('Wrong issuer.')
-
         user_email = idinfo['email']
         user_name = idinfo['name']
         print(user_email, user_name)
-
+        existing_user = User.objects(email=user_email).first()
+        if existing_user:
+            token = jwt.encode({"id": str(existing_user.id), "email": existing_user.email}, SECRET_KEY, algorithm="HS256")
+            new_user = existing_user.to_mongo().to_dict()
+            del new_user["_id"]
+            del new_user["password"]
+            del new_user["files"]
+            return {"user": new_user, "token": token}
+        else:
+            token = jwt.encode({"id": str(existing_user.id), "email": existing_user.email}, SECRET_KEY, algorithm="HS256")
+            new_user = existing_user.to_mongo().to_dict()
+            del new_user["_id"]
+            del new_user["password"]
+            return {"user": new_user, "token": token}, status.HTTP_201_CREATED
     except ValueError:
-        # Invalid token
         raise HTTPException(status_code=401, detail='Invalid token.')
