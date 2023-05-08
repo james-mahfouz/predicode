@@ -103,8 +103,13 @@ async def google_login(token):
             del new_user["files"]
             return {"user": new_user, "token": token}
         else:
-            token = jwt.encode({"id": str(existing_user.id), "email": existing_user.email}, SECRET_KEY, algorithm="HS256")
-            new_user = existing_user.to_mongo().to_dict()
+            user = User(
+                name=user_name,
+                email=user_email.lower(),
+            )
+            user.save()
+            token = jwt.encode({"id": str(user.id), "email": user.email}, SECRET_KEY, algorithm="HS256")
+            new_user = user.to_mongo().to_dict()
             del new_user["_id"]
             del new_user["password"]
             return {"user": new_user, "token": token}, status.HTTP_201_CREATED
