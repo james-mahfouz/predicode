@@ -137,7 +137,6 @@ const Upload = () => {
             },
           })
           .then((response) => {
-            console.log(response);
             setRating(parseFloat(response.data.rating));
             setMaintainability(response.data.maintainability.split("\n"));
             setUploading(false);
