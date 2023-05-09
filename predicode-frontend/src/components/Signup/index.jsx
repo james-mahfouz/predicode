@@ -81,11 +81,16 @@ function Signup() {
     }
   };
   const handleGoogleLogin = async (credential) => {
-    const response = await axios.post(apiUrl + "auth/google_login", {
-      token: credential.credential,
-    });
-    localStorage.setItem("token", response.data.token);
-    navigate("/");
+    try {
+      const response = await axios.post(apiUrl + "auth/google_login", {
+        token: credential.credential,
+      });
+      console.log(response);
+      localStorage.setItem("token", response.data.token);
+      navigate("/");
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
