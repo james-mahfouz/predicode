@@ -49,14 +49,12 @@ function Signup() {
       setPasswordError(true);
       return;
     }
-    console.log("hewear");
 
     if (password != verifyPassword) {
       setError("Password different from the verified password");
       setPasswordError(true);
       return;
     }
-    console.log("sureee ");
     const data = {
       name: name,
       email: email,
