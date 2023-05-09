@@ -10,6 +10,7 @@ from controllers.user_controller.search_apply import search_apply
 from controllers.user_controller.unzip_file import unzip_file
 from controllers.user_controller.add_history import add_history
 from models.fileModel import File
+from models.historyModel import History
 
 
 def verify_user(user):
@@ -23,7 +24,7 @@ def verify_user(user):
 def get_history(user):
     history_list = []
     for history in user.history:
-        if File.objects(id=history.id).first() is not None:
+        if History.objects(id=history.id).first() is not None:
             file_dict = history.to_mongo().to_dict()
             file_dict["_id"] = str(file_dict["_id"])
             history_list.append(file_dict)
@@ -32,7 +33,7 @@ def get_history(user):
             user.save()
 
     return JSONResponse(content={
-        "files": history_list,
+        "history": history_list,
         "user_name": user.name,
         "role": user.role
     })
