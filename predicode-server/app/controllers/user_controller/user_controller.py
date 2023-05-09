@@ -20,19 +20,19 @@ def verify_user(user):
     })
 
 
-def get_files(user):
-    files_list = []
-    for file in user.files:
-        if File.objects(id=file.id).first() is not None:
-            file_dict = file.to_mongo().to_dict()
+def get_history(user):
+    history_list = []
+    for history in user.history:
+        if File.objects(id=history.id).first() is not None:
+            file_dict = history.to_mongo().to_dict()
             file_dict["_id"] = str(file_dict["_id"])
-            files_list.append(file_dict)
+            history_list.append(file_dict)
         else:
-            user.files.remove(file)
+            user.files.remove(history)
             user.save()
 
     return JSONResponse(content={
-        "files": files_list,
+        "files": history_list,
         "user_name": user.name,
         "role": user.role
     })
