@@ -110,9 +110,7 @@ async def google_login(token):
             user.save()
             token = jwt.encode({"id": str(user.id), "email": user.email}, SECRET_KEY, algorithm="HS256")
             new_user = user.to_mongo().to_dict()
-            print("deleting")
             del new_user["_id"]
-            print("finished deleting")
             return {"user": new_user, "token": token}
     except ValueError:
         raise HTTPException(status_code=401, detail=ValueError)
