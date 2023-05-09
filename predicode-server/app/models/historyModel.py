@@ -1,4 +1,5 @@
 from mongoengine import Document, StringField, FloatField, DateTimeField
+from datetime import datetime
 
 
 class History(Document):
@@ -9,5 +10,5 @@ class History(Document):
     size = FloatField(required=True)
     rating = FloatField(required=True)
     maintainability = StringField(required=True)
-    date_created = DateTimeField(required=True)
+    date_created = DateTimeField(default=datetime.now)
 

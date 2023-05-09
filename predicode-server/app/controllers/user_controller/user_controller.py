@@ -8,6 +8,7 @@ from controllers.user_controller.relocate_folder import relocate_folder
 from controllers.user_controller.remove_folder import remove_folders
 from controllers.user_controller.search_apply import search_apply
 from controllers.user_controller.unzip_file import unzip_file
+from controllers.user_controller.add_history import add_history
 from models.fileModel import File
 
 
@@ -60,6 +61,8 @@ def upload_file(file, user):
 
             if not rating:
                 rating = predict(size=file.size, price=file.price, category=file.category, content=file.content_rating)
+            add_history(name=file.name, category=file.category, content_rating=file.content_rating,
+                        price=file.price, size=file.size)
 
             return {
                 "rating": rating,
