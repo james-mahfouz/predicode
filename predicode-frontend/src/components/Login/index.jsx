@@ -51,16 +51,16 @@ const Login = () => {
   };
 
   const handleGoogleLogin = async (credential) => {
-    const response = await axios.post(apiUrl + "auth/google_login", {
-      token: credential.credential,
-    });
-    localStorage.setItem("token", response.data.token);
-    navigate("/");
+    try {
+      const response = await axios.post(apiUrl + "auth/google_login", {
+        token: credential.credential,
+      });
+      localStorage.setItem("token", response.data.token);
+      navigate("/");
+    } catch (e) {
+      setError("google signin failed");
+    }
   };
-
-  // const handleGoogleLoginFailure = (error) => {
-  //   setError("Failed to log in with Google:", error);
-  // };
 
   const buttonStyle = {
     borderRadius: "10px",
