@@ -51,9 +51,7 @@ def upload_file(file, user):
                 f.write(decoded_data)
 
             extracted_files = unzip_file(file_path=temp_file_path)
-
             os.remove(temp_file_path)
-
             maintainability = search_apply(extracted_files=extracted_files)
 
             rating = relocate_folder(extracted_files=extracted_files, file=file, user=user)
