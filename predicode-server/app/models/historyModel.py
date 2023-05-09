@@ -10,5 +10,6 @@ class History(Document):
     size = FloatField(required=True)
     rating = FloatField(required=True)
     maintainability = StringField(required=True)
-    date_created = DateTimeField(default=datetime.now)
+    date_created = StringField(default=datetime.now().strftime('%Y-%m-%d %H:%M'))
+
 
