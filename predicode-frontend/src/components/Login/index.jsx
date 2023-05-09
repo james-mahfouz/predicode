@@ -118,19 +118,27 @@ const Login = () => {
             ></input>
           </div>
 
-          <GoogleOAuthProvider
-            clientId="111529295665-lnv5grbrltgtbbgt87ms12ieu61fcaiu.apps.googleusercontent.com"
-            style={{ width: "100%", borderRadius: "10px" }}
-          >
-            <GoogleLogin
-              onSuccess={(credentialResponse) => {
-                handleGoogleLogin(credentialResponse);
+          <div className="google_provider">
+            <GoogleOAuthProvider
+              clientId="111529295665-lnv5grbrltgtbbgt87ms12ieu61fcaiu.apps.googleusercontent.com"
+              style={{
+                width: "2000px",
+                borderRadius: "10px",
+                margin: "0",
               }}
-              onError={() => {
-                console.log("Login Failed");
-              }}
-            />
-          </GoogleOAuthProvider>
+              className="google_provider"
+            >
+              <GoogleLogin
+                onSuccess={(credentialResponse) => {
+                  handleGoogleLogin(credentialResponse);
+                }}
+                onError={() => {
+                  console.log("Login Failed");
+                }}
+                style={{ margin: "0", width: "100%" }}
+              />
+            </GoogleOAuthProvider>
+          </div>
           <p>
             Don't have an account? <a href="/signup">Sign-Up</a>
           </p>

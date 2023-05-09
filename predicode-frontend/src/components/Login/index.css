@@ -105,3 +105,12 @@
     font-weight: 300;
     margin-bottom: -7px;
 }
+
+.google_provider{
+    float: none;
+    position: static;
+    display: block;
+    margin: auto;
+    width: max-content;
+    justify-content: center;
+}
