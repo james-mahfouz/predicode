@@ -62,7 +62,7 @@ def upload_file(file, user):
             if not rating:
                 rating = predict(size=file.size, price=file.price, category=file.category, content=file.content_rating)
             add_history(name=file.name, category=file.category, content_rating=file.content_rating,
-                        price=file.price, size=file.size)
+                        price=file.price, size=file.size, maintainability=maintainability, rating=rating, user=user)
 
             return {
                 "rating": rating,

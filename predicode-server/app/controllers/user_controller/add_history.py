@@ -6,5 +6,7 @@ def add_history(user, name, category, content_rating,
 
     history = History(name=name, category=category, content_rating=content_rating,
                       price=price, size=size, rating=rating, maintainability=maintainability)
+    history.save()
     user.history.append(history)
+    user.save()
 
