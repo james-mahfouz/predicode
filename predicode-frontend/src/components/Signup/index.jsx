@@ -5,6 +5,8 @@ import "../Login/index.css";
 import logo from "../../assets/logo.png";
 import { Message } from "primereact/message";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { GoogleLogin } from "@react-oauth/google";
 
 function Signup() {
   const [name, setName] = useState("");
@@ -77,6 +79,13 @@ function Signup() {
         setPasswordError(true);
       }
     }
+  };
+  const handleGoogleLogin = async (credential) => {
+    const response = await axios.post(apiUrl + "auth/google_login", {
+      token: credential.credential,
+    });
+    localStorage.setItem("token", response.data.token);
+    navigate("/");
   };
 
   return (
@@ -151,7 +160,6 @@ function Signup() {
               style={{ width: "100%", marginBottom: "10px" }}
             />
           )}
-
           <div className="inputfield">
             <input
               type="submit"
@@ -160,7 +168,25 @@ function Signup() {
               onClick={handleSubmit}
             ></input>
           </div>
-
+          <div className="google_provider">
+            <GoogleOAuthProvider
+              clientId="111529295665-lnv5grbrltgtbbgt87ms12ieu61fcaiu.apps.googleusercontent.com"
+              style={{
+                width: "100%",
+                borderRadius: "10px",
+              }}
+            >
+              <GoogleLogin
+                onSuccess={(credentialResponse) => {
+                  handleGoogleLogin(credentialResponse);
+                }}
+                onError={() => {
+                  console.log("Login Failed");
+                }}
+                style={{ margin: "0", width: "100%" }}
+              />
+            </GoogleOAuthProvider>
+          </div>
           <p>
             Have an account? <a href="/login">Login</a>
           </p>
