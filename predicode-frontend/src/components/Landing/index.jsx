@@ -108,19 +108,6 @@ const Landing = () => {
           <div className="form_result">
             <img src={form_result} alt="" />
           </div>
-
-          {/* <DataTable value={files} style={{ width: "80%", height: "auto" }}>
-            <Column
-              field="name"
-              header="Code Uploaded"
-              headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
-            ></Column>
-            <Column
-              field="result"
-              header="Result"
-              headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
-            ></Column>
-          </DataTable> */}
         </div>
       </section>
 

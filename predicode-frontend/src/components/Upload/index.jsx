@@ -147,7 +147,6 @@ const Upload = () => {
           });
       };
     } else {
-      console.log("File not zipped");
       setError("File should be zipped");
       setUploading(false);
     }
