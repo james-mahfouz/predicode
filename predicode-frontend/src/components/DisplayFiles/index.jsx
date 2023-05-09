@@ -24,7 +24,6 @@ const DisplayFiles = ({ onAdminNameChange }) => {
           },
         });
         setFiles(response.data.files);
-        console.log(response.data.files);
         localStorage.setItem("admin_name", response.data.admin_name);
       } catch (e) {
         if (e.response.data.detail.access === "denied") {
