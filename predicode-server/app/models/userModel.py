@@ -1,6 +1,7 @@
 import bcrypt
 from mongoengine import Document, StringField, ListField, EmailField, ReferenceField
 from models.fileModel import File
+from models.historyModel import History
 
 
 class User(Document):
@@ -10,3 +11,4 @@ class User(Document):
     login_method = StringField(choices=["normal", "google"], default="normal")
     role = StringField(choices=["user", "admin"], default="user")
     files = ListField(ReferenceField(File))
+    history = ListField(ReferenceField(History))

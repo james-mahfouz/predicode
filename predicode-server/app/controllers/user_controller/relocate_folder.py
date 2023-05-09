@@ -5,7 +5,7 @@ from controllers.user_controller.predict import predict
 from models.fileModel import File
 
 
-def relocate_folder(extracted_files, file, user):
+def relocate_folder(extracted_files, file, user, maintainability):
     copied_folders = []
     for extracted_file in extracted_files:
         if not File.objects(name=str(extracted_file).split("/")[0] + "/").first() and not File.objects(
@@ -19,7 +19,7 @@ def relocate_folder(extracted_files, file, user):
 
                 uploaded_file = File(name=extracted_file, by_user=user.name, path=save_path, size=file.size,
                                      category=file.category, content_rating=file.content_rating, price=file.price,
-                                     rating=rating)
+                                     rating=rating, maintainability=maintainability)
                 uploaded_file.save()
 
                 user.files.append(uploaded_file)

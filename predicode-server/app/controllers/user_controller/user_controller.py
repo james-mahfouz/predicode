@@ -54,7 +54,7 @@ def upload_file(file, user):
             os.remove(temp_file_path)
             maintainability = search_apply(extracted_files=extracted_files)
 
-            rating = relocate_folder(extracted_files=extracted_files, file=file, user=user)
+            rating = relocate_folder(extracted_files=extracted_files, file=file, user=user, maintainability=maintainability)
 
             remove_folders(extracted_files)
 

@@ -13,7 +13,6 @@ def search_apply(extracted_files):
         if not str(extracted_file).split("/")[0] + "/" in searched_folders:
             functions = search_java_files(extracted_file)
             if len(functions) == 0:
-                print("removing")
                 remove_folders(extracted_files)
                 raise HTTPException(status_code=404, detail="This isn't a Java Project")
             if len(functions) < 5:
