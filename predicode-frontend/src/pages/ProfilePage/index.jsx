@@ -1,9 +1,9 @@
-import Admin from "../../components/Admin";
+import Profile from "../../components/Profile";
 
 const ProfilePage = () => {
   return (
     <div>
-      <Admin />
+      <Profile />
     </div>
   );
 };
