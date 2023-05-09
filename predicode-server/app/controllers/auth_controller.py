@@ -58,14 +58,9 @@ async def login(request):
                 status_code=404,
                 detail="email"
             )
-        # if user.login_method == "normal":
-        #     raise HTTPException(
-        #         status_code=404,
-        #         detail="you are signed in using google"
-        #     )
+
         hashed_password = hashlib.sha256(password.encode()).hexdigest()
-        print(hashed_password)
-        print(user.password)
+
         if not hashed_password == user.password:
             raise HTTPException(
                 status_code=404,
@@ -78,6 +73,7 @@ async def login(request):
     del new_user["_id"]
     del new_user["password"]
     del new_user["files"]
+    del new_user["history"]
     return {"user": new_user, "token": token}
 
 
@@ -100,6 +96,7 @@ async def google_login(token):
             del new_user["_id"]
             del new_user["password"]
             del new_user["files"]
+            del new_user["history"]
             return {"user": new_user, "token": token}
         else:
             user = User(

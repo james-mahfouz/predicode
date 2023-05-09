@@ -60,6 +60,7 @@ def get_users(user):
         user_dict = u.to_mongo().to_dict()
         user_dict["_id"] = str(user_dict["_id"])
 
+        user_dict.pop("history", None)
         files = user_dict.get("files", [])
         for i, file_id in enumerate(files):
             file_obj = File.objects.filter(id=file_id).first()
