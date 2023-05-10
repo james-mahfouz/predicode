@@ -32,7 +32,7 @@ const UserProfile = () => {
         setProfilePic(response.data.profile_picture);
         setEmail(response.data.email);
         setName(response.data.username);
-        localStorage.setItem("user_name", response.data.user_name);
+        localStorage.setItem("user_name", response.data.username);
       } catch (e) {}
     };
     getUser();

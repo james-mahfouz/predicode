@@ -11,19 +11,19 @@ const Admin = () => {
       <UserProfile />
     </div>
   );
-  const [adminName, setAdminName] = useState("");
+  const [userName, setUserName] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
-    const getAdminName = () => {
-      const admin_name = localStorage.getItem("admin_name");
-      if (admin_name) {
-        setAdminName(admin_name);
+    const getUserName = () => {
+      const user_name = localStorage.getItem("user_name");
+      if (user_name) {
+        setUserName(user_name);
       } else {
-        setTimeout(getAdminName, 1000);
+        setTimeout(getUserName, 1000);
       }
     };
-    getAdminName();
+    getUserName();
   }, []);
 
   const handleOption = (option) => {
@@ -64,7 +64,7 @@ const Admin = () => {
       <section className="right">
         <div className="top-bar">
           <div className="admin-name">
-            <h3>{adminName}</h3>
+            <h3>{userName}</h3>
           </div>
           <div className="logout-btn" onClick={() => handleLogout()}>
             <h4>Logout</h4>
