@@ -10,12 +10,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
+import { Message } from "primereact/message";
 
 const UserProfile = () => {
   const [name, setName] = useState("james");
   const [email, setEmail] = useState("email@gmail.com");
   const [profilePic, setProfilePic] = useState("");
   const [editable, setEditable] = useState(false);
+  const [error, setError] = useState("");
 
   const apiUrl = process.env.API_URL;
 
@@ -35,15 +37,17 @@ const UserProfile = () => {
     };
     getUser();
   }, []);
+
   const submitFormData = async (formData) => {
     try {
+      setError("");
       const response = await axios.post(apiUrl + "user/update", formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
     } catch (error) {
-      console.log(error);
+      setError(error.response.data.detail.detail);
     }
   };
   const handleSubmit = async (e) => {
@@ -161,6 +165,13 @@ const UserProfile = () => {
             </div>
           )}
         </>
+        {error && (
+          <Message
+            severity="error"
+            text={error}
+            style={{ width: "100%", marginBottom: "10px" }}
+          />
+        )}
         <Button
           type="submit"
           label="Save"
