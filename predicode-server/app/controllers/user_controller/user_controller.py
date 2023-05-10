@@ -1,7 +1,9 @@
 import shutil
 import uuid
-from datetime import datetime
+from typing import Optional
+import re
 
+from mongoengine import ValidationError
 from fastapi.responses import JSONResponse
 from fastapi import HTTPException
 import base64
@@ -15,6 +17,10 @@ from controllers.user_controller.search_apply import search_apply
 from controllers.user_controller.unzip_file import unzip_file
 from controllers.user_controller.add_history import add_history
 from models.historyModel import History
+from models.userModel import User
+
+email_regex = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+email_pattern = re.compile(email_regex)
 
 
 def verify_user(user):
@@ -83,13 +89,36 @@ def upload_file(file, user):
         raise e
 
 
-def update_info(user, name: str, email: str, profile_pic: UploadFile = File(...)):
-    print(user.name, name, email, profile_pic)
-    if not profile_pic.content_type.startswith("image/"):
-        return {"error": "Only image files are allowed."}
+def update_info(user, name: str, email: str, profile_pic: Optional[UploadFile] = None):
+    try:
+        if not profile_pic.content_type.startswith("image/"):
+            raise HTTPException(status_code=500, detail=details)
+        existing_user = User.objects(email=email).first()
+        if len(name) < 3:
+            details = {"error": "name", "detail": "Name must have 3 characters or more"}
+            raise HTTPException(status_code=500, detail=details)
 
-    unique_id = uuid.uuid4()
-    filename = f"{unique_id}_{profile_pic.filename}"
-    file_path = os.path.join("public", filename)
-    with open(file_path, "wb") as buffer:
-        shutil.copyfileobj(profile_pic.file, buffer)
+        if not email_pattern.match(email.lower()):
+            details = {"error": "email", "detail": "Email must be in name@mail.com format"}
+            raise HTTPException(status_code=500, detail=details)
+
+        if existing_user:
+            details = {"error": "email", "detail": "Email already exists"}
+            raise HTTPException(status_code=500, detail=details)
+
+        updated_user = User.objects(id=user.id).first()
+        if profile_pic is not None:
+            unique_id = uuid.uuid4()
+            filename = f"{unique_id}_{profile_pic.filename}"
+            file_path = os.path.join("public/profile_pictures", filename)
+            with open(file_path, "wb") as buffer:
+                shutil.copyfileobj(profile_pic.file, buffer)
+            updated_user.profile_picture = file_path
+
+        updated_user.name = name
+        updated_user.email = email
+        updated_user.save()
+        return {"message": "updated successfully"}
+
+    except ValidationError as e:
+        print(e)
