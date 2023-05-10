@@ -1,80 +1,80 @@
-import logo from "../../assets/logo.png";
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { GoogleOAuthProvider } from "@react-oauth/google";
+import logo from '../../assets/logo.png'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import { GoogleOAuthProvider } from '@react-oauth/google'
 
-import { useNavigate } from "react-router-dom";
-import { Button } from "primereact/button";
-import { Sidebar } from "primereact/sidebar";
+import { useNavigate } from 'react-router-dom'
+import { Button } from 'primereact/button'
+import { Sidebar } from 'primereact/sidebar'
 
 const Navbar = (props) => {
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
-  const [signedIn, setSignedIn] = useState(false);
-  const [visibleRight, setVisibleRight] = useState(false);
-  const [username, setUsername] = useState("");
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(false)
+  const [signedIn, setSignedIn] = useState(false)
+  const [visibleRight, setVisibleRight] = useState(false)
+  const [username, setUsername] = useState('')
+  const [isAdmin, setIsAdmin] = useState(false)
 
-  const apiUrl = process.env.API_URL;
-  const navigate = useNavigate();
+  const apiUrl = window.API_URL
+  const navigate = useNavigate()
   useEffect(() => {
     function handleResize() {
-      setIsSmallScreen(window.innerWidth <= 720);
+      setIsSmallScreen(window.innerWidth <= 720)
     }
 
-    handleResize();
+    handleResize()
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize)
 
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   useEffect(() => {
     const verify = async () => {
       try {
-        const response = await axios.get(apiUrl + "user/verify", {
+        const response = await axios.get(apiUrl + 'user/verify', {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        })
 
-        setUsername(response.data.username);
-        setSignedIn(true);
-        if (response.data.role === "admin") {
-          setIsAdmin(true);
+        setUsername(response.data.username)
+        setSignedIn(true)
+        if (response.data.role === 'admin') {
+          setIsAdmin(true)
         }
       } catch (e) {
-        console.log(e);
+        console.log(e)
       }
-    };
-    verify();
-  }, []);
+    }
+    verify()
+  }, [])
 
   const go_signin = () => {
-    navigate("/login");
-  };
+    navigate('/login')
+  }
 
   const goUploadPage = () => {
-    navigate("/upload");
-  };
+    navigate('/upload')
+  }
 
   const handleLogout = () => {
-    props.onLogout();
-    localStorage.removeItem("token");
-    localStorage.removeItem("admin_name");
-    setVisibleRight(false);
-    setSignedIn(false);
-  };
+    props.onLogout()
+    localStorage.removeItem('token')
+    localStorage.removeItem('admin_name')
+    setVisibleRight(false)
+    setSignedIn(false)
+  }
 
   const goAdminPage = () => {
-    navigate("/admin");
-  };
+    navigate('/admin')
+  }
 
   const goHomePage = () => {
-    navigate("/");
-  };
+    navigate('/')
+  }
   const goProfilePage = () => {
-    navigate("/profile");
-  };
+    navigate('/profile')
+  }
   return (
     <div>
       <section className="navbar">
@@ -84,7 +84,7 @@ const Navbar = (props) => {
         {!signedIn && (
           <div className="signin_button">
             <Button
-              label={!isSmallScreen && "Sign-In"}
+              label={!isSmallScreen && 'Sign-In'}
               icon="pi pi-sign-in"
               className="btn"
               onClick={go_signin}
@@ -111,11 +111,7 @@ const Navbar = (props) => {
               )}
             </div>
             <div className="navbar-logout">
-              <Button
-                label="Logout"
-                className="btn logout"
-                onClick={handleLogout}
-              />
+              <Button label="Logout" className="btn logout" onClick={handleLogout} />
             </div>
           </div>
         )}
@@ -128,7 +124,7 @@ const Navbar = (props) => {
               severity="info"
               aria-label="User"
               onClick={() => setVisibleRight(true)}
-              style={{ borderWidth: "3px" }}
+              style={{ borderWidth: '3px' }}
               className="bolder-icon"
             />
           </div>
@@ -137,11 +133,7 @@ const Navbar = (props) => {
 
       <section className="sidebar">
         {isSmallScreen && (
-          <Sidebar
-            visible={visibleRight}
-            position="right"
-            onHide={() => setVisibleRight(false)}
-          >
+          <Sidebar visible={visibleRight} position="right" onHide={() => setVisibleRight(false)}>
             <div className="sidebar-logo">
               <img src={logo} />
             </div>
@@ -168,18 +160,14 @@ const Navbar = (props) => {
               </div>
 
               <div className="logout sidebar-logout">
-                <Button
-                  label="Logout"
-                  className="btn logout"
-                  onClick={handleLogout}
-                />
+                <Button label="Logout" className="btn logout" onClick={handleLogout} />
               </div>
             </div>
           </Sidebar>
         )}
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

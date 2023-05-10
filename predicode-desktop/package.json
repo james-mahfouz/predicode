@@ -19,6 +19,10 @@
   "dependencies": {
     "@electron-toolkit/preload": "^1.0.3",
     "@electron-toolkit/utils": "^1.0.2",
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-regular-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@react-oauth/google": "^0.11.0",
     "axios": "^1.4.0",
     "dotenv": "^16.0.3",
@@ -26,6 +30,7 @@
     "primeflex": "^3.3.0",
     "primeicons": "^6.0.1",
     "primereact": "^9.3.1",
+    "react-avatar": "^5.0.3",
     "react-icons": "^4.8.0",
     "react-router-dom": "^6.11.1",
     "react-star-ratings": "^2.3.0"

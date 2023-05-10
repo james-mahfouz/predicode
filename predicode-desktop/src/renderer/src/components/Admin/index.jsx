@@ -1,42 +1,40 @@
-import logo from "../../assets/logo-white-01.png";
-import "./index.css";
-import DisplayUsers from "../DisplayUsers";
-import DisplayFiles from "../DisplayFiles";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import logo from '../../assets/logo-white-01.png'
+import './index.css'
+import DisplayUsers from '../DisplayUsers'
+import DisplayFiles from '../DisplayFiles'
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Admin = () => {
-  const [adminFunction, setAdminFunction] = useState(<DisplayUsers />);
-  const [adminName, setAdminName] = useState("");
-  const navigate = useNavigate();
+  const [adminFunction, setAdminFunction] = useState(<DisplayUsers />)
+  const [adminName, setAdminName] = useState('')
+  const navigate = useNavigate()
 
   useEffect(() => {
     const getAdminName = () => {
-      const admin_name = localStorage.getItem("admin_name");
+      const admin_name = localStorage.getItem('admin_name')
       if (admin_name) {
-        setAdminName(admin_name);
+        setAdminName(admin_name)
       } else {
-        setTimeout(getAdminName, 1000); // check again after 1 second
+        setTimeout(getAdminName, 1000) // check again after 1 second
       }
-    };
-    getAdminName();
-  }, []);
+    }
+    getAdminName()
+  }, [])
 
   const handleOption = (option) => {
-    option === 1
-      ? setAdminFunction(<DisplayFiles />)
-      : setAdminFunction(<DisplayUsers />);
-  };
+    option === 1 ? setAdminFunction(<DisplayFiles />) : setAdminFunction(<DisplayUsers />)
+  }
 
   const goLanding = () => {
-    navigate("/");
-  };
+    navigate('/')
+  }
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("admin_name");
-    navigate("/");
-  };
+    localStorage.removeItem('token')
+    localStorage.removeItem('admin_name')
+    navigate('/')
+  }
   return (
     <div className="admin-body">
       <section className="left">
@@ -66,7 +64,7 @@ const Admin = () => {
         <div className="infos">{adminFunction}</div>
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default Admin;
+export default Admin

@@ -1,30 +1,30 @@
-import logo from "../../assets/logo-white-01.png";
-import "../Admin/index.css";
-import ProfileHistory from "../ProfileHistory";
-import UserProfile from "../UserProfile";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import logo from '../../assets/logo-white-01.png'
+import '../Admin/index.css'
+import ProfileHistory from '../ProfileHistory'
+import UserProfile from '../UserProfile'
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Admin = () => {
   const [adminFunction, setAdminFunction] = useState(
     <div className="profile">
       <UserProfile />
     </div>
-  );
-  const [userName, setUserName] = useState("");
-  const navigate = useNavigate();
+  )
+  const [userName, setUserName] = useState('')
+  const navigate = useNavigate()
 
   useEffect(() => {
     const getUserName = () => {
-      const user_name = localStorage.getItem("user_name");
+      const user_name = localStorage.getItem('user_name')
       if (user_name) {
-        setUserName(user_name);
+        setUserName(user_name)
       } else {
-        setTimeout(getUserName, 1000);
+        setTimeout(getUserName, 1000)
       }
-    };
-    getUserName();
-  }, []);
+    }
+    getUserName()
+  }, [])
 
   const handleOption = (option) => {
     option === 1
@@ -33,18 +33,18 @@ const Admin = () => {
           <div className="profile">
             <UserProfile />
           </div>
-        );
-  };
+        )
+  }
 
   const goLanding = () => {
-    navigate("/");
-  };
+    navigate('/')
+  }
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("admin_name");
-    navigate("/");
-  };
+    localStorage.removeItem('token')
+    localStorage.removeItem('admin_name')
+    navigate('/')
+  }
   return (
     <div className="admin-body">
       <section className="left">
@@ -74,7 +74,7 @@ const Admin = () => {
         <div className="infos">{adminFunction}</div>
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default Admin;
+export default Admin

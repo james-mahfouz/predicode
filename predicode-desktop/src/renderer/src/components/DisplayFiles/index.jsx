@@ -1,62 +1,62 @@
-import "../Admin/index.css";
-import React from "react";
-import { useState, useEffect, useRef } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import '../Admin/index.css'
+import React from 'react'
+import { useState, useEffect, useRef } from 'react'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
-import { DataTable } from "primereact/datatable";
-import { Column } from "primereact/column";
-import { Button } from "primereact/button";
-import { SlideMenu } from "primereact/slidemenu";
+import { DataTable } from 'primereact/datatable'
+import { Column } from 'primereact/column'
+import { Button } from 'primereact/button'
+import { SlideMenu } from 'primereact/slidemenu'
 
 const DisplayFiles = ({ onAdminNameChange }) => {
-  const [files, setFiles] = useState([]);
-  const menu = useRef(null);
-  const apiUrl = process.env.API_URL;
-  const navigate = useNavigate();
+  const [files, setFiles] = useState([])
+  const menu = useRef(null)
+  const apiUrl = window.API_URL
+  const navigate = useNavigate()
 
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const response = await axios.get(apiUrl + "admin/get_files", {
+        const response = await axios.get(apiUrl + 'admin/get_files', {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
-        setFiles(response.data.files);
-        localStorage.setItem("admin_name", response.data.admin_name);
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        })
+        setFiles(response.data.files)
+        localStorage.setItem('admin_name', response.data.admin_name)
       } catch (e) {
-        if (e.response.data.detail.access === "denied") {
-          navigate("/");
+        if (e.response.data.detail.access === 'denied') {
+          navigate('/')
         }
       }
-    };
-    getUsers();
-  }, []);
+    }
+    getUsers()
+  }, [])
 
   function adjustDataForSlideMenu(files) {
-    const menuItems = [];
+    const menuItems = []
 
     for (let file of files) {
       const menuItem = {
         label: file.name,
-        icon: file.type === "folder" ? "pi pi-folder" : "pi pi-file",
-      };
-
-      if (file.type === "folder") {
-        menuItem.items = adjustDataForSlideMenu(file.items);
-      } else if (file.type === "file") {
-        menuItem.command = () => window.open(`${apiUrl}${file.path}`);
+        icon: file.type === 'folder' ? 'pi pi-folder' : 'pi pi-file'
       }
 
-      menuItems.push(menuItem);
+      if (file.type === 'folder') {
+        menuItem.items = adjustDataForSlideMenu(file.items)
+      } else if (file.type === 'file') {
+        menuItem.command = () => window.open(`${apiUrl}${file.path}`)
+      }
+
+      menuItems.push(menuItem)
     }
 
-    return menuItems;
+    return menuItems
   }
 
   function SlideMenuWrapper({ rowData }) {
-    const menu = useRef(null);
+    const menu = useRef(null)
 
     return (
       <>
@@ -74,13 +74,13 @@ const DisplayFiles = ({ onAdminNameChange }) => {
           onClick={(event) => menu.current.toggle(event)}
         ></Button>
       </>
-    );
+    )
   }
 
   return (
     <div className="display-users">
       <h1>Files</h1>
-      <div className="card" style={{ padding: "0rem" }}>
+      <div className="card" style={{ padding: '0rem' }}>
         <DataTable
           value={files}
           scrollable
@@ -88,80 +88,80 @@ const DisplayFiles = ({ onAdminNameChange }) => {
           virtualScrollerOptions={{ itemSize: 46 }}
           sortMode="multiple"
           tableStyle={{
-            minWidth: "50rem",
+            minWidth: '50rem'
           }}
         >
           <Column
             field="_id"
             header="Id"
-            style={{ width: "20%" }}
+            style={{ width: '20%' }}
             sortable
-            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
+            headerStyle={{ backgroundColor: '#714DF4', color: 'white' }}
           ></Column>
           <Column
             field="name"
             header="File Name"
-            style={{ width: "20%" }}
+            style={{ width: '20%' }}
             sortable
-            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
+            headerStyle={{ backgroundColor: '#714DF4', color: 'white' }}
           ></Column>
           <Column
             field="category"
             header="Category"
-            style={{ width: "20%" }}
+            style={{ width: '20%' }}
             sortable
-            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
+            headerStyle={{ backgroundColor: '#714DF4', color: 'white' }}
           ></Column>
           <Column
             field="content_rating"
             header="Content Rating"
-            style={{ width: "20%" }}
+            style={{ width: '20%' }}
             sortable
-            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
+            headerStyle={{ backgroundColor: '#714DF4', color: 'white' }}
           ></Column>
           <Column
             field="rating"
             header="Rating"
-            style={{ width: "20%" }}
+            style={{ width: '20%' }}
             sortable
-            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
+            headerStyle={{ backgroundColor: '#714DF4', color: 'white' }}
           ></Column>
           <Column
             field="price"
             header="Price"
-            style={{ width: "20%" }}
+            style={{ width: '20%' }}
             sortable
-            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
+            headerStyle={{ backgroundColor: '#714DF4', color: 'white' }}
           ></Column>
           <Column
             field="size"
             header="Size"
-            style={{ width: "20%" }}
+            style={{ width: '20%' }}
             sortable
-            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
+            headerStyle={{ backgroundColor: '#714DF4', color: 'white' }}
           ></Column>
           <Column
             field="_id"
             header="Id"
-            style={{ width: "20%" }}
+            style={{ width: '20%' }}
             sortable
-            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
+            headerStyle={{ backgroundColor: '#714DF4', color: 'white' }}
           ></Column>
           <Column
             field="by_user"
             header="File Owner"
-            style={{ width: "20%" }}
+            style={{ width: '20%' }}
             sortable
-            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
+            headerStyle={{ backgroundColor: '#714DF4', color: 'white' }}
           ></Column>
           <Column
             header="View Project"
             body={(rowData) => <SlideMenuWrapper rowData={rowData} />}
-            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
+            headerStyle={{ backgroundColor: '#714DF4', color: 'white' }}
           />
         </DataTable>
       </div>
     </div>
-  );
-};
-export default DisplayFiles;
+  )
+}
+export default DisplayFiles

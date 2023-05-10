@@ -6,7 +6,7 @@ import SignupPage from './pages/SignupPage'
 import LandingPage from './pages/LandingPage'
 import AdminPage from './pages/AdminPage'
 import UploadPage from './pages/UploadPage'
-
+import ProfilePage from './pages/ProfilePage'
 import 'primereact/resources/themes/lara-light-indigo/theme.css'
 import 'primereact/resources/primereact.min.css'
 import 'primeicons/primeicons.css'
@@ -22,6 +22,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/admin" element={<AdminPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
           <Route path="*" element={() => <div>404</div>} />
         </Routes>
       </div>
