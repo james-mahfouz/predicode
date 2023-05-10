@@ -2,13 +2,26 @@ import "../Admin/index.css";
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import AvatarEditor from "react-avatar-editor";
 
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Inplace, InplaceDisplay, InplaceContent } from "primereact/inplace";
+import { FileUpload } from "primereact/fileupload";
+import { Avatar } from "primereact/avatar";
 
 const UserProfile = () => {
   const [history, setHistory] = useState([]);
+
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const onFileSelect = (event) => {
+    setSelectedFile(event.files[0]);
+  };
+
+  const uploadFile = () => {
+    console.log("hello");
+  };
 
   const apiUrl = process.env.API_URL;
   useEffect(() => {
