@@ -117,15 +117,12 @@
     display: inline-block;
 }
 
-.user_pp:hover{
-    cursor: pointer;
+.user_pp{
+    transition: filter 0.2s ease-in-out;
     position: relative;
-    filter: brightness(80%);
 }
 
-.user_pp:hover::after {
-    content: "\f303";
-    font-family: "Font Awesome 5 Free";
+.edit-icon{
     font-weight: 400;
     font-size: 24px;
     color: #fff;
@@ -133,16 +130,24 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
-
-.edit-icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
+    display: none;
     cursor: pointer;
 }
+
+.user_pp:hover{
+    cursor: pointer;
+    position: relative;
+    filter: brightness(70%);
+}
+
+.user_pp:hover ~ .edit-icon{
+    display: block;
+}
+
+.edit-icon:hover ~ .user_pp{
+    filter: brightness(70%);
+}
+
 .editable{ 
     display: flex;
     align-items: center;

@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Avatar from "react-avatar";
 import no_pp from "../../assets/no_pp.webp";
+import { faPen } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
@@ -73,6 +75,8 @@ const UserProfile = () => {
           onClick={handleAvatarClick}
           className="user_pp"
         />
+        <FontAwesomeIcon icon={faPen} className="edit-icon" />
+
         <input
           type="file"
           id="fileInput"
