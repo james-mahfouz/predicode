@@ -166,22 +166,15 @@ For Windows
    ```sh
    pip install -r requirements.txt
    ```
-10. Go to the app directory
+10. In the app directory in the configs folder create a new file named 'config.py' and copy config_example into it and fill it with your configuration
+11. For the OPEN_AI_KEY go to https://platform.openai.com/account/api-keys, create an account and get your key.
+12. Go to the app directory
     ```sh
     cd app
     ```
-11. Run the app
+13. Run the app
     ```sh
     uvicorn main:app --reload
-    ```
-12. Open a new command-line
-13. Go to the predicode-prediction-model
-    ```sh
-    cd predicode-server/predicode-prediction-model
-    ```
-14. Run Jupyter lab
-    ```sh
-    Jupyter lab
     ```
 
 Now, you should be able to run Predicode locally and explore its features.
