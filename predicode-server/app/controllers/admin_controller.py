@@ -2,6 +2,7 @@ from models.fileModel import File
 from models.userModel import User
 from fastapi.responses import JSONResponse
 import os
+from models.historyModel import History
 
 
 def get_files(user):
@@ -76,3 +77,21 @@ def get_users(user):
         "users": users_list,
         "admin_name": user.name
     })
+
+
+def get_history(user):
+    try:
+        history_list = []
+        histories = History.objects.all()
+        for history in histories:
+            file_dict = history.to_mongo().to_dict()
+            file_dict["_id"] = str(file_dict["_id"])
+            history_list.append(file_dict)
+
+        return JSONResponse(content={
+            "history": history_list,
+            "user_name": user.name,
+            "role": user.role
+        })
+    except Exception as e:
+        print(e)
