@@ -2,6 +2,8 @@ import shutil
 import uuid
 import re
 import base64
+import imghdr
+
 
 from mongoengine import ValidationError
 from fastapi.responses import JSONResponse
@@ -89,36 +91,41 @@ def upload_file(file, user):
 
 
 def update_info(user, request):
+
     try:
-
-        if request.profile_picture is not None and not request.profile_picture.content_type.startswith("image/"):
-            details = {"error": "file", "detail": "file must be an image"}
-            raise HTTPException(status_code=500, detail=details)
-        existing_user = User.objects(email=request.email).first()
-        if len(request.name) < 3:
-            details = {"error": "name", "detail": "Name must have 3 characters or more"}
-            raise HTTPException(status_code=500, detail=details)
-
-        if not email_pattern.match(request.email.lower()):
-            details = {"error": "email", "detail": "Email must be in name@mail.com format"}
-            raise HTTPException(status_code=500, detail=details)
-
-        if existing_user:
-            details = {"error": "email", "detail": "Email already exists"}
-            raise HTTPException(status_code=500, detail=details)
-
-        updated_user = User.objects(id=user.id).first()
         if request.profile_picture is not None:
+            image_data = base64.b64decode(request.profile_picture)
+            if imghdr.what(None, image_data) is None:
+                details = {"error": "file", "detail": "file must be an image"}
+                raise HTTPException(status_code=500, detail=details)
             unique_id = uuid.uuid4()
-            filename = f"{unique_id}_{request.profile_picture.filename}"
+            filename = f"{unique_id}_{request.file_name}"
             file_path = os.path.join("public/profile_pictures", filename)
             with open(file_path, "wb") as buffer:
-                shutil.copyfileobj(request.profile_picture.file, buffer)
+                buffer.write(image_data)
+            updated_user = User.objects(id=user.id).first()
             updated_user.profile_picture = file_path
+        else:
+            updated_user = User.objects(id=user.id).first()
 
+        if len(request.name) < 3:
+            details = {"error": "name", "detail": "Name must have 3 characters or more"}
+            updated_user.save()
+            raise HTTPException(status_code=500, detail=details)
+        updated_user.name = request.name
+        if not email_pattern.match(request.email.lower()):
+            updated_user.save()
+            details = {"error": "email", "detail": "Email must be in name@mail.com format"}
+            raise HTTPException(status_code=500, detail=details)
+        existing_user = User.objects(email=request.email).first()
+        if existing_user and existing_user.id != user.id:
+            updated_user.save()
+            details = {"error": "email", "detail": "Email already exists"}
+            raise HTTPException(status_code=500, detail=details)
         updated_user.name = request.name
         updated_user.email = request.email
         updated_user.save()
+
         return {"message": "updated successfully"}
 
     except ValidationError as e:
