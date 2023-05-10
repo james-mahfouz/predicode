@@ -95,12 +95,22 @@
 
 .wrapper .form .inputfield .btn {
     width: 100%;
-    padding: 8px 10px;
-    font-size: 15px;
+    padding: 10px 10px;
+    font-size: 17px;
     border: 0px;
     background: #714DF4;
     color: #fff;
     cursor: pointer;
     border-radius: 10px;
     font-weight: 300;
+    margin-bottom: -7px;
+}
+
+.google_provider{
+    float: none;
+    position: static;
+    display: block;
+    margin: auto;
+    width: max-content;
+    justify-content: center;
 }

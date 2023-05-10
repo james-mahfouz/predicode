@@ -24,7 +24,6 @@ const DisplayUsers = () => {
         setUsers(response.data.users);
         localStorage.setItem("admin_name", response.data.admin_name);
       } catch (e) {
-        console.log(e.response.data.detail.access);
         if (e.response.data.detail.access === "denied") {
           navigate("/");
         }

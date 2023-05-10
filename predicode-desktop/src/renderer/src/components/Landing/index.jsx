@@ -1,50 +1,53 @@
-import background from '../../assets/landing-background.png'
-import logo from '../../assets/logo.png'
-import form_upload from '../../assets/form_upload.png'
-import form_result from '../../assets/form_result.png'
-import right_arrow from '../../assets/right-arrow.png'
-import upload from '../../assets/upload.jpg'
-import wait from '../../assets/wait.jpg'
-import create from '../../assets/create.jpg'
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import Navbar from '../Navbar'
+import background from "../../assets/landing-background.png";
+import logo from "../../assets/logo.png";
+import form_upload from "../../assets/form_upload.png";
+import form_result from "../../assets/form_result.png";
+import right_arrow from "../../assets/right-arrow.png";
+import upload from "../../assets/upload.jpg";
+import wait from "../../assets/wait.jpg";
+import create from "../../assets/create.jpg";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import Navbar from "../Navbar";
 
-import { useNavigate } from 'react-router-dom'
-import { Button } from 'primereact/button'
+import { useNavigate } from "react-router-dom";
+import { Button } from "primereact/button";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column";
 
-import './index.css'
+import "./index.css";
 
 const Landing = () => {
-  const [signedIn, setSignedIn] = useState(false)
+  const [files, setFiles] = useState([]);
+  const [signedIn, setSignedIn] = useState(false);
 
-  const apiUrl = API_URL
-  const navigate = useNavigate()
+  const apiUrl = process.env.API_URL;
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getFiles = async () => {
       try {
-        const response = await axios.get(apiUrl + 'user/get_files', {
+        const response = await axios.get(apiUrl + "user/verify", {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
-          }
-        })
-        setSignedIn(true)
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+        setSignedIn(true);
       } catch (e) {}
-    }
-    getFiles()
-  }, [])
+    };
+    getFiles();
+  }, []);
 
   const goUpload = () => {
     if (signedIn) {
-      navigate('/upload')
+      navigate("/upload");
     } else {
-      navigate('login')
+      navigate("login");
     }
-  }
+  };
   const handleLogout = () => {
-    setSignedIn(false)
-  }
+    setSignedIn(false);
+  };
 
   return (
     <div className="landing-body">
@@ -55,10 +58,13 @@ const Landing = () => {
           <img src={background} alt="" className="wlc_picture" />
         </div>
         <div className="marketing_text">
-          {/* <h3>Want to know your app fututre?</h3> */}
           <p>Predict Your App's Success and Move Forward with Confidence</p>
           <div className="go_upload_button">
-            <Button label={'Try Your Code Now'} className="btn footer-btn" onClick={goUpload} />
+            <Button
+              label={"Try Your Code Now"}
+              className="btn footer-btn"
+              onClick={goUpload}
+            />
           </div>
         </div>
       </section>
@@ -102,26 +108,17 @@ const Landing = () => {
           <div className="form_result">
             <img src={form_result} alt="" />
           </div>
-
-          {/* <DataTable value={files} style={{ width: "80%", height: "auto" }}>
-            <Column
-              field="name"
-              header="Code Uploaded"
-              headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
-            ></Column>
-            <Column
-              field="result"
-              header="Result"
-              headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
-            ></Column>
-          </DataTable> */}
         </div>
       </section>
 
       <section className="footer">
         <div className="upper_footer">
           <div className="footer-btn">
-            <Button label={'Try Your Code Now'} className="btn footer-btn" onClick={goUpload} />
+            <Button
+              label={"Try Your Code Now"}
+              className="btn footer-btn"
+              onClick={goUpload}
+            />
           </div>
           <div className="logo footer_logo">
             <img src={logo} alt="" />
@@ -132,6 +129,6 @@ const Landing = () => {
         </div>
       </section>
     </div>
-  )
-}
-export default Landing
+  );
+};
+export default Landing;

@@ -1,3 +1,4 @@
+
 .admin-body{
     display: flex;
     flex-direction: row;
@@ -80,7 +81,82 @@
     transition: all 0.3s ease;
 }
 
-.display-users{
-    margin-left: 40px;
-    margin-right: 40px
+.infos{
+    padding-left: 40px;
+    padding-right: 40px;
+    width: 100%;
 }
+.profile{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+}
+.users_info{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    min-width: 350px;
+    width: 60%;
+    justify-content: center;
+    background-image: url(../../assets/final.svg);  
+    background-position: top center;
+    background-size:cover;
+    padding: 25px 50px;
+    border-radius: 20px;
+}
+
+.users_info h1{
+    color: rgba(0,0,0,0.8);
+    color: #fff;
+}
+
+.profile-pic{
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
+}
+
+.user_pp{
+    transition: filter 0.2s ease-in-out;
+    background-color: #00D39C;
+    position: relative;
+}
+
+.edit-icon{
+    font-weight: 400;
+    font-size: 24px;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    cursor: pointer;
+}
+
+.user_pp:hover{
+    cursor: pointer;
+    position: relative;
+    filter: brightness(70%);
+}
+
+.user_pp:hover ~ .edit-icon{
+    display: block;
+}
+
+.edit-icon:hover ~ .user_pp{
+    filter: brightness(70%);
+}
+
+.editable{ 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.update-info{
+    width: 100%;
+}
+
