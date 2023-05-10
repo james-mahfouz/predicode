@@ -1,3 +1,7 @@
+import shutil
+import uuid
+from datetime import datetime
+
 from fastapi.responses import JSONResponse
 from fastapi import HTTPException
 import base64
@@ -81,3 +85,11 @@ def upload_file(file, user):
 
 def update_info(user, name: str, email: str, profile_pic: UploadFile = File(...)):
     print(user.name, name, email, profile_pic)
+    if not profile_pic.content_type.startswith("image/"):
+        return {"error": "Only image files are allowed."}
+
+    unique_id = uuid.uuid4()
+    filename = f"{unique_id}_{profile_pic.filename}"
+    file_path = os.path.join("public", filename)
+    with open(file_path, "wb") as buffer:
+        shutil.copyfileobj(profile_pic.file, buffer)
