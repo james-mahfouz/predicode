@@ -119,6 +119,7 @@
 
 .user_pp{
     transition: filter 0.2s ease-in-out;
+    background-color: #00D39C;
     position: relative;
 }
 

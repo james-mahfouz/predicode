@@ -12,12 +12,10 @@ import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 
 const UserProfile = () => {
-  const [history, setHistory] = useState([]);
   const [name, setName] = useState("james");
   const [email, setEmail] = useState("email@gmail.com");
-  const [profilePic, setProfilePic] = useState(no_pp);
+  const [profilePic, setProfilePic] = useState("");
   const [editable, setEditable] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   const apiUrl = process.env.API_URL;
 
@@ -37,17 +35,51 @@ const UserProfile = () => {
     };
     getUser();
   }, []);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const submitFormData = async (formData) => {
+    try {
+      const response = await axios.post(apiUrl + "user/update", formData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   };
-  const handleEditClick = () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const data = {
+      name: name,
+      email: email,
+    };
+
+    const fileInput = document.querySelector("#fileInput");
+    if (fileInput.files.length > 0) {
+      const file = fileInput.files[0];
+
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        const encodedData = reader.result.split(",")[1];
+        console.log(encodedData);
+        data.profile_picture = encodedData;
+        submitFormData(data);
+      };
+    } else {
+      data.profile_pic = null;
+      submitFormData(data);
+    }
+  };
+  const handleEditClick = (e) => {
+    e.preventDefault();
     setEditable(true);
   };
 
-  const handleSaveClick = () => {
+  const handleSaveClick = (e) => {
+    e.preventDefault();
     setEditable(false);
-    // handle save logic here
   };
 
   const handleAvatarClick = () => {
@@ -56,6 +88,7 @@ const UserProfile = () => {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
+    console.log(file);
     const reader = new FileReader();
     reader.onloadend = () => {
       setProfilePic(reader.result);
@@ -74,6 +107,7 @@ const UserProfile = () => {
           round={true}
           onClick={handleAvatarClick}
           className="user_pp"
+          color={Avatar.getRandomColor("sitebase", ["red", "blue", "#00D39C"])}
         />
         <FontAwesomeIcon icon={faPen} className="edit-icon" />
 
@@ -84,7 +118,7 @@ const UserProfile = () => {
           onChange={handleFileChange}
         />
       </div>
-      <form onSubmit={handleSubmit}>
+      <form>
         <>
           {editable ? (
             <div className="editable">
@@ -130,8 +164,7 @@ const UserProfile = () => {
         <Button
           type="submit"
           label="Save"
-          loading={loading}
-          // onClick={load}
+          onClick={handleSubmit}
           className="update-info"
         />
       </form>
