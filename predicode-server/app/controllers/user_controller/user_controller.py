@@ -3,7 +3,7 @@ import uuid
 import re
 import base64
 import imghdr
-
+from configs.config import SERVER_HOST
 
 from mongoengine import ValidationError
 from fastapi.responses import JSONResponse
@@ -25,11 +25,12 @@ email_pattern = re.compile(email_regex)
 
 
 def verify_user(user):
+    print(user.profile_picture)
     return JSONResponse(content={
         "verified": "true",
         "username": user.name,
         "email": user.email,
-        "profile_picture": user.profile_picture,
+        "profile_picture": f"{SERVER_HOST}{user.profile_picture}",
         "role": user.role
     })
 
@@ -91,7 +92,6 @@ def upload_file(file, user):
 
 
 def update_info(user, request):
-
     try:
         if request.profile_picture is not None:
             image_data = base64.b64decode(request.profile_picture)

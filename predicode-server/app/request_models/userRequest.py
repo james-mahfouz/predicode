@@ -17,5 +17,5 @@ class FileRequest(BaseModel):
 class UpdateRequest(BaseModel):
     name: str
     email: str
-    file_name: str
+    file_name: str = None
     profile_picture: str = None
