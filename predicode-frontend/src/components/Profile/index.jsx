@@ -1,12 +1,12 @@
 import logo from "../../assets/logo-white-01.png";
 import "../Admin/index.css";
 import ProfileHistory from "../ProfileHistory";
-import DisplayFiles from "../DisplayFiles";
+import UserProfile from "../UserProfile";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Admin = () => {
-  const [adminFunction, setAdminFunction] = useState(<ProfileHistory />);
+  const [adminFunction, setAdminFunction] = useState(<UserProfile />);
   const [adminName, setAdminName] = useState("");
   const navigate = useNavigate();
 
@@ -16,7 +16,7 @@ const Admin = () => {
       if (admin_name) {
         setAdminName(admin_name);
       } else {
-        setTimeout(getAdminName, 1000); // check again after 1 second
+        setTimeout(getAdminName, 1000);
       }
     };
     getAdminName();
@@ -25,7 +25,7 @@ const Admin = () => {
   const handleOption = (option) => {
     option === 1
       ? setAdminFunction(<ProfileHistory />)
-      : setAdminFunction(<DisplayFiles />);
+      : setAdminFunction(<UserProfile />);
   };
 
   const goLanding = () => {

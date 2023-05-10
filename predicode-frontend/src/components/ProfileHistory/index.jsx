@@ -3,7 +3,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-import { Dropdown } from "primereact/dropdown";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Inplace, InplaceDisplay, InplaceContent } from "primereact/inplace";
@@ -88,20 +87,6 @@ const ProfileHistory = () => {
             sortable
             headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
           ></Column>
-
-          {/* <Column
-            header="Files nb."
-            style={{ width: "20%" }}
-            sortable
-            body={(rowData) => rowData.files.length}
-            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
-          ></Column>
-          <Column
-            header="Files"
-            style={{ width: "20%" }}
-            body={(rowData) => <FilesColumn rowData={rowData} />}
-            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
-          /> */}
         </DataTable>
       </div>
     </div>

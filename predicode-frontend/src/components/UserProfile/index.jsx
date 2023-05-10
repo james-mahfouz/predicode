@@ -3,7 +3,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-import { Dropdown } from "primereact/dropdown";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Inplace, InplaceDisplay, InplaceContent } from "primereact/inplace";
@@ -88,43 +87,9 @@ const UserProfile = () => {
             sortable
             headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
           ></Column>
-
-          {/* <Column
-            header="Files nb."
-            style={{ width: "20%" }}
-            sortable
-            body={(rowData) => rowData.files.length}
-            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
-          ></Column>
-          <Column
-            header="Files"
-            style={{ width: "20%" }}
-            body={(rowData) => <FilesColumn rowData={rowData} />}
-            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
-          /> */}
         </DataTable>
       </div>
     </div>
   );
 };
 export default UserProfile;
-
-function FilesColumn(props) {
-  const [selectedFile, setSelectedFile] = useState(null);
-
-  const fileOptions = props.rowData.files.map((file) => ({
-    label: file.name,
-    value: file.id,
-  }));
-
-  return (
-    <div>
-      <Dropdown
-        options={fileOptions}
-        value={selectedFile}
-        onChange={(e) => setSelectedFile(e.value)}
-        placeholder="View files"
-      />
-    </div>
-  );
-}
