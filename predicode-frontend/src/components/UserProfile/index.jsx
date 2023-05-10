@@ -42,7 +42,6 @@ const UserProfile = () => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      console.log(response);
     } catch (error) {
       console.log(error);
     }
@@ -62,9 +61,10 @@ const UserProfile = () => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
-        const encodedData = reader.result.split(",")[1];
-        console.log(encodedData);
-        data.profile_picture = encodedData;
+        const encodedData = reader.result.split(",");
+
+        data.file_name = file.name;
+        data.profile_picture = encodedData[1];
         submitFormData(data);
       };
     } else {
