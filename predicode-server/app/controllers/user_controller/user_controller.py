@@ -1,14 +1,13 @@
 import shutil
 import uuid
-from typing import Optional
 import re
+import base64
 
 from mongoengine import ValidationError
 from fastapi.responses import JSONResponse
 from fastapi import HTTPException
 import base64
 import os
-from fastapi import File, UploadFile
 
 from controllers.user_controller.predict import predict
 from controllers.user_controller.relocate_folder import relocate_folder
@@ -89,16 +88,18 @@ def upload_file(file, user):
         raise e
 
 
-def update_info(user, name: str, email: str, profile_pic: Optional[UploadFile] = None):
+def update_info(user, request):
     try:
-        if not profile_pic.content_type.startswith("image/"):
+
+        if request.profile_picture is not None and not request.profile_picture.content_type.startswith("image/"):
+            details = {"error": "file", "detail": "file must be an image"}
             raise HTTPException(status_code=500, detail=details)
-        existing_user = User.objects(email=email).first()
-        if len(name) < 3:
+        existing_user = User.objects(email=request.email).first()
+        if len(request.name) < 3:
             details = {"error": "name", "detail": "Name must have 3 characters or more"}
             raise HTTPException(status_code=500, detail=details)
 
-        if not email_pattern.match(email.lower()):
+        if not email_pattern.match(request.email.lower()):
             details = {"error": "email", "detail": "Email must be in name@mail.com format"}
             raise HTTPException(status_code=500, detail=details)
 
@@ -107,16 +108,16 @@ def update_info(user, name: str, email: str, profile_pic: Optional[UploadFile] =
             raise HTTPException(status_code=500, detail=details)
 
         updated_user = User.objects(id=user.id).first()
-        if profile_pic is not None:
+        if request.profile_picture is not None:
             unique_id = uuid.uuid4()
-            filename = f"{unique_id}_{profile_pic.filename}"
+            filename = f"{unique_id}_{request.profile_picture.filename}"
             file_path = os.path.join("public/profile_pictures", filename)
             with open(file_path, "wb") as buffer:
-                shutil.copyfileobj(profile_pic.file, buffer)
+                shutil.copyfileobj(request.profile_picture.file, buffer)
             updated_user.profile_picture = file_path
 
-        updated_user.name = name
-        updated_user.email = email
+        updated_user.name = request.name
+        updated_user.email = request.email
         updated_user.save()
         return {"message": "updated successfully"}
 

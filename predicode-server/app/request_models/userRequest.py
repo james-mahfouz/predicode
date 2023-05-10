@@ -1,8 +1,7 @@
 from fastapi import UploadFile, File, Form
 from pydantic import BaseModel
-import zipfile
-from io import BytesIO
-from typing import List
+from typing import Annotated
+from fastapi import FastAPI, File, Form, UploadFile
 
 
 class FileRequest(BaseModel):
@@ -14,3 +13,8 @@ class FileRequest(BaseModel):
     name: str
     size: float
 
+
+class UpdateRequest(BaseModel):
+    name: str
+    email: str
+    profile_picture: str = None

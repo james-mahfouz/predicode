@@ -3,7 +3,7 @@ from controllers.user_controller.user_controller import get_history, upload_file
 from middlewares.authMiddleware import get_current_user
 from fastapi import Depends
 from models.userModel import User
-from request_models.userRequest import FileRequest
+from request_models.userRequest import FileRequest, UpdateRequest
 from fastapi import File, UploadFile
 
 router = APIRouter()
@@ -25,5 +25,5 @@ async def verify(user: User = Depends(get_current_user)):
 
 
 @router.post("/update")
-async def update(name: str, email: str, user: User = Depends(get_current_user), profile_pic: UploadFile = File(...)):
-    return update_info(user=user, name=name, email=email, profile_pic=profile_pic)
+async def update(file: UpdateRequest, user: User = Depends(get_current_user)):
+    return update_info(request=file, user=user)
