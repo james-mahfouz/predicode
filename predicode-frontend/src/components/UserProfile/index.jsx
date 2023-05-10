@@ -22,27 +22,22 @@ const UserProfile = () => {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const response = await axios.get(apiUrl + "user/get_history", {
+        const response = await axios.get(apiUrl + "user/verify", {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
-        setHistory(response.data.history);
+        setProfilePic(response.data.profile_picture);
+        setEmail(response.data.email);
+        setName(response.data.username);
         localStorage.setItem("user_name", response.data.user_name);
       } catch (e) {}
     };
     getUser();
   }, []);
-  const load = () => {
-    setLoading(true);
 
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email, name);
   };
   const handleEditClick = () => {
     setEditable(true);
@@ -78,7 +73,6 @@ const UserProfile = () => {
           onClick={handleAvatarClick}
           className="user_pp"
         />
-
         <input
           type="file"
           id="fileInput"
@@ -91,14 +85,14 @@ const UserProfile = () => {
           {editable ? (
             <div className="editable">
               <InputText
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
               <Button icon="pi pi-check" onClick={handleSaveClick} />
             </div>
           ) : (
             <div className="editable">
-              <span>{email}</span>
+              <span>{name}</span>
               <Button
                 icon="pi pi-pencil"
                 onClick={handleEditClick}
