@@ -1,12 +1,12 @@
 import logo from "../../assets/logo-white-01.png";
 import "../Admin/index.css";
-import DisplayUsers from "../DisplayUsers";
+import ProfileHistory from "../ProfileHistory";
 import DisplayFiles from "../DisplayFiles";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Admin = () => {
-  const [adminFunction, setAdminFunction] = useState(<DisplayUsers />);
+  const [adminFunction, setAdminFunction] = useState(<ProfileHistory />);
   const [adminName, setAdminName] = useState("");
   const navigate = useNavigate();
 
@@ -25,7 +25,7 @@ const Admin = () => {
   const handleOption = (option) => {
     option === 1
       ? setAdminFunction(<DisplayFiles />)
-      : setAdminFunction(<DisplayUsers />);
+      : setAdminFunction(<ProfileHistory />);
   };
 
   const goLanding = () => {
@@ -48,7 +48,7 @@ const Admin = () => {
             <h4>Display Users</h4>
           </div>
           <div className="option" onClick={() => handleOption(1)}>
-            <h4>Files Uploaded</h4>
+            <h4>Your History</h4>
           </div>
         </div>
       </section>

@@ -7,21 +7,24 @@ import axios from "axios";
 import { Dropdown } from "primereact/dropdown";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
+import { Inplace, InplaceDisplay, InplaceContent } from "primereact/inplace";
 
 const DisplayUsers = () => {
-  const [users, setUsers] = useState([]);
+  const [history, setHistory] = useState([]);
+  const [maintainabilityOpen, setMaintainabilityOpen] = useState(false);
   const navigate = useNavigate();
 
   const apiUrl = process.env.API_URL;
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const response = await axios.get(apiUrl + "admin/get_users", {
+        const response = await axios.get(apiUrl + "user/get_history", {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
-        setUsers(response.data.users);
+        console.log(response.data.history);
+        setHistory(response.data.history);
         localStorage.setItem("admin_name", response.data.admin_name);
       } catch (e) {
         if (e.response.data.detail.access === "denied") {
@@ -34,10 +37,10 @@ const DisplayUsers = () => {
 
   return (
     <div className="display-users">
-      <h1>Users</h1>
+      <h1>History</h1>
       <div className="card" style={{ padding: "0rem" }}>
         <DataTable
-          value={users}
+          value={history}
           scrollable
           scrollHeight="400px"
           virtualScrollerOptions={{ itemSize: 46 }}
@@ -45,27 +48,56 @@ const DisplayUsers = () => {
           sortMode="multiple"
         >
           <Column
-            field="_id"
-            header="Id"
-            style={{ width: "20%" }}
-            sortable
-            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
-          ></Column>
-          <Column
             field="name"
             header="Name"
-            style={{ width: "20%" }}
             sortable
             headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
           ></Column>
           <Column
-            field="email"
-            header="email"
+            header="Rating"
+            field="rating"
             sortable
-            style={{ width: "20%" }}
             headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
           ></Column>
           <Column
+            header="Maintainability"
+            sortable
+            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
+            body={(rowData) => (
+              <Inplace closable>
+                <InplaceDisplay>View Maintainability</InplaceDisplay>
+                <InplaceContent>
+                  <p className="m-0">{rowData.maintainability}</p>
+                </InplaceContent>
+              </Inplace>
+            )}
+          ></Column>
+          <Column
+            header="Size"
+            field="size"
+            sortable
+            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
+          ></Column>
+          <Column
+            field="category"
+            header="Category"
+            sortable
+            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
+          ></Column>
+          <Column
+            field="content_rating"
+            header="Content Rating"
+            sortable
+            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
+          ></Column>
+          <Column
+            field="date_created"
+            header="Date Uploaded"
+            sortable
+            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
+          ></Column>
+
+          {/* <Column
             header="Files nb."
             style={{ width: "20%" }}
             sortable
@@ -77,7 +109,7 @@ const DisplayUsers = () => {
             style={{ width: "20%" }}
             body={(rowData) => <FilesColumn rowData={rowData} />}
             headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
-          />
+          /> */}
         </DataTable>
       </div>
     </div>
