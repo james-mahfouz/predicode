@@ -4,3 +4,4 @@ DB_HOST = "localhost"
 DB_URL = 'mongodb://localhost:27017/predicode_db'
 DB_PORT = 27017
 OPEN_AI_KEY = "YOUR_OPEN_AI_KEY"
+SERVER_HOST = "http://localhost:8000/public/"

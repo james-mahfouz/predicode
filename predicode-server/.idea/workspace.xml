@@ -7,8 +7,9 @@
     <list default="true" id="344a509d-69c3-480d-8168-3503c6dccc68" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../predicode-frontend/src/components/UserProfile/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../predicode-frontend/src/components/UserProfile/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/auth_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/auth_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/configs/config_example.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/configs/config_example.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/user_controller/user_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/user_controller/user_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/userModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/userModel.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/blur/FastBlur.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/blur/FastBlur.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/blur/ZoomOutPageTransformer.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/blur/ZoomOutPageTransformer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/photoview/Info.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/photoview/Info.java" afterDir="false" />
@@ -48,6 +49,7 @@
       <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/res/values/pulltozoomview_attrs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/res/values/pulltozoomview_attrs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/deploy.sh" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/deploy.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/gradlew" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/user_route.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/user_route.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,6 +88,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/public" />
       <recent name="$PROJECT_DIR$/../fastapi-backend/app/controllers/user_controller" />
       <recent name="$PROJECT_DIR$/../fastapi-backend/predicode-prediction-model/dataset" />
     </key>

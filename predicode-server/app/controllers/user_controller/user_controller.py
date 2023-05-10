@@ -2,6 +2,7 @@ from fastapi.responses import JSONResponse
 from fastapi import HTTPException
 import base64
 import os
+from fastapi import File, UploadFile
 
 from controllers.user_controller.predict import predict
 from controllers.user_controller.relocate_folder import relocate_folder
@@ -43,7 +44,6 @@ def get_history(user):
         print(e)
 
 
-
 def upload_file(file, user):
     if file.size < 614400:
         raise HTTPException(status_code=404, detail="file is too small")
@@ -79,3 +79,5 @@ def upload_file(file, user):
         raise e
 
 
+def update_info(user, name: str, email: str, profile_pic: UploadFile = File(...)):
+    print(user.name, name, email, profile_pic)

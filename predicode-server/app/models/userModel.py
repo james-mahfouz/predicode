@@ -1,4 +1,3 @@
-import bcrypt
 from mongoengine import Document, StringField, ListField, EmailField, ReferenceField
 from models.fileModel import File
 from models.historyModel import History
