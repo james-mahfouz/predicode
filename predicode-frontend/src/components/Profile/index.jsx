@@ -53,7 +53,7 @@ const Admin = () => {
         </div>
         <div className="options">
           <div className="option" onClick={() => handleOption(2)}>
-            <h4>Display Users</h4>
+            <h4>Edit Profile</h4>
           </div>
           <div className="option" onClick={() => handleOption(1)}>
             <h4>Your History</h4>

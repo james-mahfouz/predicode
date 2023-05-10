@@ -72,6 +72,9 @@ const Navbar = (props) => {
   const goHomePage = () => {
     navigate("/");
   };
+  const goProfilePage = () => {
+    navigate("/profile");
+  };
   return (
     <div>
       <section className="navbar">
@@ -96,6 +99,9 @@ const Navbar = (props) => {
             </div>
             <div className="page" onClick={goUploadPage}>
               <h4>Upload</h4>
+            </div>
+            <div className="page" onClick={goProfilePage}>
+              <h4>Profile</h4>
             </div>
             <div className="page">
               {isAdmin && (
@@ -151,16 +157,14 @@ const Navbar = (props) => {
                 <h4 className="middle-page" onClick={goUploadPage}>
                   Upload
                 </h4>
+                <h4 className="middle-page" onClick={goProfilePage}>
+                  Profile
+                </h4>
                 {isAdmin && (
                   <h4 className="bottom-page" onClick={goAdminPage}>
                     Admin
                   </h4>
                 )}
-                {/* <Button
-                    label="Admin Panel"
-                    className="btn logout"
-                    onClick={goAdminPage}
-                  /> */}
               </div>
 
               <div className="logout sidebar-logout">
