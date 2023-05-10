@@ -6,7 +6,11 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Admin = () => {
-  const [adminFunction, setAdminFunction] = useState(<UserProfile />);
+  const [adminFunction, setAdminFunction] = useState(
+    <div className="profile">
+      <UserProfile />
+    </div>
+  );
   const [adminName, setAdminName] = useState("");
   const navigate = useNavigate();
 
@@ -25,7 +29,11 @@ const Admin = () => {
   const handleOption = (option) => {
     option === 1
       ? setAdminFunction(<ProfileHistory />)
-      : setAdminFunction(<UserProfile />);
+      : setAdminFunction(
+          <div className="profile">
+            <UserProfile />
+          </div>
+        );
   };
 
   const goLanding = () => {

@@ -3,20 +3,30 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Avatar from "react-avatar";
+import no_pp from "../../assets/no_pp.webp";
 
-import { DataTable } from "primereact/datatable";
-import { Column } from "primereact/column";
-import { Inplace, InplaceDisplay, InplaceContent } from "primereact/inplace";
+import { InputText } from "primereact/inputtext";
+import { Button } from "primereact/button";
 
 const UserProfile = () => {
   const [history, setHistory] = useState([]);
   const [name, setName] = useState("james");
   const [email, setEmail] = useState("email@gmail.com");
-  const [profilePic, setProfilePic] = useState("hello");
+  const [profilePic, setProfilePic] = useState(no_pp);
+  const [editable, setEditable] = useState(false);
 
+  const [loading, setLoading] = useState(false);
+
+  const load = () => {
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ name, email, profilePic });
+    console.log(email, name);
   };
   const apiUrl = process.env.API_URL;
   useEffect(() => {
@@ -34,95 +44,72 @@ const UserProfile = () => {
     getUsers();
   }, []);
 
+  const handleEditClick = () => {
+    setEditable(true);
+  };
+
+  const handleSaveClick = () => {
+    setEditable(false);
+    // handle save logic here
+  };
+
   return (
-    <div className="display-users">
-      <h1>History</h1>
-      <div className="card" style={{ padding: "0rem" }}>
-        <DataTable
-          value={history}
-          scrollable
-          scrollHeight="400px"
-          virtualScrollerOptions={{ itemSize: 46 }}
-          tableStyle={{ minWidth: "50rem" }}
-          sortMode="multiple"
-        >
-          <Column
-            field="name"
-            header="Name"
-            sortable
-            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
-          ></Column>
-          <Column
-            header="Rating"
-            field="rating"
-            sortable
-            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
-          ></Column>
-          <Column
-            header="Maintainability"
-            sortable
-            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
-            body={(rowData) => (
-              <Inplace closable>
-                <InplaceDisplay>View Maintainability</InplaceDisplay>
-                <InplaceContent>
-                  <p className="m-0">{rowData.maintainability}</p>
-                </InplaceContent>
-              </Inplace>
-            )}
-          ></Column>
-          <Column
-            header="Size"
-            field="size"
-            sortable
-            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
-          ></Column>
-          <Column
-            field="category"
-            header="Category"
-            sortable
-            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
-          ></Column>
-          <Column
-            field="content_rating"
-            header="Content Rating"
-            sortable
-            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
-          ></Column>
-          <Column
-            field="date_created"
-            header="Date Uploaded"
-            sortable
-            headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
-          ></Column>
-        </DataTable>
+    <div className="users_info">
+      <h1>Edit Profile</h1>
+      <div className="profile-pic">
+        <Avatar src={profilePic} name={name} size="150" round={true} />
       </div>
-      <div className="edit-profile-card">
-        <div className="profile-pic">
-          <Avatar src={profilePic} name={name} size="150" round={true} />
-        </div>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="name">Name:</label>
-            <input
-              type="text"
-              id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <button type="submit">Save</button>
-        </form>
-      </div>
+      <form onSubmit={handleSubmit}>
+        <>
+          {editable ? (
+            <div className="editable">
+              <InputText
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <Button icon="pi pi-check" onClick={handleSaveClick} />
+            </div>
+          ) : (
+            <div className="editable">
+              <span>{email}</span>
+              <Button
+                icon="pi pi-pencil"
+                onClick={handleEditClick}
+                rounded
+                text
+              />
+            </div>
+          )}
+        </>
+        <>
+          {editable ? (
+            <div className="editable">
+              <InputText
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <Button icon="pi pi-check" onClick={handleSaveClick} />
+            </div>
+          ) : (
+            <div className="editable">
+              <span>{email}</span>
+              <Button
+                icon="pi pi-pencil"
+                onClick={handleEditClick}
+                rounded
+                text
+              />
+            </div>
+          )}
+        </>
+        <Button
+          type="submit"
+          label="Save"
+          loading={loading}
+          // onClick={load}
+          className="update-info"
+        />
+      </form>
     </div>
   );
 };
