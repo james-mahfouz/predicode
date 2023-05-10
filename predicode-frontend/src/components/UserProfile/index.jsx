@@ -2,27 +2,22 @@ import "../Admin/index.css";
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import AvatarEditor from "react-avatar-editor";
+import Avatar from "react-avatar";
 
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Inplace, InplaceDisplay, InplaceContent } from "primereact/inplace";
-import { FileUpload } from "primereact/fileupload";
-import { Avatar } from "primereact/avatar";
 
 const UserProfile = () => {
   const [history, setHistory] = useState([]);
+  const [name, setName] = useState("james");
+  const [email, setEmail] = useState("email@gmail.com");
+  const [profilePic, setProfilePic] = useState("hello");
 
-  const [selectedFile, setSelectedFile] = useState(null);
-
-  const onFileSelect = (event) => {
-    setSelectedFile(event.files[0]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit({ name, email, profilePic });
   };
-
-  const uploadFile = () => {
-    console.log("hello");
-  };
-
   const apiUrl = process.env.API_URL;
   useEffect(() => {
     const getUsers = async () => {
@@ -101,6 +96,32 @@ const UserProfile = () => {
             headerStyle={{ backgroundColor: "#714DF4", color: "white" }}
           ></Column>
         </DataTable>
+      </div>
+      <div className="edit-profile-card">
+        <div className="profile-pic">
+          <Avatar src={profilePic} name={name} size="150" round={true} />
+        </div>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="name">Name:</label>
+            <input
+              type="text"
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <button type="submit">Save</button>
+        </form>
       </div>
     </div>
   );

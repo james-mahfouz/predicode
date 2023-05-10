@@ -12,5 +12,8 @@ export default defineConfig({
     'process.env': {
       API_URL: process.env.API_URL || 'http://localhost:8000/'
     }
+  },
+  optimizeDeps: {
+    exclude: ['js-big-decimal']
   }
 })
