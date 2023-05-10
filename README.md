@@ -57,11 +57,13 @@
 
 ### User Screens (Web)
 
-| Login screen                                 | Register screen                            | Landing screen                              |
-| -------------------------------------------- | ------------------------------------------ | ------------------------------------------- |
-| ![Landing](./readme/user-screens/signin.png) | ![fsdaf](./readme/user-screens/signup.png) | ![fsdaf](./readme/user-screens/landing.png) |
-| Home screen                                  | Upload Screen Screen                       | Admin Screen                                |
-| ![Landing](./readme/user-screens/home.png)   | ![fsdaf](./readme/user-screens/upload.png) | ![fsdaf](./readme/user-screens/admin.png)   |
+| Login screen                                 | Register screen                                  | Landing screen                              |
+| -------------------------------------------- | ------------------------------------------------ | ------------------------------------------- |
+| ![Landing](./readme/user-screens/signin.png) | ![fsdaf](./readme/user-screens/signup.png)       | ![fsdaf](./readme/user-screens/landing.png) |
+| Home screen                                  | Upload Screen                                    | Result Screen                               |
+| ![Landing](./readme/user-screens/home.png)   | ![fsdaf](./readme/user-screens/upload.png)       | ![fsdaf](./readme/user-screens/result.png)  |
+| admin screen                                 | edit-profile screen                              | View History Screen                         |
+| ![Landing](./readme/user-screens/admin.png)  | ![fsdaf](./readme/user-screens/edit-profile.png) | ![fsdaf](./readme/user-screens/history.png) |
 
 <br><br>
 
