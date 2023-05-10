@@ -8,7 +8,6 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { GoogleLogin } from "@react-oauth/google";
 
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import Google from "../../google";
 
 const Login = () => {
   const [email, setEmail] = useState("");

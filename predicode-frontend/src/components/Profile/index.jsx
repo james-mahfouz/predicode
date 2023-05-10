@@ -24,8 +24,8 @@ const Admin = () => {
 
   const handleOption = (option) => {
     option === 1
-      ? setAdminFunction(<DisplayFiles />)
-      : setAdminFunction(<ProfileHistory />);
+      ? setAdminFunction(<ProfileHistory />)
+      : setAdminFunction(<DisplayFiles />);
   };
 
   const goLanding = () => {
