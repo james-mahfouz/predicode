@@ -9,7 +9,6 @@ from controllers.user_controller.remove_folder import remove_folders
 from controllers.user_controller.search_apply import search_apply
 from controllers.user_controller.unzip_file import unzip_file
 from controllers.user_controller.add_history import add_history
-from models.fileModel import File
 from models.historyModel import History
 
 
@@ -22,21 +21,25 @@ def verify_user(user):
 
 
 def get_history(user):
-    history_list = []
-    for history in user.history:
-        if History.objects(id=history.id).first() is not None:
-            file_dict = history.to_mongo().to_dict()
-            file_dict["_id"] = str(file_dict["_id"])
-            history_list.append(file_dict)
-        else:
-            user.files.remove(history)
-            user.save()
+    try:
+        history_list = []
+        for history in user.history:
+            if History.objects(id=history.id).first() is not None:
+                file_dict = history.to_mongo().to_dict()
+                file_dict["_id"] = str(file_dict["_id"])
+                history_list.append(file_dict)
+            else:
+                user.history.remove(history)
+                user.save()
 
-    return JSONResponse(content={
-        "history": history_list,
-        "user_name": user.name,
-        "role": user.role
-    })
+        return JSONResponse(content={
+            "history": history_list,
+            "user_name": user.name,
+            "role": user.role
+        })
+    except Exception as e:
+        print(e)
+
 
 
 def upload_file(file, user):

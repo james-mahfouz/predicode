@@ -10,5 +10,6 @@ class User(Document):
     password = StringField(default="None")
     login_method = StringField(choices=["normal", "google"], default="normal")
     role = StringField(choices=["user", "admin"], default="user")
+    profile_picture = StringField(default="../../assets/no_pp.webp")
     files = ListField(ReferenceField(File))
     history = ListField(ReferenceField(History))
