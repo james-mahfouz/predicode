@@ -16,6 +16,8 @@ def verify_user(user):
     return JSONResponse(content={
         "verified": "true",
         "username": user.name,
+        "email": user.email,
+        "profile_picture": user.profile_picture,
         "role": user.role
     })
 
