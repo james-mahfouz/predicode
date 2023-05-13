@@ -5,47 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="344a509d-69c3-480d-8168-3503c6dccc68" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/blur/FastBlur.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/blur/FastBlur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/blur/ZoomOutPageTransformer.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/blur/ZoomOutPageTransformer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/photoview/Info.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/photoview/Info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/photoview/PhotoView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/photoview/PhotoView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/pulltozoomview/IPullToZoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/pulltozoomview/IPullToZoom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/pulltozoomview/PullToZoomBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/pulltozoomview/PullToZoomBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/pulltozoomview/PullToZoomListViewEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/pulltozoomview/PullToZoomListViewEx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/pulltozoomview/PullToZoomScrollViewEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/pulltozoomview/PullToZoomScrollViewEx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/quickadapter/BaseAdapterHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/quickadapter/BaseAdapterHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/quickadapter/BaseQuickAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/quickadapter/BaseQuickAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/quickadapter/EnhancedQuickAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/quickadapter/EnhancedQuickAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/quickadapter/QuickAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/quickadapter/QuickAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/swipebacklayout/SwipeBackActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/swipebacklayout/SwipeBackActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/swipebacklayout/SwipeBackActivityBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/swipebacklayout/SwipeBackActivityBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/swipebacklayout/SwipeBackActivityHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/swipebacklayout/SwipeBackActivityHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/swipebacklayout/SwipeBackLayout.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/swipebacklayout/SwipeBackLayout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/swipebacklayout/SwipeBackPreferenceActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/swipebacklayout/SwipeBackPreferenceActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/swipebacklayout/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/swipebacklayout/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/swipebacklayout/ViewDragHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/ui/swipebacklayout/ViewDragHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/utils/MiscUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/java/com/yuzhi/fine/utils/MiscUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/res/drawable-xhdpi/ic_img_line_v.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/res/drawable-xhdpi/ic_img_line_v.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/res/drawable-xhdpi/ic_img_user_default.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/res/drawable-xhdpi/ic_img_user_default.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/res/drawable-xhdpi/newer01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/res/drawable-xhdpi/newer01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/res/drawable-xhdpi/newer02.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/res/drawable-xhdpi/newer02.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/res/drawable-xhdpi/newer03.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/res/drawable-xhdpi/newer03.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/res/drawable-xhdpi/newer04.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/res/drawable-xhdpi/newer04.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/res/drawable-xhdpi/shadow_bottom.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/res/drawable-xhdpi/shadow_bottom.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/res/drawable-xhdpi/shadow_left.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/res/drawable-xhdpi/shadow_left.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/res/drawable-xhdpi/shadow_right.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/res/drawable-xhdpi/shadow_right.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/res/layout/fragment_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/res/layout/fragment_layout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/res/layout/fragment_member.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/res/layout/fragment_member.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/res/layout/member_content_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/res/layout/member_content_view.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/res/layout/member_head_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/res/layout/member_head_view.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/res/layout/member_zoom_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/res/layout/member_zoom_view.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/res/layout/swipeback_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/res/layout/swipeback_layout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/res/values/cube_core_strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/res/values/cube_core_strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/res/values/pulltozoomview_attrs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/app/src/main/res/values/pulltozoomview_attrs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/deploy.sh" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/deploy.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/AndroidFine/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/AndroidFine/gradlew" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/admin_route.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/admin_route.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +34,7 @@
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
@@ -79,7 +42,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "last_opened_file_path": "/Users/user/Desktop/predicode/predicode-server",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+    "settings.editor.selected.configurable": "File.Encoding"
   }
 }]]></component>
   <component name="RecentsManager">

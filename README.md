@@ -64,6 +64,8 @@
 | ![Landing](./readme/user-screens/home.png)   | ![fsdaf](./readme/user-screens/upload.png)       | ![fsdaf](./readme/user-screens/result.png)  |
 | admin screen                                 | edit-profile screen                              | View History Screen                         |
 | ![Landing](./readme/user-screens/admin.png)  | ![fsdaf](./readme/user-screens/edit-profile.png) | ![fsdaf](./readme/user-screens/history.png) |
+| login gif                                    | edit-profile screen                              | View History Screen                         |
+| ![Login Gif](./readme/gifs/login.gif)        | ![Home Gif](./readme/gifs/home.gif)              | ![upload gif](./readme/gifs/upload.gif)     |
 
 <br><br>
 
@@ -79,6 +81,7 @@
 - To develop our Machine Learning model, we used [Scikit-learn random forest regressor](https://scikit-learn.org/stable/index.html#). scikit-learn is a Python machine learning library with easy-to-use algorithms and tools for data preprocessing modeling, and evaluation.
 - To optimize this model, we used [Distributed Evolutionary Algorithms in Python](https://github.com/deap/deap). DEAP is a Python library for implementing evolutionary algorithms for optimization tasks, with tools for parallelization and visualization.
 - For persistent storage (database), the website uses the [Mongodb](https://www.mongodb.com/) package which allows the app to create a custom storage schema and save it to a local database.
+- The app is [dockerized]("https://www.docker.com/"). Docker takes away repetitive, mundane configuration tasks and is used throughout the development lifecycle for fast, easy and portable application development – desktop and cloud.
 - The app uses the font ["Montserrat"](https://fonts.google.com/specimen/Montserrat) as its main font, and the design of the app adheres to the material design guidelines.
 
 <br><br>
@@ -158,21 +161,29 @@ For Windows
    ```sh
    python3 -m venv my_venv
    ```
-8. Activate your virtual environement
+8. Deactivate virtual environment if your in one
+   ```sh
+   deactivate
+   ```
+   OR, if you were in an anaconda virtual environment
+   ```sh
+   conda deactivate
+   ```
+9. Activate your virtual environement
    ```sh
    source my_venv/bin/activate
    ```
-9. Install the requirements
-   ```sh
-   pip install -r requirements.txt
-   ```
-10. In the app directory in the configs folder create a new file named 'config.py' and copy config_example into it and fill it with your configuration
-11. For the OPEN_AI_KEY go to https://platform.openai.com/account/api-keys, create an account and get your key.
-12. Go to the app directory
+10. Install the requirements
+    ```sh
+    pip install -r requirements.txt
+    ```
+11. In the app directory in the configs folder create a new file named 'config.py' and copy config_example into it and fill it with your configuration
+12. For the OPEN_AI_KEY go to https://platform.openai.com/account/api-keys, create an account and get your key.
+13. Go to the app directory
     ```sh
     cd app
     ```
-13. Run the app
+14. Run the app
     ```sh
     uvicorn main:app --reload
     ```
