@@ -68,9 +68,11 @@ Admin
 
 Animated gifs
 
-| Register screen                       | Home screen                         | Upload screen                           |
-| ------------------------------------- | ----------------------------------- | --------------------------------------- |
-| ![Login Gif](./readme/gifs/login.gif) | ![Home Gif](./readme/gifs/home.gif) | ![upload gif](./readme/gifs/upload.gif) |
+| Register screen                       | Home screen                                 | Upload screen                               |
+| ------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| ![Login Gif](./readme/gifs/login.gif) | ![Home Gif](./readme/gifs/sidebar.gif)      | ![upload gif](./readme/gifs/upload.gif)     |
+| Home screen                           | Update Picture screen                       | Edit infos screen                           |
+| ![Login Gif](./readme/gifs/home.gif)  | ![Home Gif](./readme/gifs/edit-picture.gif) | ![upload gif](./readme/gifs/edit-infos.gif) |
 
 <br><br>
 
