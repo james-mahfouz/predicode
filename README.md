@@ -62,16 +62,6 @@ Animated gifs
 |                                         | Google Signin screen                         |                                             |
 |                                         | ![Home Gif](./readme/gifs/google-signin.gif) |                                             |
 
-Static Screens
-
-| Login screen                                 | Register screen                                  | Landing screen                              |
-| -------------------------------------------- | ------------------------------------------------ | ------------------------------------------- |
-| ![Landing](./readme/user-screens/signin.png) | ![fsdaf](./readme/user-screens/signup.png)       | ![fsdaf](./readme/user-screens/landing.png) |
-| Home screen                                  | Upload Screen                                    | Result Screen                               |
-| ![Landing](./readme/user-screens/home.png)   | ![fsdaf](./readme/user-screens/upload.png)       | ![fsdaf](./readme/user-screens/result.png)  |
-| admin screen                                 | edit-profile screen                              | View History Screen                         |
-| ![Landing](./readme/user-screens/admin.png)  | ![fsdaf](./readme/user-screens/edit-profile.png) | ![fsdaf](./readme/user-screens/history.png) |
-
 <br><br>
 
 <!-- Tech stack -->
