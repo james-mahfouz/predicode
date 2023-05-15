@@ -35,10 +35,6 @@ Admin
 | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
 | ![Signin](./readme/wireframes/signin-wireframe.png) | ![Signup](./readme/wireframes/use-it-wireframe.png) | ![Landing](./readme/wireframes/admin-wireframe.png) |
 
-| Landing Page                                         | Landing Page                                        | Landing Page                                         |
-| ---------------------------------------------------- | --------------------------------------------------- | ---------------------------------------------------- |
-| ![Signin](./readme/wireframes/landing-wireframe.png) | ![Signup](./readme/wireframes/use-it-wireframe.png) | ![Landing](./readme/wireframes/footer-wireframe.png) |
-
 ### Mockups
 
 | Login screen                                  | Landing screen                                 | admin screen                                  |
