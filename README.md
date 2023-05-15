@@ -41,10 +41,6 @@ Admin
 | --------------------------------------------- | ---------------------------------------------- | --------------------------------------------- |
 | ![Signin](./readme/mockups/signin-mockup.png) | ![Signin](./readme/mockups/landing-mockup.png) | ![Landing](./readme/mockups/admin-mockup.png) |
 
-<!-- | Landing Page                                   | Landing Page                                  | Landing Page                                   |
-| ---------------------------------------------- | --------------------------------------------- | ---------------------------------------------- |
-| ![Signin](./readme/mockups/landing-mockup.png) | ![Signup](./readme/mockups/use-it-mockup.png) | ![Landing](./readme/mockups/footer-mockup.png) | -->
-
 <br><br>
 
 <!-- Implementation -->
@@ -56,11 +52,15 @@ Admin
 
 Animated gifs
 
-| Register screen                       | Sidebar screen                              | Upload screen                               |
-| ------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| ![Login Gif](./readme/gifs/login.gif) | ![Home Gif](./readme/gifs/sidebar.gif)      | ![upload gif](./readme/gifs/upload.gif)     |
-| Home screen                           | Update Picture screen                       | Edit infos screen                           |
-| ![Login Gif](./readme/gifs/home.gif)  | ![Home Gif](./readme/gifs/edit-picture.gif) | ![upload gif](./readme/gifs/edit-infos.gif) |
+| Register screen                         | Sidebar screen                              | Upload screen                               |
+| --------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| ![Login Gif](./readme/gifs/login.gif)   | ![Home Gif](./readme/gifs/sidebar.gif)      | ![upload gif](./readme/gifs/upload.gif)     |
+| Home screen                             | Update Picture screen                       | Edit infos screen                           |
+| ![Login Gif](./readme/gifs/home.gif)    | ![Home Gif](./readme/gifs/edit-picture.gif) | ![upload gif](./readme/gifs/edit-infos.gif) |
+| View History screen                     | Filtering Users screen screen               | View Files screen                           |
+| ![Login Gif](./readme/gifs/history.gif) | ![Home Gif](./readme/gifs/filter.gif)       | ![upload gif](./readme/gifs/view-file.gif)  |
+
+Static Screens
 
 | Login screen                                 | Register screen                                  | Landing screen                              |
 | -------------------------------------------- | ------------------------------------------------ | ------------------------------------------- |
