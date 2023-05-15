@@ -11,15 +11,16 @@
 
 ### User Stories
 
-- As a new user, I want to be able to create an account on the website so that I can use the app source code checker feature.
-- As a registered user, I want to be able to login to the website so that I can access my account and use the app source code checker feature.
+User
+
 - As a user, I want to be able to input my app source code folder so that I can see if it will succeed and be able to improve it.
+- As a user, I want to be able to input my app source code folder so that I can see if it will be maintainable and be able to improve it.
+- As a user, I want to be able to edit my profile so that I can keep my information up-to-date and accurate.
+
+Admin
+
 - As an admin, I want to be able to display a list of all users with their app usage and feedback so that I can monitor the activity on the website.
 - As an admin, I want to be able to view the codes tried on the app so that I can identify any issues and make necessary improvements.
-- As a user, I want to be able to view the predicted rating of my app so that I can assess its potential success.
-- As a user, I want to be able to compare the predicted ratings of multiple versions of my app so that I can make informed decisions about which version to release.
-- As an admin, I want to be able to delete user accounts if necessary so that I can maintain the security and integrity of the website.
-- As an admin, I want to be able to export a report of all user activity on the website so that I can analyze usage patterns and make improvements to the website.
 
 <br><br>
 
@@ -64,8 +65,12 @@
 | ![Landing](./readme/user-screens/home.png)   | ![fsdaf](./readme/user-screens/upload.png)       | ![fsdaf](./readme/user-screens/result.png)  |
 | admin screen                                 | edit-profile screen                              | View History Screen                         |
 | ![Landing](./readme/user-screens/admin.png)  | ![fsdaf](./readme/user-screens/edit-profile.png) | ![fsdaf](./readme/user-screens/history.png) |
-| login gif                                    | edit-profile screen                              | View History Screen                         |
-| ![Login Gif](./readme/gifs/login.gif)        | ![Home Gif](./readme/gifs/home.gif)              | ![upload gif](./readme/gifs/upload.gif)     |
+
+Animated gifs
+
+| Register screen                       | Home screen                         | Upload screen                           |
+| ------------------------------------- | ----------------------------------- | --------------------------------------- |
+| ![Login Gif](./readme/gifs/login.gif) | ![Home Gif](./readme/gifs/home.gif) | ![upload gif](./readme/gifs/upload.gif) |
 
 <br><br>
 
