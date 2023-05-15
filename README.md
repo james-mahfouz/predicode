@@ -31,9 +31,9 @@ Admin
 
 ### Wireframes
 
-| Login screen                                        | Register screen                                     | admin screen                                        |
+| Login screen                                        | Landing Page                                        | admin screen                                        |
 | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
-| ![Signin](./readme/wireframes/signin-wireframe.png) | ![Signup](./readme/wireframes/signup-wireframe.png) | ![Landing](./readme/wireframes/admin-wireframe.png) |
+| ![Signin](./readme/wireframes/signin-wireframe.png) | ![Signup](./readme/wireframes/use-it-wireframe.png) | ![Landing](./readme/wireframes/admin-wireframe.png) |
 
 | Landing Page                                         | Landing Page                                        | Landing Page                                         |
 | ---------------------------------------------------- | --------------------------------------------------- | ---------------------------------------------------- |
@@ -58,6 +58,14 @@ Admin
 
 ### User Screens (Web)
 
+Animated gifs
+
+| Register screen                       | Sidebar screen                              | Upload screen                               |
+| ------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| ![Login Gif](./readme/gifs/login.gif) | ![Home Gif](./readme/gifs/sidebar.gif)      | ![upload gif](./readme/gifs/upload.gif)     |
+| Home screen                           | Update Picture screen                       | Edit infos screen                           |
+| ![Login Gif](./readme/gifs/home.gif)  | ![Home Gif](./readme/gifs/edit-picture.gif) | ![upload gif](./readme/gifs/edit-infos.gif) |
+
 | Login screen                                 | Register screen                                  | Landing screen                              |
 | -------------------------------------------- | ------------------------------------------------ | ------------------------------------------- |
 | ![Landing](./readme/user-screens/signin.png) | ![fsdaf](./readme/user-screens/signup.png)       | ![fsdaf](./readme/user-screens/landing.png) |
@@ -65,14 +73,6 @@ Admin
 | ![Landing](./readme/user-screens/home.png)   | ![fsdaf](./readme/user-screens/upload.png)       | ![fsdaf](./readme/user-screens/result.png)  |
 | admin screen                                 | edit-profile screen                              | View History Screen                         |
 | ![Landing](./readme/user-screens/admin.png)  | ![fsdaf](./readme/user-screens/edit-profile.png) | ![fsdaf](./readme/user-screens/history.png) |
-
-Animated gifs
-
-| Register screen                       | Home screen                                 | Upload screen                               |
-| ------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| ![Login Gif](./readme/gifs/login.gif) | ![Home Gif](./readme/gifs/sidebar.gif)      | ![upload gif](./readme/gifs/upload.gif)     |
-| Home screen                           | Update Picture screen                       | Edit infos screen                           |
-| ![Login Gif](./readme/gifs/home.gif)  | ![Home Gif](./readme/gifs/edit-picture.gif) | ![upload gif](./readme/gifs/edit-infos.gif) |
 
 <br><br>
 
