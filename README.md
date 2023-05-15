@@ -41,13 +41,13 @@ Admin
 
 ### Mockups
 
-| Login screen                                  | Register screen                               | admin screen                                  |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| ![Signin](./readme/mockups/signin-mockup.png) | ![Signup](./readme/mockups/signup-mockup.png) | ![Landing](./readme/mockups/admin-mockup.png) |
+| Login screen                                  | Landing screen                                 | admin screen                                  |
+| --------------------------------------------- | ---------------------------------------------- | --------------------------------------------- |
+| ![Signin](./readme/mockups/signin-mockup.png) | ![Signin](./readme/mockups/landing-mockup.png) | ![Landing](./readme/mockups/admin-mockup.png) |
 
-| Landing Page                                   | Landing Page                                  | Landing Page                                   |
+<!-- | Landing Page                                   | Landing Page                                  | Landing Page                                   |
 | ---------------------------------------------- | --------------------------------------------- | ---------------------------------------------- |
-| ![Signin](./readme/mockups/landing-mockup.png) | ![Signup](./readme/mockups/use-it-mockup.png) | ![Landing](./readme/mockups/footer-mockup.png) |
+| ![Signin](./readme/mockups/landing-mockup.png) | ![Signup](./readme/mockups/use-it-mockup.png) | ![Landing](./readme/mockups/footer-mockup.png) | -->
 
 <br><br>
 
