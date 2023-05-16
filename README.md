@@ -156,7 +156,7 @@ For Windows
    ```sh
    python3 -m venv my_venv
    ```
-8. Deactivate virtual environment if your in one
+8. Deactivate virtual environment if you're in one
    ```sh
    deactivate
    ```
