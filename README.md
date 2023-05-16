@@ -21,6 +21,7 @@ Admin
 
 - As an admin, I want to be able to display a list of all users with their app usage and feedback so that I can monitor the activity on the website.
 - As an admin, I want to be able to view the codes tried on the app so that I can identify any issues and make necessary improvements.
+- As an admin, I want to be able to view the history of user activity on my website so that I can understand how users are interacting with the site and identify any issues or areas for improvement.
 
 <br><br>
 
